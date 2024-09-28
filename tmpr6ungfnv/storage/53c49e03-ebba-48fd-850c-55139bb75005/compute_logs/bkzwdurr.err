@@ -1,0 +1,30 @@
+[32m2024-09-26 18:24:27 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - LOGS_CAPTURED - Started capturing logs in process (pid: 1798262).
+[32m2024-09-26 18:24:27 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - STEP_START - Started execution of step "update_pbp_with_players".
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - LOADED_INPUT - Loaded input "nfl_pbp_2024" using input manager "io_manager", from output "result" of step "nfl_pbp_2024"
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - LOADED_INPUT - Loaded input "nfl_players" using input manager "io_manager", from output "result" of step "nfl_players"
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - STEP_INPUT - Got input "nfl_pbp_2024" of type "Any". (Type check passed).
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - STEP_INPUT - Got input "nfl_players" of type "Any". (Type check passed).
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Connecting to DuckDB...
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Column passer_display_name STRING added.
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Column passer_position STRING added.
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Column rusher_display_name STRING added.
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Column rusher_position STRING added.
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Column receiver_display_name STRING added.
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Column receiver_position STRING added.
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Updating player-related columns in nfl_pbp_2024...
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - update_pbp_with_players - Updated PBP data:    play_id          game_id  ... receiver_display_name receiver_position
+0      1.0  2024_01_ARI_BUF  ...                  None              None
+1     40.0  2024_01_ARI_BUF  ...                  None              None
+2     61.0  2024_01_ARI_BUF  ...                  None              None
+3     83.0  2024_01_ARI_BUF  ...          James Conner                RB
+4    108.0  2024_01_ARI_BUF  ...          James Conner                RB
+5    133.0  2024_01_ARI_BUF  ...                  None              None
+6    155.0  2024_01_ARI_BUF  ...                  None              None
+7    177.0  2024_01_ARI_BUF  ...                  None              None
+8    199.0  2024_01_ARI_BUF  ...           Greg Dortch                WR
+9    224.0  2024_01_ARI_BUF  ...       Marvin Harrison                WR
+
+[10 rows x 378 columns]
+[32m2024-09-26 18:24:28 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2024-09-26 18:24:29 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - ASSET_MATERIALIZATION - Materialized value update_pbp_with_players.
+[32m2024-09-26 18:24:29 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1798262 - update_pbp_with_players - STEP_SUCCESS - Finished execution of step "update_pbp_with_players" in 1.07s.

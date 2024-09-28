@@ -1,0 +1,11 @@
+transit_timestamp,transit_mode,station_complex_id,station_complex,borough,payment_method,fare_class_category,ridership,transfers,latitude,longitude,georeference
+2024-09-01T00:00:00.000,subway,224,57 St (F),Manhattan,metrocard,Metrocard - Fair Fare,6.0,0.0,40.763973,-73.97745,"{'type': Point, 'coordinates': [-73.97745, 40.763973]}"
+2024-09-01T00:00:00.000,subway,272,"36 St (M,R)",Queens,omny,OMNY - Full Fare,12.0,0.0,40.75204,-73.92878,"{'type': Point, 'coordinates': [-73.92878, 40.75204]}"
+2024-09-01T00:00:00.000,subway,419,"225 St (2,5)",Bronx,omny,OMNY - Full Fare,1.0,0.0,40.888023,-73.860344,"{'type': Point, 'coordinates': [-73.860344, 40.888023]}"
+2024-09-01T00:00:00.000,subway,445,Pelham Pkwy (5),Bronx,omny,OMNY - Full Fare,1.0,0.0,40.858986,-73.85536,"{'type': Point, 'coordinates': [-73.85536, 40.858986]}"
+2024-09-01T00:00:00.000,subway,13,"28 St (R,W)",Manhattan,omny,OMNY - Full Fare,164.0,0.0,40.745495,-73.98869,"{'type': Point, 'coordinates': [-73.98869, 40.745495]}"
+2024-09-01T00:00:00.000,subway,240,"7 Av (F,G)",Brooklyn,omny,OMNY - Other,2.0,0.0,40.66627,-73.98031,"{'type': Point, 'coordinates': [-73.98031, 40.66627]}"
+2024-09-01T00:00:00.000,subway,343,Nostrand Av (3),Brooklyn,metrocard,Metrocard - Full Fare,1.0,0.0,40.669846,-73.95046,"{'type': Point, 'coordinates': [-73.95046, 40.669846]}"
+2024-09-01T00:00:00.000,subway,426,"E 180 St (2,5)",Bronx,metrocard,Metrocard - Other,2.0,0.0,40.841892,-73.87349,"{'type': Point, 'coordinates': [-73.87349, 40.841892]}"
+2024-09-01T00:00:00.000,staten_island_railway,501,St George (SIR),Staten Island,metrocard,Metrocard - Unlimited 30-Day,2.0,0.0,40.64375,-74.07365,"{'type': Point, 'coordinates': [-74.07365, 40.64375]}"
+2024-09-01T00:00:00.000,subway,324,Houston St (1),Manhattan,omny,OMNY - Full Fare,95.0,0.0,40.728252,-74.00536,"{'type': Point, 'coordinates': [-74.00536, 40.728252]}"

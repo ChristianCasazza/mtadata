@@ -1,0 +1,11 @@
+id,customer_id,country,country_code,country_name,default,_dlt_root_id,_dlt_parent_id,_dlt_list_idx,_dlt_id,province,province_code
+10664387903808,8651819385152,Slovenia,SI,Slovenia,true,oeh1DbJxyIZVHQ,oeh1DbJxyIZVHQ,0,ZeB6FWvex4ZLNg,,
+10664387969344,8651819483456,Norway,NO,Norway,true,2bWzgdqMxSAHFA,2bWzgdqMxSAHFA,0,JyX1t9nHUFfEdA,,
+10664388133184,8651819647296,Kiribati,KI,Kiribati,true,KxlCx+6q2TrqTw,KxlCx+6q2TrqTw,0,/3WtHTxSSep0lQ,,
+10664388100416,8651819614528,Botswana,BW,Botswana,true,X+0QAjw+3k7pbg,X+0QAjw+3k7pbg,0,WefB/upOBgvGXA,,
+10664388034880,8651819548992,"Congo, The Democratic Republic Of The",CD,"Congo, The Democratic Republic Of The",true,fxZnodW5GL8pNA,fxZnodW5GL8pNA,0,M0xbVmrGwqit+Q,,
+10664387936576,8651819450688,Dominican Republic,DO,Dominican Republic,true,BxRzFJG3fOO3nQ,BxRzFJG3fOO3nQ,0,Z89YH2qw+4TWhA,,
+10664388165952,8651819680064,United Kingdom,GB,United Kingdom,true,7KcPhMdngG3ZWw,7KcPhMdngG3ZWw,0,d9OjSNItmxr24w,England,ENG
+10664388002112,8651819516224,Australia,AU,Australia,true,CFug2p6Mj8QiGg,CFug2p6Mj8QiGg,0,rgvEKyasuS/FeQ,,
+10664388198720,8651819712832,Zimbabwe,ZW,Zimbabwe,true,oD4hAzPEHqIqdQ,oD4hAzPEHqIqdQ,0,ns9jy8Aim4cvLg,,
+10664388067648,8651819581760,Australia,AU,Australia,true,ycOZh/d1TQyX+A,ycOZh/d1TQyX+A,0,BMyea0y0GXO1LA,,

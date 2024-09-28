@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: penalty_totals
+    description: "Total penalties grouped by week and type."
+    columns:
+      - name: week
+        description: "The week of the NFL season."
+        tests:
+          - not_null
+      - name: penalty_type
+        description: "The type of penalty."
+      - name: total_penalties
+        description: "Total number of penalties for that week and type."
+        tests:
+          - not_null

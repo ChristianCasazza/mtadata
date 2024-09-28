@@ -1,0 +1,6 @@
+[32m2024-09-26 18:24:19 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1797560 - LOGS_CAPTURED - Started capturing logs in process (pid: 1797560).
+[32m2024-09-26 18:24:19 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1797560 - nfl_players - STEP_START - Started execution of step "nfl_players".
+[32m2024-09-26 18:24:20 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1797560 - nfl_players - STEP_OUTPUT - Yielded output "result" of type "DataFrame". (Type check passed).
+[32m2024-09-26 18:24:20 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1797560 - nfl_players - ASSET_MATERIALIZATION - Materialized value nfl_players.
+[32m2024-09-26 18:24:20 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1797560 - nfl_players - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2024-09-26 18:24:20 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 53c49e03-ebba-48fd-850c-55139bb75005 - 1797560 - nfl_players - STEP_SUCCESS - Finished execution of step "nfl_players" in 1.17s.
