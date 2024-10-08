@@ -8,3 +8,13 @@ secrets.toml
 # ignore duckdb
 *.duckdb
 *.wal
+data
+dagster.yaml
+tools/*
+mta/logs/*
+mta/transformations/dbt/target/*
+mta/transformations/dbt/.user.yml
+EDA/*
+dagster_logs/*
+.venv/*
+.vscode/*

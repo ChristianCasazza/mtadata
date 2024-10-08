@@ -1,9 +1,0 @@
-version: 2
-
-sources:
-  - name: main
-    tables:
-      - name: nfl_pbp_2024
-        meta:
-          dagster:
-            asset_key: ["nfl_pbp_2024"]

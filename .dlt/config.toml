@@ -1,6 +1,0 @@
-[sources.shopify_dlt]
-shop_url = "https://24fe02-0d.myshopify.com" # please set me up!
-organization_id = "organization_id" # please set me up!
-
-[runtime]
-dlthub_telemetry = true
