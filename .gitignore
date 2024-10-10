@@ -18,3 +18,5 @@ EDA/*
 dagster_logs/*
 .venv/*
 .vscode/*
+codeprinter/*
+datatest/*

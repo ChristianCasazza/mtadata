@@ -3,25 +3,20 @@ import polars as pl
 from datetime import timedelta
 
 ENDPOINT = 'https://data.ny.gov/resource/wujg-7c2s.geojson'
-PAGE_SIZE = 50000
+PAGE_SIZE = 500000
 HEADERS = {'X-App-Token': 'uHoP8dT0q1BTcacXLCcxrDp8z'}  # Replace with proper environment loading
 
-def last_day_of_month(any_day):
-    next_month = any_day.replace(day=28) + timedelta(days=4)
-    return next_month - timedelta(days=next_month.day)
-
-def fetch_nyc_data_geojson(start_date, end_date, page_size=PAGE_SIZE):
-    offset = 0
+def fetch_nyc_data_geojson(start_date, offset, page_size=PAGE_SIZE):
     all_data = []
 
     while True:
-        print(f"Fetching data from {start_date} to {end_date} with offset: {offset}")
+        print(f"Fetching data from {start_date} with offset: {offset}")
         response = requests.get(
             ENDPOINT,
             params={
                 '$limit': page_size,
                 '$offset': offset,
-                '$where': f"transit_timestamp between '{start_date}' and '{end_date}'"
+                '$where': f"transit_timestamp >= '{start_date}'"
             },
             headers=HEADERS
         )
@@ -30,14 +25,14 @@ def fetch_nyc_data_geojson(start_date, end_date, page_size=PAGE_SIZE):
         features = data.get('features', [])
 
         if not features:
-            print(f"No more data to fetch for the period {start_date} to {end_date}.")
+            print(f"No more data to fetch at offset {offset}.")
             break
 
         for feature in features:
             properties = feature.get('properties', {})
             all_data.append(properties)
 
-        offset += page_size
+        break  # Only one batch per function call
 
     return all_data
 

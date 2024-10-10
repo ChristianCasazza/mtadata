@@ -7,7 +7,7 @@ defs = Definitions(
     assets=[fetch_and_save_weekly_data],
     resources={
         "polars_parquet_io_manager": PolarsParquetIOManager(
-            base_dir="/home/christianocean/mta/data/mta/subway_hourly_ridership"
+            base_dir="/home/christianocean/mta/data/mta/hourly_ridership"
         )
     }
 )
