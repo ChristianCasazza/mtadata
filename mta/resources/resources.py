@@ -1,86 +1,29 @@
-import dlt
-from dlt.sources.helpers import requests
-from datetime import datetime, timedelta
-import polars as pl
-from dagster import ConfigurableResource
-import duckdb
-import os
-from dagster import resource, Field, String
+# mta/resources/resources.py
 
-class BloombetAPI(ConfigurableResource):
-    api_key: str
-    sport: str
-    start_time: datetime
-    time_interval: timedelta
+from mta.resources.polars_parquet_io_manager import PolarsParquetIOManager
 
-    def fetch_bloombet_data(self, date: datetime):
-        """Fetch historical data from Bloombet API for a specific sport and date."""
-        print(f"Starting API call for {self.sport} at {date.strftime('%Y-%m-%d %H:%M:%S')}")
-        
-        response = requests.get(
-            f'https://getbloombet.com/api/historical',
-            params={
-                'api_key': self.api_key,
-                'sport': self.sport,
-                'date': date.strftime('%Y-%m-%d %H:%M:%S')
-            }
-        )
-        
-        response.raise_for_status()
-        print(f"API call successful for {self.sport} at {date.strftime('%Y-%m-%d %H:%M:%S')}")
-        
-        return response.json()
+# Custom IO manager for hourly subway data
+hourly_subway_io_manager = PolarsParquetIOManager(
+    base_dir="/home/christianocean/mta/data/mta/new/hourly_subway_data"
+)
 
-    def aggregate_data(self):
-        """Run the process and aggregate all results into one Polars DataFrame."""
-        current_time = self.start_time
-        aggregated_df = pl.DataFrame()  # Initialize an empty Polars DataFrame for aggregation
+# Custom IO manager for daily subway data
+daily_subway_io_manager = PolarsParquetIOManager(
+    base_dir="/home/christianocean/mta/data/mta/new/daily_subway_data"
+)
 
-        while current_time <= datetime.now():
-            print(f"Fetching data for {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
+# Custom IO manager for bus speeds data
+bus_speeds_io_manager = PolarsParquetIOManager(
+    base_dir="/home/christianocean/mta/data/mta/new/bus_speeds_data"
+)
 
-            try:
-                data = self.fetch_bloombet_data(current_time)
-                
-                # Convert the JSON object to a Polars DataFrame
-                df = pl.DataFrame(data)
-                
-                # Append the individual DataFrame to the aggregated DataFrame
-                aggregated_df = pl.concat([aggregated_df, df], rechunk=True)
-                
-                # Drop the individual DataFrame to conserve memory
-                del df
-                
-                print(f"Data for {current_time.strftime('%Y-%m-%d %H:%M:%S')} added to aggregated dataframe")
-
-            except Exception as e:
-                print(f"Failed to fetch data for {current_time.strftime('%Y-%m-%d %H:%M:%S')} due to {e}")
-            
-            # Move to the next interval
-            current_time += self.time_interval
-
-        # Return the aggregated DataFrame
-        return aggregated_df
+# Define the IO manager for the mta_bus_wait_time asset
+bus_wait_time_io_manager = PolarsParquetIOManager(
+    base_dir="/home/christianocean/mta/data/mta/new/bus_wait_time_data"
+)
 
 
-class DuckDBBIExport:
-    def __init__(self, db_raw_path: str, sql_folder: str, new_duckdb_path: str):
-        self.db_raw_path = db_raw_path
-        self.sql_folder = sql_folder
-        self.new_duckdb_path = new_duckdb_path
-
-    def export_tables(self):
-        # Your logic for exporting tables
-        pass  # Implement the existing logic here
-
-@resource(config_schema={
-    "db_raw_path": Field(String, is_required=True),
-    "sql_folder": Field(String, is_required=True),
-    "new_duckdb_path": Field(String, is_required=True),
-})
-def duckdb_bi_export(context):
-    return DuckDBBIExport(
-        db_raw_path=context.resource_config["db_raw_path"],
-        sql_folder=context.resource_config["sql_folder"],
-        new_duckdb_path=context.resource_config["new_duckdb_path"]
-    )
+# Define the IO manager for the mta_operations_statement asset
+operations_statement_io_manager = PolarsParquetIOManager(
+    base_dir="/home/christianocean/mta/data/mta/new/operations_statement_data"
+)

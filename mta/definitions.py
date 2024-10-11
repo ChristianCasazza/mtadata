@@ -1,13 +1,16 @@
-from mta.assets.ingestion.mta_subway.nyc_assets import mta_hourly_subway_socrata
-from mta.resources.polars_parquet_io_manager import PolarsParquetIOManager
+# mta/definitions.py
 
+from mta.assets.ingestion.mta_subway.nyc_assets import *
+from mta.resources.resources import *
 from dagster import Definitions
 
 defs = Definitions(
-    assets=[mta_hourly_subway_socrata],
+    assets=[mta_hourly_subway_socrata, mta_daily_subway_socrata, mta_bus_speeds, mta_bus_wait_time, mta_operations_statement],
     resources={
-        "polars_parquet_io_manager": PolarsParquetIOManager(
-            base_dir="/home/christianocean/mta/data/mta/new_subway_hourly_ridership"
-        )
+        "hourly_subway_io_manager": hourly_subway_io_manager,
+        "daily_subway_io_manager": daily_subway_io_manager,
+        "bus_speeds_io_manager": bus_speeds_io_manager,
+        "bus_wait_time_io_manager": bus_wait_time_io_manager,
+        "operations_statement_io_manager": operations_statement_io_manager
     }
 )
