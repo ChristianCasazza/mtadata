@@ -16,7 +16,8 @@ def fetch_nyc_data_geojson(start_date, offset, page_size=PAGE_SIZE):
             params={
                 '$limit': page_size,
                 '$offset': offset,
-                '$where': f"transit_timestamp >= '{start_date}'"
+                '$where': f"transit_timestamp >= '{start_date}'",
+                '$order': 'transit_timestamp ASC'  # Ensure consistent order
             },
             headers=HEADERS
         )
