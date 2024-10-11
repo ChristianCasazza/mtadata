@@ -1,41 +1,51 @@
-import polars as pl
-import gc
+from mta.assets.ingestion.mta_subway.asset_functions import process_mta_hourly_subway_df
+from mta.utils.data_fetching import SocrataAPI, SocrataAPIConfig
 from dagster import asset
-from datetime import datetime
-from mta.utils.data_fetching import fetch_nyc_data_geojson, process_and_cast_df
+from .constants import MTA_HOURLY_SUBWAY_ENDPOINT, MTA_HOURLY_SUBWAY_ORDER, MTA_HOURLY_SUBWAY_WHERE 
+import gc
+import polars as pl
 
-# Define constants for the start date
-start_date = datetime(2022, 2, 1)
+
+class MTAHourlySubwayConfig(SocrataAPIConfig):
+    SOCRATA_ENDPOINT: str = MTA_HOURLY_SUBWAY_ENDPOINT
+    order: str = MTA_HOURLY_SUBWAY_ORDER
+    limit: int = 500000
+    where: str = MTA_HOURLY_SUBWAY_WHERE
+    offset: int = 0
+
 
 @asset(io_manager_key="polars_parquet_io_manager")
-def fetch_and_save_weekly_data(context):
-    offset = 0
-    page_size = 500000
-    batch_number = 1  # Track batch numbers for file naming
+def mta_hourly_subway_socrata(context, config: MTAHourlySubwayConfig):
+    api_client = SocrataAPI(config)  # Instantiate the SocrataAPI class
+    offset = config.offset  # Start from the initial offset in config
+    batch_number = 1
 
     while True:
-        # Fetch data for the current batch
-        data = fetch_nyc_data_geojson(start_date.isoformat(), offset, page_size)
+        # Log the current offset before each API call
+        context.log.info(f"Fetching data with offset: {offset}")
+
+        # Create a new API client with the updated offset
+        updated_config = config.copy(update={"offset": offset})
+        api_client.config = updated_config
+
+        # Fetch data using the SocrataAPI class method
+        data = api_client.fetch_data()
 
         if not data:
-            print(f"No more data to fetch at offset {offset}.")
+            context.log.info(f"No more data to fetch at offset {offset}.")
             context.log.info("All data has been fetched successfully.")
-            return  # Exit the function without attempting further output
+            return
 
-        # Convert to Polars DataFrame
         raw_df = pl.DataFrame(data)
+        processed_df = process_mta_hourly_subway_df(raw_df)
 
-        # Process and cast the data
-        processed_df = process_and_cast_df(raw_df)
-
-        # Save the DataFrame to Parquet file if there is data
         if not processed_df.is_empty():
             context.resources.polars_parquet_io_manager.handle_output(context, processed_df, batch_number)
 
-        # Free up memory
+        # Cleanup memory
         del raw_df, processed_df, data
-        gc.collect()  # Trigger garbage collection
+        gc.collect()
 
-        # Increment the offset and batch number for the next batch
-        offset += page_size
+        # Increment the offset for the next batch
+        offset += config.limit
         batch_number += 1
