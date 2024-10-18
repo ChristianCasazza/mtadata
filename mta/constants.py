@@ -18,3 +18,10 @@ WEATHER_ASSETS_PATHS = {
     asset_name: f"{BASE_PATH}/{asset_name}"
     for asset_name in WEATHER_ASSETS_NAMES
 }
+
+
+
+
+LAKE_PATH= '/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb'
+
+

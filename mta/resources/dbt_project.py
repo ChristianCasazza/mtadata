@@ -1,8 +1,9 @@
 from pathlib import Path
-from dagster_dbt import DbtCliResource
+from dagster_dbt import DbtProject
 
-# Correct the path to point directly to the dbt directory and the profiles.yml location
-dbt_project = DbtCliResource(
-    project_dir=Path(__file__).parent.parent.joinpath("transformations", "dbt").resolve(),  # Correct relative path to the dbt project
-    profiles_dir=Path(__file__).parent.parent.joinpath("transformations", "dbt").resolve()  # Point to the correct path for profiles.yml
+# Set the path to MTA's DBT project folder
+dbt_project = DbtProject(
+    project_dir=Path(__file__).parent.parent.joinpath("transformations", "dbt").resolve(),  # Adjust the path to point to the correct MTA DBT folder
 )
+
+dbt_project.prepare_if_dev()  # Prepare if in development mode

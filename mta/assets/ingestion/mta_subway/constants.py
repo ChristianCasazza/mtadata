@@ -8,7 +8,7 @@ class MTAHourlySubwayConfig(SocrataAPIConfig):
     SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/wujg-7c2s.geojson"
     order: str = "transit_timestamp ASC"
     limit: int = 500000
-    where: str = f"transit_timestamp >= '{datetime(2020, 1, 1).isoformat()}'"
+    where: str = f"transit_timestamp >= '{datetime(2024, 9, 25).isoformat()}'"
     offset: int = 0
 
 # Define a new config for daily subway data
@@ -47,5 +47,5 @@ class NYCArrestsHistoricalConfig(SocrataAPIConfig):
     SOCRATA_ENDPOINT: str = "https://data.cityofnewyork.us/resource/8h9b-rp9u.geojson"
     order: str = "ARREST_DATE ASC"
     limit: int = 500000
-    where: str = f"ARREST_DATE >= '{datetime(2020, 1, 1).isoformat()}'"
+    where: str = f"ARREST_DATE >= '{datetime(2024, 6, 1).isoformat()}'"
     offset: int = 0
