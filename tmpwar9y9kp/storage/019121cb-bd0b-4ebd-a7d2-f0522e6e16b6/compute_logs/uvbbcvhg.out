@@ -1,0 +1,16 @@
+Columns before processing: ['month', 'borough', 'day_type', 'trip_type', 'route_id', 'period', 'number_of_trips_passing_wait', 'number_of_scheduled_trips', 'wait_assessment']
+Columns after renaming: ['month', 'borough', 'day_type', 'trip_type', 'route_id', 'period', 'number_of_trips_passing_wait', 'number_of_scheduled_trips', 'wait_assessment']
+Processed month column: shape: (5, 1)
+┌────────────┐
+│ month      │
+│ ---        │
+│ date       │
+╞════════════╡
+│ 2020-01-01 │
+│ 2020-01-01 │
+│ 2020-01-01 │
+│ 2020-01-01 │
+│ 2020-01-01 │
+└────────────┘
+Saving data to /home/christianocean/mta/data/mta/newnew/mta_bus_wait_time/file_1.parquet...
+Data successfully saved to /home/christianocean/mta/data/mta/newnew/mta_bus_wait_time/file_1.parquet

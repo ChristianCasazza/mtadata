@@ -1,0 +1,1 @@
+LAKE_PATH= '/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb'

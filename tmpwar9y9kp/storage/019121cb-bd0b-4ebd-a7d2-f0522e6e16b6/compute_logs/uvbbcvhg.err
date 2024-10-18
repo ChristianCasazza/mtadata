@@ -1,0 +1,13 @@
+[32m2024-10-17 13:40:10 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - 2316349 - LOGS_CAPTURED - Started capturing logs in process (pid: 2316349).
+[32m2024-10-17 13:40:10 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - 2316349 - mta_bus_wait_time - STEP_START - Started execution of step "mta_bus_wait_time".
+[32m2024-10-17 13:40:10 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - mta_bus_wait_time - Fetching bus wait time data with offset: 0
+/home/christianocean/mta/mta/assets/ingestion/mta_subway/asset_functions.py:128: ChronoFormatWarning: Detected the pattern `.%f` in the chrono format string. This pattern should not be used to parse values after a decimal point. Use `%.f` instead. See the full specification: https://docs.rs/chrono/latest/chrono/format/strftime
+  pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - mta_bus_wait_time - Fetching bus wait time data with offset: 500000
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - mta_bus_wait_time - No more bus wait time data to fetch at offset 500000.
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - mta_bus_wait_time - All data has been fetched successfully.
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - 2316349 - mta_bus_wait_time - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - mta_bus_wait_time - No data to save.
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - 2316349 - mta_bus_wait_time - ASSET_MATERIALIZATION - Materialized value mta_bus_wait_time.
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - 2316349 - mta_bus_wait_time - HANDLED_OUTPUT - Handled output "result" using IO manager "mta_bus_wait_time_polars_parquet_io_manager"
+[32m2024-10-17 13:40:13 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 019121cb-bd0b-4ebd-a7d2-f0522e6e16b6 - 2316349 - mta_bus_wait_time - STEP_SUCCESS - Finished execution of step "mta_bus_wait_time" in 2.58s.

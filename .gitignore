@@ -20,3 +20,7 @@ dagster_logs/*
 .vscode/*
 codeprinter/*
 datatest/*
+.vscode?*
+data/*
+testing/*
+tools/*

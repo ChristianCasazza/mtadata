@@ -1,0 +1,13 @@
+[32m2024-10-17 13:36:08 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - 2305264 - LOGS_CAPTURED - Started capturing logs in process (pid: 2305264).
+[32m2024-10-17 13:36:08 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - 2305264 - mta_operations_statement - STEP_START - Started execution of step "mta_operations_statement".
+[32m2024-10-17 13:36:08 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - mta_operations_statement - Fetching operations statement data with offset: 0
+/home/christianocean/mta/mta/assets/ingestion/mta_subway/asset_functions.py:164: ChronoFormatWarning: Detected the pattern `.%f` in the chrono format string. This pattern should not be used to parse values after a decimal point. Use `%.f` instead. See the full specification: https://docs.rs/chrono/latest/chrono/format/strftime
+  pl.col("timestamp").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("timestamp")
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - mta_operations_statement - Fetching operations statement data with offset: 500000
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - mta_operations_statement - No more operations statement data to fetch at offset 500000.
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - mta_operations_statement - All data has been fetched successfully.
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - 2305264 - mta_operations_statement - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - mta_operations_statement - No data to save.
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - 2305264 - mta_operations_statement - ASSET_MATERIALIZATION - Materialized value mta_operations_statement.
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - 2305264 - mta_operations_statement - HANDLED_OUTPUT - Handled output "result" using IO manager "mta_operations_statement_polars_parquet_io_manager"
+[32m2024-10-17 13:36:16 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a3fc7068-5d20-4a06-ad2e-b701004db64a - 2305264 - mta_operations_statement - STEP_SUCCESS - Finished execution of step "mta_operations_statement" in 8.48s.

@@ -1,0 +1,16 @@
+Columns before processing: ['fiscal_year', 'month', 'scenario', 'financial_plan_year', 'expense_type', 'agency', 'type', 'subtype', 'general_ledger', 'amount']
+Columns after renaming: ['fiscal_year', 'timestamp', 'scenario', 'financial_plan_year', 'expense_type', 'agency', 'type', 'subtype', 'general_ledger', 'amount']
+Processed timestamp column: shape: (5, 1)
+┌────────────┐
+│ timestamp  │
+│ ---        │
+│ date       │
+╞════════════╡
+│ 2019-01-01 │
+│ 2019-01-01 │
+│ 2019-01-01 │
+│ 2019-01-01 │
+│ 2019-01-01 │
+└────────────┘
+Saving data to /home/christianocean/mta/data/mta/newnew/mta_operations_statement/file_1.parquet...
+Data successfully saved to /home/christianocean/mta/data/mta/newnew/mta_operations_statement/file_1.parquet

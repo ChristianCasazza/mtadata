@@ -1,14 +1,14 @@
 # constants.py
 
 from datetime import datetime
-from mta.utils.data_fetching import SocrataAPIConfig
+from mta.utils.socrata_api import SocrataAPIConfig
 
 # Define the dynamic start date for hourly subway data
 class MTAHourlySubwayConfig(SocrataAPIConfig):
     SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/wujg-7c2s.geojson"
     order: str = "transit_timestamp ASC"
     limit: int = 500000
-    where: str = f"transit_timestamp >= '{datetime(2024, 9, 10).isoformat()}'"
+    where: str = f"transit_timestamp >= '{datetime(2020, 1, 1).isoformat()}'"
     offset: int = 0
 
 # Define a new config for daily subway data
@@ -40,4 +40,12 @@ class MTAOperationsStatementConfig(SocrataAPIConfig):
     SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/yg77-3tkj.json"
     order: str = "Month ASC"
     limit: int = 500000
+    offset: int = 0
+
+
+class NYCArrestsHistoricalConfig(SocrataAPIConfig):
+    SOCRATA_ENDPOINT: str = "https://data.cityofnewyork.us/resource/8h9b-rp9u.geojson"
+    order: str = "ARREST_DATE ASC"
+    limit: int = 500000
+    where: str = f"ARREST_DATE >= '{datetime(2020, 1, 1).isoformat()}'"
     offset: int = 0

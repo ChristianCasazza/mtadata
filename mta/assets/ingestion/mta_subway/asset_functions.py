@@ -181,3 +181,53 @@ def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
     ])
 
     return df
+
+
+# asset_functions.py
+
+import polars as pl
+
+def process_nyc_arrests_df(df: pl.DataFrame) -> pl.DataFrame:
+    # Print original column names and the first few rows for inspection
+    print("Original columns:", df.columns)
+    print("First few rows of the original data:\n", df.head())
+
+    # Rename columns to lowercase and replace spaces with underscores
+    df = df.rename({col: col.lower().replace(" ", "_") for col in df.columns})
+    print("Columns after renaming:", df.columns)
+
+    # Rename 'arrest_date' to 'date'
+    df = df.rename({"arrest_date": "date"})
+
+    # Print the unique values in the 'date' column before parsing
+    print("Unique 'date' values before parsing:\n", df.select("date").unique())
+
+    # Cast columns to appropriate types
+    df = df.with_columns([
+        # Update the date parsing to handle the correct format 'YYYY-MM-DDTHH:MM:SS.SSS'
+        pl.col("date").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("date"),
+        pl.col("arrest_key").cast(pl.Utf8),
+        pl.col("pd_cd").cast(pl.Int64),
+        pl.col("pd_desc").cast(pl.Utf8),
+        pl.col("ky_cd").cast(pl.Int64),
+        pl.col("ofns_desc").cast(pl.Utf8),
+        pl.col("law_code").cast(pl.Utf8),
+        pl.col("law_cat_cd").cast(pl.Utf8),
+        pl.col("arrest_boro").cast(pl.Utf8),
+        pl.col("arrest_precinct").cast(pl.Int64),
+        pl.col("jurisdiction_code").cast(pl.Int64),
+        pl.col("age_group").cast(pl.Utf8),
+        pl.col("perp_sex").cast(pl.Utf8),
+        pl.col("perp_race").cast(pl.Utf8),
+        pl.col("x_coord_cd").cast(pl.Float64),
+        pl.col("y_coord_cd").cast(pl.Float64),
+        pl.col("latitude").cast(pl.Float64),
+        pl.col("longitude").cast(pl.Float64),
+        pl.format('POINT({} {})', pl.col('longitude'), pl.col('latitude')).alias('lon_lat')
+    ])
+
+    # Print the unique 'date' values after parsing and the first few rows of processed data
+    print("Unique 'date' values after parsing:\n", df.select("date").unique())
+    print("First few rows of the processed data:\n", df.head())
+
+    return df

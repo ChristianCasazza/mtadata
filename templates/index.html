@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuckDB Tables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .table-list {
+            margin-bottom: 20px;
+        }
+        .table-list a {
+            display: block;
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+            text-decoration: none;
+            color: black;
+            border-radius: 5px;
+        }
+        .table-list a:hover {
+            background-color: #e0e0e0;
+        }
+        .metadata {
+            white-space: pre-wrap;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .metadata-item {
+            margin-bottom: 10px;
+        }
+        .toggle-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>DuckDB Tables</h1>
+    
+    <div class="toggle-container">
+        <label for="toggle-mode">Mode:</label>
+        <select id="toggle-mode" onchange="switchMode()">
+            <option value="human">Human</option>
+            <option value="llm">LLM</option>
+        </select>
+    </div>
+
+    <div class="table-list">
+        <h2>Select a table:</h2>
+        {% for table in tables %}
+            <a href="#" onclick="getMetadata('{{ table }}')">{{ table }}</a>
+        {% endfor %}
+    </div>
+
+    <div id="metadata-container">
+        <h2>Table Metadata</h2>
+        <div class="metadata" id="metadata"></div>
+    </div>
+
+    <script>
+        let currentMode = 'human';
+        let metadataHuman = '';
+        let metadataLLM = '';
+
+        function switchMode() {
+            currentMode = document.getElementById('toggle-mode').value;
+            displayMetadata();
+        }
+
+        function getMetadata(tableName) {
+            fetch(`/table/${tableName}`)
+                .then(response => response.json())
+                .then(data => {
+                    metadataHuman = data.human;
+                    metadataLLM = data.llm;
+                    displayMetadata();
+                })
+                .catch(error => {
+                    document.getElementById('metadata').textContent = 'Error fetching metadata';
+                });
+        }
+
+        function displayMetadata() {
+            const metadataDiv = document.getElementById('metadata');
+            if (currentMode === 'human') {
+                let humanReadable = '';
+                metadataHuman.forEach(item => {
+                    humanReadable += `<div class="metadata-item">
+                        <strong>Column Name:</strong> ${item.column_name}<br>
+                        <strong>Data Type:</strong> ${item.data_type}<br>
+                        <strong>Description:</strong> ${item.description}
+                    </div>`;
+                });
+                metadataDiv.innerHTML = humanReadable;
+            } else {
+                metadataDiv.textContent = metadataLLM;
+            }
+        }
+    </script>
+</body>
+</html>

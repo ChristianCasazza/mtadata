@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: "{{ env_var('DATABASE_PATH', '../../../data/nfl_database.duckdb') }}"
+      path: "/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb"
       threads: 16
       settings:
         enable_object_cache: true

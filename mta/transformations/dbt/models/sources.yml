@@ -1,9 +1,44 @@
 version: 2
-
 sources:
-  - name: main
-    tables:
-      - name: nfl_pbp_2024
-        meta:
-          dagster:
-            asset_key: ["nfl_pbp_2024"]
+- name: main
+  tables:
+  - name: mta_hourly_subway_socrata
+    meta:
+      dagster:
+        asset_key:
+        - mta_hourly_subway_socrata
+  - name: mta_daily_subway_socrata
+    meta:
+      dagster:
+        asset_key:
+        - mta_daily_subway_socrata
+  - name: mta_bus_speeds
+    meta:
+      dagster:
+        asset_key:
+        - mta_bus_speeds
+  - name: mta_bus_wait_time
+    meta:
+      dagster:
+        asset_key:
+        - mta_bus_wait_time
+  - name: mta_operations_statement
+    meta:
+      dagster:
+        asset_key:
+        - mta_operations_statement
+  - name: nyc_arrests_historical_raw
+    meta:
+      dagster:
+        asset_key:
+        - nyc_arrests_historical_raw
+  - name: daily_weather_asset
+    meta:
+      dagster:
+        asset_key:
+        - daily_weather_asset
+  - name: hourly_weather_asset
+    meta:
+      dagster:
+        asset_key:
+        - hourly_weather_asset

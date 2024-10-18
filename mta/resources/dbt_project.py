@@ -1,9 +1,8 @@
 from pathlib import Path
-from dagster_dbt import DbtProject
+from dagster_dbt import DbtCliResource
 
-# Adjust the path to point to nfl/transformations/dbt
-dbt_project = DbtProject(
-    project_dir=Path(__file__).parent.parent.joinpath("transformations", "dbt").resolve(),  # Correct relative path
+# Correct the path to point directly to the dbt directory and the profiles.yml location
+dbt_project = DbtCliResource(
+    project_dir=Path(__file__).parent.parent.joinpath("transformations", "dbt").resolve(),  # Correct relative path to the dbt project
+    profiles_dir=Path(__file__).parent.parent.joinpath("transformations", "dbt").resolve()  # Point to the correct path for profiles.yml
 )
-
-dbt_project.prepare_if_dev()

@@ -30,6 +30,7 @@ dependencies = [
     "dagster-webserver==1.8.2",
     "ruff>=0.6.7",
     "httpx<0.25.0",
+    "flash>=1.0.3",
 ]
 
 
