@@ -19,9 +19,6 @@ WEATHER_ASSETS_PATHS = {
     for asset_name in WEATHER_ASSETS_NAMES
 }
 
-
-
-
-LAKE_PATH= '/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb'
+LAKE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "mtastats", "sources", "mta", "mtastats.duckdb"))
 
 

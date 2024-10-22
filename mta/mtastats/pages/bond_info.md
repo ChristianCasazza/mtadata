@@ -2,7 +2,7 @@
 title: Bond Information
 ---
 
-## Choose an Bond
+## Choose a Bond
 
 ```unique_bonds
 SELECT DISTINCT general_ledger

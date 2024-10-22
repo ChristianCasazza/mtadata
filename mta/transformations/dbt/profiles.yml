@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: "/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb"
+      path: "{{ env_var('LAKE_PATH') }}"
       threads: 16
       settings:
         enable_object_cache: true
