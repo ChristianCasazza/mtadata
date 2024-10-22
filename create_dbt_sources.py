@@ -1,7 +1,7 @@
 import os
 import yaml
-from mta.assets.ingestion.mta_subway.mta_assets import MTA_ASSETS_NAMES
-from mta.assets.ingestion.weather.weather_assets import WEATHER_ASSETS_NAMES
+from mta.assets.ingestion.mta_assets import MTA_ASSETS_NAMES
+from mta.assets.ingestion.weather_assets import WEATHER_ASSETS_NAMES
 
 # Combine MTA and Weather asset names
 all_assets = MTA_ASSETS_NAMES + WEATHER_ASSETS_NAMES

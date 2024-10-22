@@ -25,7 +25,7 @@ FROM mta.omny_adoption_by_station
 select 
 * 
 from mta.omny_adoption_by_station
-where year = '${inputs.unique_years.value}'
+where year = 2024
 ```
 
 
@@ -54,6 +54,7 @@ select
 * 
 from mta.omny_adoption_increase
 ```
+
 
 <DataTable data={omny_over_time} />
 

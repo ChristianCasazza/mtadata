@@ -8,19 +8,17 @@ secrets.toml
 # ignore duckdb
 *.duckdb
 *.wal
-data
+# ignore directories for data, tools, logs, and temporary files
+data/
 dagster.yaml
-tools/*
-mta/logs/*
-mta/transformations/dbt/target/*
+tools/
+mta/logs/
+mta/transformations/dbt/target/
 mta/transformations/dbt/.user.yml
-EDA/*
-dagster_logs/*
-.venv/*
-.vscode/*
-codeprinter/*
-datatest/*
-.vscode?*
-data/*
-testing/*
-tools/*
+EDA/
+dagster_logs/
+.venv/
+.vscode/
+codeprinter/
+datatest/
+testing/

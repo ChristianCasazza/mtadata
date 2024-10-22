@@ -7,11 +7,11 @@ sources:
       dagster:
         asset_key:
         - mta_hourly_subway_socrata
-  - name: mta_daily_subway_socrata
+  - name: mta_daily_ridership
     meta:
       dagster:
         asset_key:
-        - mta_daily_subway_socrata
+        - mta_daily_ridership
   - name: mta_bus_speeds
     meta:
       dagster:

@@ -3,7 +3,7 @@ import duckdb
 import os
 
 # Define the DuckDB and SQLite file paths
-duckdb_file_path = '/home/christianocean/mta/lake.duckdb'
+duckdb_file_path = '/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb'
 sqlite_file_path = '/home/christianocean/mta/metadata.db'
 
 def create_sqlite_schema():

@@ -17,6 +17,6 @@ polars_parquet_io_managers = {
     for asset_name in asset_names
 }
 
-# Manually add keys for daily and hourly weather assets if needed
+# Manually add keys 
 polars_parquet_io_managers["daily_weather_io_manager"] = create_polars_parquet_io_manager("daily_weather_asset")
 polars_parquet_io_managers["hourly_weather_io_manager"] = create_polars_parquet_io_manager("hourly_weather_asset")
