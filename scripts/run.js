@@ -21,9 +21,13 @@ function runCommand(command, args = [], options = {}) {
 
 async function runScripts() {
     try {
-        // Change to the 'mta/mtastats' directory
+        // Change to the 'mta/mtastats' directory relative to the scripts folder
         console.log('Navigating to mta/mtastats...');
-        process.chdir(path.join(__dirname, 'mta/mtastats'));
+        process.chdir(path.join(__dirname, '..', 'mta', 'mtastats'));
+
+        // Run 'npm install' to install dependencies
+        console.log('Running npm install...');
+        await runCommand('npm', ['install']);
 
         // Run 'npm run sources'
         console.log('Running npm run sources...');

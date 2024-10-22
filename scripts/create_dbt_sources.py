@@ -1,5 +1,10 @@
 import os
 import yaml
+import sys
+
+# Add the root of the project to the system path to resolve imports from the mta module
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from mta.assets.ingestion.mta_assets import MTA_ASSETS_NAMES
 from mta.assets.ingestion.weather_assets import WEATHER_ASSETS_NAMES
 
@@ -26,8 +31,8 @@ sources_structure = {
     ]
 }
 
-# Define the path to the sources.yml file
-output_file_path = 'mta/transformations/dbt/models/sources.yml'
+# Define the path to the sources.yml file, updated for the new folder structure
+output_file_path = os.path.join(os.path.dirname(__file__), '..', 'mta', 'transformations', 'dbt', 'models', 'sources.yml')
 
 # Ensure the directory exists, create if it doesn't
 os.makedirs(os.path.dirname(output_file_path), exist_ok=True)

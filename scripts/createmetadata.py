@@ -1,10 +1,19 @@
 import sqlite3
 import duckdb
 import os
+from constants import LAKE_PATH, SQLITE_PATH
 
 # Define the DuckDB and SQLite file paths
-duckdb_file_path = '/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb'
-sqlite_file_path = '/home/christianocean/mta/metadata.db'
+duckdb_file_path = LAKE_PATH
+sqlite_file_path = SQLITE_PATH
+
+def delete_existing_sqlite_file():
+    # Check if the SQLite file exists
+    if os.path.exists(sqlite_file_path):
+        os.remove(sqlite_file_path)
+        print(f"Existing SQLite file at {sqlite_file_path} has been deleted.")
+    else:
+        print(f"No existing SQLite file found at {sqlite_file_path}.")
 
 def create_sqlite_schema():
     # Connect to the SQLite file
@@ -67,8 +76,11 @@ def extract_pragma_to_sqlite():
         print("Connections to DuckDB and SQLite closed.")
 
 if __name__ == "__main__":
-    # Step 1: Create the schema table in SQLite
+    # Step 1: Check and delete existing SQLite file if present
+    delete_existing_sqlite_file()
+
+    # Step 2: Create the schema table in SQLite
     create_sqlite_schema()
 
-    # Step 2: Extract DuckDB PRAGMA info and upload to SQLite
+    # Step 3: Extract DuckDB PRAGMA info and upload to SQLite
     extract_pragma_to_sqlite()

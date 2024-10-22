@@ -1,1 +1,0 @@
-select * from busiest_specific_times

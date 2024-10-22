@@ -3,14 +3,14 @@ import subprocess
 
 def run_dbt_commands():
     try:
-        # Change to the correct directory
-        os.chdir("mta/transformations/dbt")
+        # Change to the correct directory relative to the scripts folder
+        os.chdir(os.path.join(os.path.dirname(__file__), '..', 'mta', 'transformations', 'dbt'))
         
         # Run 'dbt run' command
         subprocess.run(["dbt", "run"], check=True)
 
         # Change back to the original directory
-        os.chdir("../../..")
+        os.chdir(os.path.dirname(__file__))
 
         print("Commands executed successfully.")
     except subprocess.CalledProcessError as e:

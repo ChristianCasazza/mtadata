@@ -1,7 +1,9 @@
 from flask import Flask, render_template, jsonify, request
 import sqlite3
+import os
 
-app = Flask(__name__)
+# Correct path to the 'templates' folder relative to the 'scripts' directory
+app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), 'templates'))
 
 # Path to your SQLite file
 sqlite_file_path = '/home/christianocean/mta/metadata.db'
@@ -59,4 +61,4 @@ def table_metadata(table_name):
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5050)
+    app.run(debug=False, port=5050)

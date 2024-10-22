@@ -6,7 +6,6 @@ secrets.toml
 **/*.py[cod]
 **/*$py.class
 # ignore duckdb
-*.duckdb
 *.wal
 # ignore directories for data, tools, logs, and temporary files
 data/
@@ -22,3 +21,4 @@ dagster_logs/
 codeprinter/
 datatest/
 testing/
+metadata.db

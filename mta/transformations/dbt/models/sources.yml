@@ -27,11 +27,16 @@ sources:
       dagster:
         asset_key:
         - mta_operations_statement
-  - name: nyc_arrests_historical_raw
+  - name: mta_subway_origin_destination_2023
     meta:
       dagster:
         asset_key:
-        - nyc_arrests_historical_raw
+        - mta_subway_origin_destination_2023
+  - name: mta_subway_origin_destination_2024
+    meta:
+      dagster:
+        asset_key:
+        - mta_subway_origin_destination_2024
   - name: daily_weather_asset
     meta:
       dagster:

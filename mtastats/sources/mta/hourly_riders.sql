@@ -1,1 +1,0 @@
-select * from hourly_riders
