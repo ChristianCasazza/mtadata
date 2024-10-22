@@ -12,13 +12,18 @@ Once `uv` is installed, proceed to clone the repository.
 To clone the repository, run the following command:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ChristianCasazza/mtadata 
+```
+You can also make the repo have a custom name by adding it at the end:
+
+```bash
+git clone https://github.com/ChristianCasazza/mtadata custom_name
 ```
 
 Then, navigate into the repository directory:
 
 ```bash
-cd <your-repo-folder>
+cd custom_name
 ```
 
 ## 3. Create a Virtual Environment with `uv`
