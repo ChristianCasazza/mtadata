@@ -58,9 +58,24 @@ pip install -r requirements.txt
 
 2. Open the `.env` file and add your Socrata App Token next to the key `NYC_API_KEY`.
 
-## 6. Start Dagster Development Server
+## 6. Export LAKE_PATH for DBT
 
-Start the Dagster server by running the following command:
+Run the following
+
+```bash
+uv run scripts/exportpath.py
+```
+
+This should export the path for your local computer in terminal, such as
+
+```bash
+export LAKE_PATH="/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb"
+```
+You should then copy that entire line, and paste it in the command line. This will set the path for the duckdb file for use with DBT.
+
+## 7. Start Dagster Development Server
+
+Make sure you have your .venv activated. Then, start the Dagster server by running the following command:
 
 ```bash
 dagster dev
@@ -68,7 +83,7 @@ dagster dev
 
 Once the server is running, you will see a URL in your terminal. Click on the URL or paste it into your browser to access the Dagster web UI, which will be running locally.
 
-## 7. Materialize Assets
+## 8. Materialize Assets
 
 1. In the Dagster web UI, click on the **Assets** tab in the top-left corner.
 2. Then, in the top-right corner, click on **View Global Asset Lineage**.
