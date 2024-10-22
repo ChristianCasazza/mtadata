@@ -1,31 +1,47 @@
 
-# Project Setup Guide
+ Project Setup Guide
 
-## 1. Create a Virtual Environment
+## 1. Install `uv`
 
-To begin, create a virtual environment for this project.
+Before proceeding, you will need to install `uv`. Please follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
+
+Once `uv` is installed, proceed to clone the repository.
+
+## 2. Clone the Repository
+
+To clone the repository, run the following command:
+
+```bash
+git clone <your-repo-url>
+```
+
+Then, navigate into the repository directory:
+
+```bash
+cd <your-repo-folder>
+```
+
+## 3. Create a Virtual Environment with `uv`
+
+With `uv` installed, you can now create the virtual environment. Run the following command:
+
+```bash
+uv venv
+```
+
+After running this command, `uv` will automatically create a virtual environment for you and display instructions on how to activate it.
 
 ### Mac/Linux:
 ```bash
-python3 -m venv .venv
 source .venv/bin/activate
 ```
 
 ### Windows:
 ```bash
-python -m venv .venv
 .venv\Scripts\activate
 ```
 
-Once activated, you should see something like:
-
-```
-Using CPython 3.10.15
-Creating virtual environment at: .venv
-Activate with:
-```
-
-## 2. Install Dependencies
+## 4. Install Dependencies
 
 With the virtual environment activated, install the required packages:
 
@@ -33,7 +49,7 @@ With the virtual environment activated, install the required packages:
 pip install -r requirements.txt
 ```
 
-## 3. Configure Environment Variables
+## 5. Configure Environment Variables
 
 1. Copy the `.env.example` file and rename it to `.env`:
    ```bash
@@ -42,7 +58,7 @@ pip install -r requirements.txt
 
 2. Open the `.env` file and add your Socrata App Token next to the key `NYC_API_KEY`.
 
-## 4. Start Dagster Development Server
+## 6. Start Dagster Development Server
 
 Start the Dagster server by running the following command:
 
@@ -52,11 +68,12 @@ dagster dev
 
 Once the server is running, you will see a URL in your terminal. Click on the URL or paste it into your browser to access the Dagster web UI, which will be running locally.
 
-## 5. Materialize Assets
+## 7. Materialize Assets
 
 1. In the Dagster web UI, click on the **Assets** tab in the top-left corner.
 2. Then, in the top-right corner, click on **View Global Asset Lineage**.
 3. In the top-right corner, click **Materialize All** to start downloading and processing all of the data.
+
 
 
 # Explaining the Scripts Folder
