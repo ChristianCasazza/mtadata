@@ -50,7 +50,11 @@ def process_mta_hourly_subway_df(df: pl.DataFrame) -> pl.DataFrame:
     ])
     return df
 
-@asset(io_manager_key="mta_hourly_subway_socrata_polars_parquet_io_manager")
+@asset(
+    io_manager_key="mta_hourly_subway_socrata_polars_parquet_io_manager",
+    group_name="raw_mta_data",
+    compute_kind="Polars"
+)
 def mta_hourly_subway_socrata(context):
     config = MTAHourlySubwayConfig()
     api_client = SocrataAPI(config)
@@ -140,7 +144,11 @@ def process_mta_daily_df(df: pl.DataFrame) -> pl.DataFrame:
 
     return df
 
-@asset(io_manager_key="mta_daily_ridership_polars_parquet_io_manager")
+@asset(
+    io_manager_key="mta_daily_ridership_polars_parquet_io_manager",
+    group_name="raw_mta_data",
+    compute_kind="Polars"
+)
 def mta_daily_ridership(context):
     config = MTADailyRidershipConfig()
     api_client = SocrataAPI(config)
@@ -210,7 +218,11 @@ def process_mta_bus_speeds_df(df: pl.DataFrame) -> pl.DataFrame:
 
     return df
 
-@asset(io_manager_key="mta_bus_speeds_polars_parquet_io_manager")
+@asset(
+    io_manager_key="mta_bus_speeds_polars_parquet_io_manager",
+    group_name="raw_mta_data",
+    compute_kind="Polars"
+)
 def mta_bus_speeds(context):
     config = MTABusSpeedsConfig()
     api_client = SocrataAPI(config)
@@ -282,7 +294,11 @@ def process_mta_bus_wait_time_df(df: pl.DataFrame) -> pl.DataFrame:
 
     return df
 
-@asset(io_manager_key="mta_bus_wait_time_polars_parquet_io_manager")
+@asset(
+    io_manager_key="mta_bus_wait_time_polars_parquet_io_manager",
+    group_name="raw_mta_data",
+    compute_kind="Polars"
+)
 def mta_bus_wait_time(context):
     config = MTAWaitTimeBusConfig()
     api_client = SocrataAPI(config)
@@ -387,7 +403,11 @@ def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
 
 
 
-@asset(io_manager_key="mta_operations_statement_polars_parquet_io_manager")
+@asset(
+    io_manager_key="mta_operations_statement_polars_parquet_io_manager",
+    group_name="raw_mta_data",
+    compute_kind="Polars"
+)
 def mta_operations_statement(context):
     config = MTAOperationsStatementConfig()
     api_client = SocrataAPI(config)
