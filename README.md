@@ -58,57 +58,8 @@ Once the server is running, you will see a URL in your terminal. Click on the UR
 2. Then, in the top-right corner, click on **View Global Asset Lineage**.
 3. In the top-right corner, click **Materialize All** to start downloading and processing all of the data.
 
-## 6. Run Harlequin SQL Editor
 
-Open a new terminal, reactivate your virtual environment, and run:
-
-```bash
-source .venv/bin/activate  # Mac/Linux
-.venv\Scripts\activate  # Windows
-```
-
-Then, run the following command to open the Harlequin SQL editor:
-
-```bash
-uv tool run harlequin
-```
-
-This will open up the SQL editor for you to interact with the downloaded data.
-
-## 7. Query the Data with DuckDB
-
-After launching the Harlequin SQL editor (as described in the previous step), you can now query the Parquet files using DuckDB.
-
-### Step 1: Create a View for MTA Hourly Data
-
-First, create a view that reads all the Parquet files in the specified directory. Make sure to replace the path in the query with the correct location of your data files.
-
-For example, if your Parquet files are stored in the `data/mta/new/hourly_subway_data/` folder, you can create a view like this:
-
-```sql
-CREATE VIEW mta_hourly AS 
-SELECT * 
-FROM read_parquet('data/mta/new/hourly_subway_data/*.parquet');
-```
-
-This will load all the Parquet files from that directory into the view `mta_hourly`.
-
-### Step 2: Query the Data
-
-Once the view is created, you can run queries against it. For example, to get the total number of rows and the range of timestamps in the dataset, you can run the following query:
-
-```sql
-SELECT 
-    COUNT(*) AS total_rows,
-    MIN(transit_timestamp) AS min_transit_timestamp,
-    MAX(transit_timestamp) AS max_transit_timestamp
-FROM mta_hourly;
-```
-
-This query will return the total number of rows, the earliest timestamp, and the latest timestamp in the dataset.
-
-
-# Explaining the Scrupts Folder
+# Explaining the Scripts Folder
 
 The scripts folder contain some python and node scripts to automate running some key repetitive tasks
 
@@ -208,6 +159,38 @@ This will:
 
 ### Note:
 Using `uv run` allows you to execute the Python scripts without manually activating the virtual environment. However, if you prefer, you can activate your virtual environment and run the scripts using `python filename.py` instead.
+
+# Querying the data with the Harlequin SQL Editor
+
+### Step 1: Activating Harlequin
+
+Harlequin is a terminal based local SQL editor.
+
+To start it, open a new terminal, then, run the following command to install the Harlequin SQL editor:
+
+
+```bash
+pip install harlequin
+```
+Then use it to connect to the duckdb file we created with scripts/create.py
+
+```bash
+harlequin mta/mtastats/sources/mta/mtastats.duckdb
+```
+
+### Step 2: Query the Data
+
+The duckdb file will already have the views to the tables to query. it can be queried like
+
+```sql
+SELECT 
+    COUNT(*) AS total_rows,
+    MIN(transit_timestamp) AS min_transit_timestamp,
+    MAX(transit_timestamp) AS max_transit_timestamp
+FROM mta_hourly_subway_socrata
+```
+
+This query will return the total number of rows, the earliest timestamp, and the latest timestamp in the dataset.
 
 
 # How to Run the Data App UI

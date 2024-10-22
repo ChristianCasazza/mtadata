@@ -1,4 +1,4 @@
-# Explaining the Scrupts Folder
+# Explaining the Scripts Folder
 
 The scripts folder contain some python and node scripts to automate running some key repetitive tasks
 
