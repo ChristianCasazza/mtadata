@@ -5,6 +5,8 @@ from dagster import asset
 import gc
 import polars as pl
 from datetime import datetime
+import os
+import requests
 
 def get_io_manager(context):
     """Helper function to dynamically fetch the correct IO manager for the asset."""
@@ -14,75 +16,52 @@ def get_io_manager(context):
 
 
 MTA_ASSETS_NAMES = [
-    "mta_hourly_subway_socrata",
     "mta_daily_ridership",
     "mta_bus_speeds",
     "mta_bus_wait_time",
     "mta_operations_statement"
 ]
 
-class MTAHourlySubwayConfig(SocrataAPIConfig):
-    SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/wujg-7c2s.geojson"
-    order: str = "transit_timestamp ASC"
-    limit: int = 500000
-    where: str = f"transit_timestamp >= '{datetime(2024, 9, 25).isoformat()}'"
-    offset: int = 0
+OTHER_MTA_ASSETS_NAMES = [
+    "mta_hourly_subway_socrata"
+]
+BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
+LOCAL_DOWNLOAD_PATH = "/home/christianocean/mta/data/opendata/nyc/mta/mta_hourly_subway_socrata"
+years = ["2022", "2023", "2024"]
+months = [f"{i:02d}" for i in range(1, 13)]  # Months from 01 to 12
 
+def download_file(file_url, local_path):
+    os.makedirs(os.path.dirname(local_path), exist_ok=True)
+    response = requests.get(file_url, stream=True)
+    if response.status_code == 200:
+        with open(local_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        return local_path
+    else:
+        raise Exception(f"Failed to download: {file_url} (Status code: {response.status_code})")
 
-def process_mta_hourly_subway_df(df: pl.DataFrame) -> pl.DataFrame:
-    def parse_timestamp(ts):
-        try:
-            return pl.col(ts).str.to_datetime(format="%Y-%m-%dT%H:%M:%S.%f", strict=False)
-        except:
-            try:
-                return pl.col(ts).str.to_datetime(format="%Y-%m-%dT%H:%M:%S", strict=False)
-            except:
-                print(f"Failed to parse timestamp: {ts}")
-                return None
-
-    df = df.with_columns([
-        parse_timestamp("transit_timestamp").alias("transit_timestamp"),
-        pl.col("latitude").cast(pl.Float64),
-        pl.col("longitude").cast(pl.Float64),
-        pl.col("ridership").cast(pl.Float64).cast(pl.Int64),
-        pl.col("transfers").cast(pl.Float64).cast(pl.Int64),
-        pl.format('POINT({} {})', pl.col('longitude'), pl.col('latitude')).alias('geom_wkt')
-    ])
-    return df
+def download_files_from_year_month(base_url, local_base_path, year, month):
+    file_name = f"{year}_{month}.parquet"
+    file_url = f"{base_url}year%3D{year}/month%3D{month}/{file_name}"
+    local_file_path = os.path.join(local_base_path, file_name)
+    return download_file(file_url, local_file_path)
 
 @asset(
-    io_manager_key="mta_hourly_subway_socrata_polars_parquet_io_manager",
-    group_name="raw_mta_data",
-    compute_kind="Polars"
+    compute_kind="Python"
 )
 def mta_hourly_subway_socrata(context):
-    config = MTAHourlySubwayConfig()
-    api_client = SocrataAPI(config)
-    offset = config.offset
-    batch_number = 1
-
-    while True:
-        context.log.info(f"Fetching data with offset: {offset}")
-        updated_config = config.copy(update={"offset": offset})
-        api_client.config = updated_config
-        data = api_client.fetch_data()
-
-        if not data:
-            context.log.info(f"No more data to fetch at offset {offset}.")
-            return
-
-        raw_df = pl.DataFrame(data)
-        processed_df = process_mta_hourly_subway_df(raw_df)
-
-        if not processed_df.is_empty():
-            io_manager = get_io_manager(context)
-            io_manager.handle_output(context, processed_df, batch_number)
-
-        del raw_df, processed_df, data
-        gc.collect()
-
-        offset += config.limit
-        batch_number += 1
+    downloaded_files = []
+    for year in years:
+        for month in months:
+            context.log.info(f"Downloading data for year: {year}, month: {month}")
+            try:
+                file_path = download_files_from_year_month(BASE_URL, LOCAL_DOWNLOAD_PATH, year, month)
+                context.log.info(f"Downloaded file to: {file_path}")
+                downloaded_files.append(file_path)
+            except Exception as e:
+                context.log.error(f"Error downloading file for {year}-{month}: {e}")
+    return downloaded_files
 
 class MTADailyRidershipConfig(SocrataAPIConfig):
     SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/vxuj-8kew.json"
@@ -146,7 +125,6 @@ def process_mta_daily_df(df: pl.DataFrame) -> pl.DataFrame:
 
 @asset(
     io_manager_key="mta_daily_ridership_polars_parquet_io_manager",
-    group_name="raw_mta_data",
     compute_kind="Polars"
 )
 def mta_daily_ridership(context):
@@ -220,7 +198,6 @@ def process_mta_bus_speeds_df(df: pl.DataFrame) -> pl.DataFrame:
 
 @asset(
     io_manager_key="mta_bus_speeds_polars_parquet_io_manager",
-    group_name="raw_mta_data",
     compute_kind="Polars"
 )
 def mta_bus_speeds(context):
@@ -296,7 +273,6 @@ def process_mta_bus_wait_time_df(df: pl.DataFrame) -> pl.DataFrame:
 
 @asset(
     io_manager_key="mta_bus_wait_time_polars_parquet_io_manager",
-    group_name="raw_mta_data",
     compute_kind="Polars"
 )
 def mta_bus_wait_time(context):
@@ -405,7 +381,6 @@ def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
 
 @asset(
     io_manager_key="mta_operations_statement_polars_parquet_io_manager",
-    group_name="raw_mta_data",
     compute_kind="Polars"
 )
 def mta_operations_statement(context):

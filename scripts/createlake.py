@@ -5,7 +5,7 @@ import sys
 # Add the root of the project to the system path to resolve imports from the mta module
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS
+from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, OTHER_MTA_ASSETS_PATHS
 from constants import LAKE_PATH
 
 
@@ -14,7 +14,7 @@ def create_duckdb_and_views():
     duckdb_file_path = LAKE_PATH
 
     # Merge MTA and Weather asset paths
-    parquet_base_paths = {**MTA_ASSETS_PATHS, **WEATHER_ASSETS_PATHS}
+    parquet_base_paths = {**MTA_ASSETS_PATHS, **WEATHER_ASSETS_PATHS, **OTHER_MTA_ASSETS_PATHS}
 
     # Lists to track created and ignored views
     created_views = []

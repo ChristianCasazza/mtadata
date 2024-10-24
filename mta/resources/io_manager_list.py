@@ -1,5 +1,6 @@
-from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS
+from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, HOURLY_PATH
 from mta.resources.io_managers.polars_parquet_io_manager import PolarsParquetIOManager
+from dagster import FilesystemIOManager
 
 def create_polars_parquet_io_manager(asset_name: str):
     """Generates a Polars Parquet IO manager based on asset name and path."""
@@ -20,3 +21,8 @@ polars_parquet_io_managers = {
 # Manually add keys 
 polars_parquet_io_managers["daily_weather_io_manager"] = create_polars_parquet_io_manager("daily_weather_asset")
 polars_parquet_io_managers["hourly_weather_io_manager"] = create_polars_parquet_io_manager("hourly_weather_asset")
+
+
+hourly_filesystem_io_manager = {
+    "hourly_mta_io_manager": FilesystemIOManager(base_dir=HOURLY_PATH)
+}

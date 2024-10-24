@@ -5320,3 +5320,2904 @@ drop table if exists "mtastats"."main"."fare_class_boro__dbt_backup" cascade
 [0m05:25:19.462824 [debug] [MainThread]: Command `dbt run` succeeded at 05:25:19.462698 after 14.55 seconds
 [0m05:25:19.463260 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcc3c323400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcb4b7230d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcc3b62e800>]}
 [0m05:25:19.463669 [debug] [MainThread]: Flushing usage events
+[0m10:10:20.188675 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fd2c7460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fb979e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fb978c70>]}
+
+
+============================== 10:10:20.198487 | fc6e0bef-e5fc-412f-921a-a8a8a5832331 ==============================
+[0m10:10:20.198487 [info ] [MainThread]: Running with dbt=1.8.7
+[0m10:10:20.199481 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/home/christianocean/mta/mta/transformations/dbt/logs', 'version_check': 'True', 'profiles_dir': '/home/christianocean/mta/mta/transformations/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt run', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m10:10:20.544610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fd38ce20>]}
+[0m10:10:20.625393 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fb8b2c20>]}
+[0m10:10:20.630239 [info ] [MainThread]: Registered adapter: duckdb=1.8.3
+[0m10:10:20.649210 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m10:10:20.819866 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m10:10:20.820418 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m10:10:20.864985 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f046c130>]}
+[0m10:10:21.004829 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f042f7f0>]}
+[0m10:10:21.005752 [info ] [MainThread]: Found 14 models, 9 sources, 416 macros
+[0m10:10:21.006298 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fd6a3be0>]}
+[0m10:10:21.008720 [info ] [MainThread]: 
+[0m10:10:21.009590 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m10:10:21.017098 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_mtastats'
+[0m10:10:21.133662 [debug] [ThreadPool]: Using duckdb connection "list_mtastats"
+[0m10:10:21.134536 [debug] [ThreadPool]: On list_mtastats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "list_mtastats"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where catalog_name = '"mtastats"'
+    
+  
+  
+[0m10:10:21.135219 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:10:21.158847 [debug] [ThreadPool]: SQL status: OK in 0.024 seconds
+[0m10:10:21.160504 [debug] [ThreadPool]: On list_mtastats: Close
+[0m10:10:21.164216 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_mtastats, now create_mtastats_main)
+[0m10:10:21.165645 [debug] [ThreadPool]: Creating schema "database: "mtastats"
+schema: "main"
+"
+[0m10:10:21.172964 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m10:10:21.173442 [debug] [ThreadPool]: On create_mtastats_main: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "create_mtastats_main"} */
+
+    
+        select type from duckdb_databases()
+        where database_name='mtastats'
+        and type='sqlite'
+    
+  
+[0m10:10:21.173832 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:10:21.183051 [debug] [ThreadPool]: SQL status: OK in 0.009 seconds
+[0m10:10:21.184593 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m10:10:21.185006 [debug] [ThreadPool]: On create_mtastats_main: BEGIN
+[0m10:10:21.185704 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m10:10:21.186103 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m10:10:21.186628 [debug] [ThreadPool]: On create_mtastats_main: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "create_mtastats_main"} */
+
+    
+    
+        create schema if not exists "mtastats"."main"
+    
+[0m10:10:21.187867 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m10:10:21.188813 [debug] [ThreadPool]: On create_mtastats_main: COMMIT
+[0m10:10:21.189226 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m10:10:21.189598 [debug] [ThreadPool]: On create_mtastats_main: COMMIT
+[0m10:10:21.191530 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m10:10:21.192294 [debug] [ThreadPool]: On create_mtastats_main: Close
+[0m10:10:21.197172 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_mtastats_main, now list_mtastats_main)
+[0m10:10:21.204943 [debug] [ThreadPool]: Using duckdb connection "list_mtastats_main"
+[0m10:10:21.205443 [debug] [ThreadPool]: On list_mtastats_main: BEGIN
+[0m10:10:21.205829 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:10:21.213512 [debug] [ThreadPool]: SQL status: OK in 0.008 seconds
+[0m10:10:21.213988 [debug] [ThreadPool]: Using duckdb connection "list_mtastats_main"
+[0m10:10:21.214449 [debug] [ThreadPool]: On list_mtastats_main: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "list_mtastats_main"} */
+select
+      'mtastats' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'mtastats'
+  
+[0m10:10:21.245949 [debug] [ThreadPool]: SQL status: OK in 0.031 seconds
+[0m10:10:21.247997 [debug] [ThreadPool]: On list_mtastats_main: ROLLBACK
+[0m10:10:21.250612 [debug] [ThreadPool]: Failed to rollback 'list_mtastats_main'
+[0m10:10:21.251111 [debug] [ThreadPool]: On list_mtastats_main: Close
+[0m10:10:21.255863 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fb9bcb20>]}
+[0m10:10:21.256620 [debug] [MainThread]: Using duckdb connection "master"
+[0m10:10:21.257064 [debug] [MainThread]: On master: BEGIN
+[0m10:10:21.257436 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:10:21.266446 [debug] [MainThread]: SQL status: OK in 0.009 seconds
+[0m10:10:21.266909 [debug] [MainThread]: On master: COMMIT
+[0m10:10:21.267295 [debug] [MainThread]: Using duckdb connection "master"
+[0m10:10:21.267669 [debug] [MainThread]: On master: COMMIT
+[0m10:10:21.268771 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m10:10:21.269575 [debug] [MainThread]: On master: Close
+[0m10:10:21.272706 [info ] [MainThread]: Concurrency: 16 threads (target='dev')
+[0m10:10:21.273437 [info ] [MainThread]: 
+[0m10:10:21.285365 [debug] [Thread-1 (]: Began running node model.mta.avg_riders_per_day
+[0m10:10:21.286369 [info ] [Thread-1 (]: 1 of 14 START sql table model main.avg_riders_per_day .......................... [RUN]
+[0m10:10:21.287436 [debug] [Thread-2 (]: Began running node model.mta.bond_payment_info
+[0m10:10:21.288999 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.mta.avg_riders_per_day'
+[0m10:10:21.289950 [debug] [Thread-3 (]: Began running node model.mta.busiest_specific_times
+[0m10:10:21.292258 [debug] [Thread-4 (]: Began running node model.mta.daily_ridership
+[0m10:10:21.293203 [debug] [Thread-5 (]: Began running node model.mta.expense_type_per_year
+[0m10:10:21.291469 [info ] [Thread-2 (]: 2 of 14 START sql table model main.bond_payment_info ........................... [RUN]
+[0m10:10:21.294008 [debug] [Thread-1 (]: Began compiling node model.mta.avg_riders_per_day
+[0m10:10:21.294993 [debug] [Thread-6 (]: Began running node model.mta.fare_class_boro
+[0m10:10:21.296047 [debug] [Thread-7 (]: Began running node model.mta.forecast_accuracy_2023
+[0m10:10:21.297299 [debug] [Thread-8 (]: Began running node model.mta.labor_expenses_per_agency
+[0m10:10:21.296795 [info ] [Thread-3 (]: 3 of 14 START sql table model main.busiest_specific_times ...................... [RUN]
+[0m10:10:21.298493 [debug] [Thread-9 (]: Began running node model.mta.largest_expense_differences_2023
+[0m10:10:21.299547 [debug] [Thread-10 ]: Began running node model.mta.omny_adoption_by_station
+[0m10:10:21.300306 [debug] [Thread-11 ]: Began running node model.mta.omny_adoption_increase
+[0m10:10:21.301055 [info ] [Thread-4 (]: 4 of 14 START sql table model main.daily_ridership ............................. [RUN]
+[0m10:10:21.301762 [debug] [Thread-12 ]: Began running node model.mta.subway_station_stats
+[0m10:10:21.302487 [debug] [Thread-13 ]: Began running node model.mta.total_riders_per_station
+[0m10:10:21.303699 [debug] [Thread-14 ]: Began running node model.mta.weekly_riders_per_station
+[0m10:10:21.303189 [info ] [Thread-5 (]: 5 of 14 START sql table model main.expense_type_per_year ....................... [RUN]
+[0m10:10:21.305116 [debug] [Thread-2 (]: Acquiring new duckdb connection 'model.mta.bond_payment_info'
+[0m10:10:21.315958 [debug] [Thread-1 (]: Writing injected SQL for node "model.mta.avg_riders_per_day"
+[0m10:10:21.317464 [info ] [Thread-6 (]: 6 of 14 START sql table model main.fare_class_boro ............................. [RUN]
+[0m10:10:21.318490 [info ] [Thread-7 (]: 7 of 14 START sql table model main.forecast_accuracy_2023 ...................... [RUN]
+[0m10:10:21.319386 [info ] [Thread-8 (]: 8 of 14 START sql table model main.labor_expenses_per_agency ................... [RUN]
+[0m10:10:21.320461 [debug] [Thread-3 (]: Acquiring new duckdb connection 'model.mta.busiest_specific_times'
+[0m10:10:21.321533 [info ] [Thread-9 (]: 9 of 14 START sql table model main.largest_expense_differences_2023 ............ [RUN]
+[0m10:10:21.322429 [info ] [Thread-10 ]: 10 of 14 START sql table model main.omny_adoption_by_station ................... [RUN]
+[0m10:10:21.323190 [info ] [Thread-11 ]: 11 of 14 START sql table model main.omny_adoption_increase ..................... [RUN]
+[0m10:10:21.324415 [debug] [Thread-4 (]: Acquiring new duckdb connection 'model.mta.daily_ridership'
+[0m10:10:21.325596 [info ] [Thread-12 ]: 12 of 14 START sql table model main.subway_station_stats ....................... [RUN]
+[0m10:10:21.327153 [info ] [Thread-13 ]: 13 of 14 START sql table model main.total_riders_per_station ................... [RUN]
+[0m10:10:21.329315 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly list_mtastats_main, now model.mta.expense_type_per_year)
+[0m10:10:21.330348 [debug] [Thread-2 (]: Began compiling node model.mta.bond_payment_info
+[0m10:10:21.327915 [info ] [Thread-14 ]: 14 of 14 START sql table model main.weekly_riders_per_station .................. [RUN]
+[0m10:10:21.332021 [debug] [Thread-6 (]: Acquiring new duckdb connection 'model.mta.fare_class_boro'
+[0m10:10:21.332832 [debug] [Thread-7 (]: Acquiring new duckdb connection 'model.mta.forecast_accuracy_2023'
+[0m10:10:21.333695 [debug] [Thread-1 (]: Began executing node model.mta.avg_riders_per_day
+[0m10:10:21.334480 [debug] [Thread-8 (]: Acquiring new duckdb connection 'model.mta.labor_expenses_per_agency'
+[0m10:10:21.335070 [debug] [Thread-3 (]: Began compiling node model.mta.busiest_specific_times
+[0m10:10:21.335938 [debug] [Thread-9 (]: Acquiring new duckdb connection 'model.mta.largest_expense_differences_2023'
+[0m10:10:21.336780 [debug] [Thread-10 ]: Acquiring new duckdb connection 'model.mta.omny_adoption_by_station'
+[0m10:10:21.337530 [debug] [Thread-11 ]: Acquiring new duckdb connection 'model.mta.omny_adoption_increase'
+[0m10:10:21.338274 [debug] [Thread-4 (]: Began compiling node model.mta.daily_ridership
+[0m10:10:21.339099 [debug] [Thread-12 ]: Acquiring new duckdb connection 'model.mta.subway_station_stats'
+[0m10:10:21.339945 [debug] [Thread-13 ]: Acquiring new duckdb connection 'model.mta.total_riders_per_station'
+[0m10:10:21.340725 [debug] [Thread-5 (]: Began compiling node model.mta.expense_type_per_year
+[0m10:10:21.345497 [debug] [Thread-2 (]: Writing injected SQL for node "model.mta.bond_payment_info"
+[0m10:10:21.346621 [debug] [Thread-14 ]: Acquiring new duckdb connection 'model.mta.weekly_riders_per_station'
+[0m10:10:21.347335 [debug] [Thread-6 (]: Began compiling node model.mta.fare_class_boro
+[0m10:10:21.348031 [debug] [Thread-7 (]: Began compiling node model.mta.forecast_accuracy_2023
+[0m10:10:21.354267 [debug] [Thread-8 (]: Began compiling node model.mta.labor_expenses_per_agency
+[0m10:10:21.366003 [debug] [Thread-3 (]: Writing injected SQL for node "model.mta.busiest_specific_times"
+[0m10:10:21.432298 [debug] [Thread-9 (]: Began compiling node model.mta.largest_expense_differences_2023
+[0m10:10:21.442760 [debug] [Thread-1 (]: Writing runtime sql for node "model.mta.avg_riders_per_day"
+[0m10:10:21.443551 [debug] [Thread-10 ]: Began compiling node model.mta.omny_adoption_by_station
+[0m10:10:21.444296 [debug] [Thread-11 ]: Began compiling node model.mta.omny_adoption_increase
+[0m10:10:21.449025 [debug] [Thread-4 (]: Writing injected SQL for node "model.mta.daily_ridership"
+[0m10:10:21.449779 [debug] [Thread-12 ]: Began compiling node model.mta.subway_station_stats
+[0m10:10:21.450379 [debug] [Thread-13 ]: Began compiling node model.mta.total_riders_per_station
+[0m10:10:21.453637 [debug] [Thread-5 (]: Writing injected SQL for node "model.mta.expense_type_per_year"
+[0m10:10:21.454573 [debug] [Thread-14 ]: Began compiling node model.mta.weekly_riders_per_station
+[0m10:10:21.457870 [debug] [Thread-6 (]: Writing injected SQL for node "model.mta.fare_class_boro"
+[0m10:10:21.461792 [debug] [Thread-7 (]: Writing injected SQL for node "model.mta.forecast_accuracy_2023"
+[0m10:10:21.464843 [debug] [Thread-8 (]: Writing injected SQL for node "model.mta.labor_expenses_per_agency"
+[0m10:10:21.465473 [debug] [Thread-2 (]: Began executing node model.mta.bond_payment_info
+[0m10:10:21.469296 [debug] [Thread-9 (]: Writing injected SQL for node "model.mta.largest_expense_differences_2023"
+[0m10:10:21.473459 [debug] [Thread-10 ]: Writing injected SQL for node "model.mta.omny_adoption_by_station"
+[0m10:10:21.480500 [debug] [Thread-3 (]: Began executing node model.mta.busiest_specific_times
+[0m10:10:21.481282 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m10:10:21.479633 [debug] [Thread-11 ]: Writing injected SQL for node "model.mta.omny_adoption_increase"
+[0m10:10:21.486835 [debug] [Thread-12 ]: Writing injected SQL for node "model.mta.subway_station_stats"
+[0m10:10:21.491533 [debug] [Thread-13 ]: Writing injected SQL for node "model.mta.total_riders_per_station"
+[0m10:10:21.497352 [debug] [Thread-14 ]: Writing injected SQL for node "model.mta.weekly_riders_per_station"
+[0m10:10:21.498189 [debug] [Thread-4 (]: Began executing node model.mta.daily_ridership
+[0m10:10:21.500503 [debug] [Thread-5 (]: Began executing node model.mta.expense_type_per_year
+[0m10:10:21.506951 [debug] [Thread-6 (]: Began executing node model.mta.fare_class_boro
+[0m10:10:21.506501 [debug] [Thread-2 (]: Writing runtime sql for node "model.mta.bond_payment_info"
+[0m10:10:21.508896 [debug] [Thread-7 (]: Began executing node model.mta.forecast_accuracy_2023
+[0m10:10:21.510739 [debug] [Thread-8 (]: Began executing node model.mta.labor_expenses_per_agency
+[0m10:10:21.517920 [debug] [Thread-3 (]: Writing runtime sql for node "model.mta.busiest_specific_times"
+[0m10:10:21.518804 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: BEGIN
+[0m10:10:21.519624 [debug] [Thread-10 ]: Began executing node model.mta.omny_adoption_by_station
+[0m10:10:21.520425 [debug] [Thread-9 (]: Began executing node model.mta.largest_expense_differences_2023
+[0m10:10:21.522333 [debug] [Thread-12 ]: Began executing node model.mta.subway_station_stats
+[0m10:10:21.523561 [debug] [Thread-11 ]: Began executing node model.mta.omny_adoption_increase
+[0m10:10:21.524893 [debug] [Thread-13 ]: Began executing node model.mta.total_riders_per_station
+[0m10:10:21.530324 [debug] [Thread-4 (]: Writing runtime sql for node "model.mta.daily_ridership"
+[0m10:10:21.536919 [debug] [Thread-14 ]: Began executing node model.mta.weekly_riders_per_station
+[0m10:10:21.542213 [debug] [Thread-6 (]: Writing runtime sql for node "model.mta.fare_class_boro"
+[0m10:10:21.543760 [debug] [Thread-5 (]: Writing runtime sql for node "model.mta.expense_type_per_year"
+[0m10:10:21.549246 [debug] [Thread-7 (]: Writing runtime sql for node "model.mta.forecast_accuracy_2023"
+[0m10:10:21.554354 [debug] [Thread-8 (]: Writing runtime sql for node "model.mta.labor_expenses_per_agency"
+[0m10:10:21.555164 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m10:10:21.556320 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m10:10:21.557216 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m10:10:21.562016 [debug] [Thread-10 ]: Writing runtime sql for node "model.mta.omny_adoption_by_station"
+[0m10:10:21.566656 [debug] [Thread-9 (]: Writing runtime sql for node "model.mta.largest_expense_differences_2023"
+[0m10:10:21.572165 [debug] [Thread-12 ]: Writing runtime sql for node "model.mta.subway_station_stats"
+[0m10:10:21.576972 [debug] [Thread-11 ]: Writing runtime sql for node "model.mta.omny_adoption_increase"
+[0m10:10:21.581438 [debug] [Thread-13 ]: Writing runtime sql for node "model.mta.total_riders_per_station"
+[0m10:10:21.586314 [debug] [Thread-14 ]: Writing runtime sql for node "model.mta.weekly_riders_per_station"
+[0m10:10:21.587734 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m10:10:21.588740 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m10:10:21.590283 [debug] [Thread-2 (]: On model.mta.bond_payment_info: BEGIN
+[0m10:10:21.591593 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m10:10:21.592738 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m10:10:21.603794 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m10:10:21.605118 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: BEGIN
+[0m10:10:21.607359 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m10:10:21.611326 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m10:10:21.612192 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m10:10:21.613671 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m10:10:21.614860 [debug] [Thread-4 (]: On model.mta.daily_ridership: BEGIN
+[0m10:10:21.615736 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m10:10:21.617346 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m10:10:21.618291 [debug] [Thread-6 (]: On model.mta.fare_class_boro: BEGIN
+[0m10:10:21.619235 [debug] [Thread-1 (]: SQL status: OK in 0.063 seconds
+[0m10:10:21.620253 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m10:10:21.621231 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: BEGIN
+[0m10:10:21.622192 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: BEGIN
+[0m10:10:21.623139 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: BEGIN
+[0m10:10:21.624085 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m10:10:21.625068 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: BEGIN
+[0m10:10:21.626034 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: BEGIN
+[0m10:10:21.627003 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: BEGIN
+[0m10:10:21.628052 [debug] [Thread-12 ]: On model.mta.subway_station_stats: BEGIN
+[0m10:10:21.629015 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m10:10:21.629961 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: BEGIN
+[0m10:10:21.630937 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: BEGIN
+[0m10:10:21.631925 [debug] [Thread-6 (]: Opening a new connection, currently in state init
+[0m10:10:21.632798 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m10:10:21.634342 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m10:10:21.635368 [debug] [Thread-7 (]: Opening a new connection, currently in state init
+[0m10:10:21.636510 [debug] [Thread-8 (]: Opening a new connection, currently in state init
+[0m10:10:21.638139 [debug] [Thread-10 ]: Opening a new connection, currently in state init
+[0m10:10:21.640629 [debug] [Thread-11 ]: Opening a new connection, currently in state init
+[0m10:10:21.641817 [debug] [Thread-2 (]: SQL status: OK in 0.021 seconds
+[0m10:10:21.643094 [debug] [Thread-9 (]: Opening a new connection, currently in state init
+[0m10:10:21.644245 [debug] [Thread-12 ]: Opening a new connection, currently in state init
+[0m10:10:21.645989 [debug] [Thread-13 ]: Opening a new connection, currently in state init
+[0m10:10:21.647889 [debug] [Thread-3 (]: SQL status: OK in 0.024 seconds
+[0m10:10:21.648998 [debug] [Thread-14 ]: Opening a new connection, currently in state init
+[0m10:10:21.650721 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.avg_riders_per_day"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."avg_riders_per_day__dbt_tmp"
+  
+    as (
+      SELECT 
+    station_complex_id, 
+    station_complex, 
+    latitude, 
+    longitude, 
+    EXTRACT(DAYOFWEEK FROM transit_timestamp) AS day_of_week, 
+    AVG(ridership) AS average_ridership
+FROM 
+    "mtastats"."main"."mta_hourly_subway_socrata"
+GROUP BY 
+    station_complex_id, 
+    station_complex, 
+    latitude, 
+    longitude, 
+    day_of_week
+ORDER BY 
+    average_ridership DESC
+    );
+  
+  
+[0m10:10:21.653703 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m10:10:21.655468 [debug] [Thread-4 (]: SQL status: OK in 0.026 seconds
+[0m10:10:21.658775 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m10:10:21.661935 [debug] [Thread-2 (]: On model.mta.bond_payment_info: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.bond_payment_info"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."bond_payment_info__dbt_tmp"
+  
+    as (
+      WITH payment_stats AS (
+    SELECT
+        general_ledger,
+        MIN(timestamp) AS first_payment_date,
+        MAX(timestamp) AS last_payment_date,
+        AVG(amount) AS average_payment,
+        COUNT(DISTINCT timestamp) AS total_payments,
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY amount) AS median_payment
+    FROM
+        "mtastats"."main"."mta_operations_statement"
+    WHERE
+        scenario = 'Actual'
+        AND type = 'Debt Service Expenses'
+    GROUP BY
+        general_ledger
+),
+first_payment AS (
+    SELECT
+        general_ledger,
+        MIN(timestamp) AS first_payment_date,
+        (SELECT amount FROM mta_operations_statement WHERE general_ledger = fp.general_ledger AND timestamp = MIN(fp.timestamp)) AS first_payment_amount
+    FROM
+        mta_operations_statement fp
+    WHERE
+        scenario = 'Actual'
+        AND type = 'Debt Service Expenses'
+    GROUP BY
+        general_ledger
+),
+last_payment AS (
+    SELECT
+        general_ledger,
+        MAX(timestamp) AS last_payment_date,
+        (SELECT amount FROM mta_operations_statement WHERE general_ledger = lp.general_ledger AND timestamp = MAX(lp.timestamp)) AS last_payment_amount
+    FROM
+        mta_operations_statement lp
+    WHERE
+        scenario = 'Actual'
+        AND type = 'Debt Service Expenses'
+    GROUP BY
+        general_ledger
+)
+-- Wrapping everything inside another DISTINCT query
+SELECT DISTINCT
+    ps.general_ledger,
+    fp.first_payment_date,
+    fp.first_payment_amount,
+    ps.last_payment_date,
+    lp.last_payment_amount,
+    ps.average_payment,
+    ps.median_payment,
+    ps.total_payments
+FROM
+    payment_stats ps
+LEFT JOIN
+    first_payment fp ON ps.general_ledger = fp.general_ledger
+LEFT JOIN
+    last_payment lp ON ps.general_ledger = lp.general_ledger
+ORDER BY
+    ps.general_ledger
+    );
+  
+  
+[0m10:10:21.663099 [debug] [Thread-6 (]: SQL status: OK in 0.031 seconds
+[0m10:10:21.663614 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m10:10:21.664369 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.busiest_specific_times"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."busiest_specific_times__dbt_tmp"
+  
+    as (
+      SELECT 
+    EXTRACT(HOUR FROM transit_timestamp) AS transit_hour, 
+    AVG(ridership) AS average_ridership
+FROM 
+    "mtastats"."main"."mta_hourly_subway_socrata"
+GROUP BY 
+    transit_hour
+ORDER BY 
+    average_ridership DESC
+    );
+  
+  
+[0m10:10:21.668212 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m10:10:21.669220 [debug] [Thread-4 (]: On model.mta.daily_ridership: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.daily_ridership"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."daily_ridership__dbt_tmp"
+  
+    as (
+      SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(subways_total_ridership) AS ridership,
+    'subway' AS transport_type,
+    AVG(subways_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(buses_total_ridership) AS ridership,
+    'buses' AS transport_type,
+    AVG(buses_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(lirr_total_ridership) AS ridership,
+    'lirr' AS transport_type,
+    AVG(lirr_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(metro_north_total_ridership) AS ridership,
+    'metro_north' AS transport_type,
+    AVG(metro_north_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(access_a_ride_total_trips) AS ridership,
+    'access_a_ride' AS transport_type,
+    AVG(access_a_ride_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(bridges_tunnels_total_traffic) AS ridership,
+    'bridges_tunnels' AS transport_type,
+    AVG(bridges_tunnels_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(staten_island_railway_total_ridership) AS ridership,
+    'staten_island_railway' AS transport_type,
+    AVG(staten_island_railway_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+    );
+  
+  
+[0m10:10:21.670604 [debug] [Thread-6 (]: On model.mta.fare_class_boro: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.fare_class_boro"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."fare_class_boro__dbt_tmp"
+  
+    as (
+      WITH total_ridership_per_borough_daytype AS (
+    -- Calculate total ridership for each borough and day type (Weekday or Weekend)
+    SELECT 
+        borough, 
+        CASE 
+            WHEN EXTRACT(DAYOFWEEK FROM transit_timestamp) IN (1, 7) THEN 'Weekend'
+            ELSE 'Weekday'
+        END AS day_type,
+        SUM(ridership) AS total_ridership_borough_daytype
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    GROUP BY 
+        borough, day_type
+),
+ridership_by_fare_class AS (
+    -- Calculate total ridership by fare class category, borough, and day type (Weekday/Weekend)
+    SELECT 
+        borough, 
+        fare_class_category, 
+        CASE 
+            WHEN EXTRACT(DAYOFWEEK FROM transit_timestamp) IN (1, 7) THEN 'Weekend'
+            ELSE 'Weekday'
+        END AS day_type,
+        SUM(ridership) AS total_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    GROUP BY 
+        borough, fare_class_category, day_type
+)
+SELECT 
+    r.borough, 
+    r.fare_class_category, 
+    r.day_type,
+    r.total_ridership, 
+    ROUND(r.total_ridership / t.total_ridership_borough_daytype, 4) AS ridership_percentage
+FROM 
+    ridership_by_fare_class r
+JOIN 
+    total_ridership_per_borough_daytype t
+    ON r.borough = t.borough 
+    AND r.day_type = t.day_type
+ORDER BY 
+    total_ridership DESC
+    );
+  
+  
+[0m10:10:21.673500 [debug] [Thread-7 (]: SQL status: OK in 0.038 seconds
+[0m10:10:21.674052 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m10:10:21.674779 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.forecast_accuracy_2023"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."forecast_accuracy_2023__dbt_tmp"
+  
+    as (
+      SELECT 
+    agency_full_name,
+    general_ledger,
+    expense_type,
+
+    -- Total amounts for Adopted Budget by Financial Plan Year
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2019 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2019,
+
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2020 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2020,
+
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2021 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2021,
+
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2022 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2022,
+
+    -- Total amount for Actual 2023
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) AS total_actual_2023,
+
+    -- Differences between Actual and Adopted Budget for each year
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2019 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2019_vs_actual,
+
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2020 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2020_vs_actual,
+
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2021 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2021_vs_actual,
+
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2022 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2022_vs_actual,
+
+    -- Percentage differences for each year
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2019 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2019 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2019 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2019_vs_actual,
+
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2020 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2020 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2020 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2020_vs_actual,
+
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2021 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2021 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2021 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2021_vs_actual,
+
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2022 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2022 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2022 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2022_vs_actual
+
+FROM "mtastats"."main"."mta_operations_statement"
+WHERE type = 'Total Expenses Before Non-Cash Liability Adjs.'
+GROUP BY agency_full_name, general_ledger, expense_type
+    );
+  
+  
+[0m10:10:21.676172 [debug] [Thread-5 (]: SQL status: OK in 0.042 seconds
+[0m10:10:21.676876 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m10:10:21.677382 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.expense_type_per_year"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."expense_type_per_year__dbt_tmp"
+  
+    as (
+      SELECT 
+    agency,
+    fiscal_year,
+    general_ledger,
+    SUM(amount) AS total_expenses
+FROM 
+    "mtastats"."main"."mta_operations_statement"
+WHERE 
+    scenario = 'Actual'
+    AND type = 'Total Expenses Before Non-Cash Liability Adjs.'
+GROUP BY 
+    agency,
+    fiscal_year,
+    general_ledger
+ORDER BY 
+    agency, fiscal_year, general_ledger
+    );
+  
+  
+[0m10:10:21.681434 [debug] [Thread-11 ]: SQL status: OK in 0.041 seconds
+[0m10:10:21.682109 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m10:10:21.682884 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_increase"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."omny_adoption_increase__dbt_tmp"
+  
+    as (
+      WITH omny_ridership_by_station_year AS (
+    -- Calculate the OMNY ridership and total ridership for each station in 2023 and 2024, including latitude and longitude
+    SELECT 
+        station_complex_id, 
+        station_complex, 
+        latitude, 
+        longitude, 
+        EXTRACT(YEAR FROM transit_timestamp) AS year, 
+        SUM(CASE WHEN payment_method = 'omny' THEN ridership ELSE 0 END) AS omny_ridership,
+        SUM(ridership) AS total_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    WHERE 
+        EXTRACT(YEAR FROM transit_timestamp) IN (2023, 2024)
+    GROUP BY 
+        station_complex_id, station_complex, latitude, longitude, year
+),
+omny_percentage_by_station AS (
+    -- Calculate the OMNY percentage for each station in 2023 and 2024, including latitude and longitude
+    SELECT 
+        station_complex_id, 
+        station_complex, 
+        latitude, 
+        longitude, 
+        year, 
+        (omny_ridership / total_ridership) AS omny_percentage
+    FROM 
+        omny_ridership_by_station_year
+)
+SELECT 
+    s2023.station_complex_id AS station_id, 
+    s2023.station_complex AS station_name,
+    s2023.latitude,
+    s2023.longitude,
+    s2023.omny_percentage AS omny_percentage_2023,
+    s2024.omny_percentage AS omny_percentage_2024,
+    (s2024.omny_percentage - s2023.omny_percentage) AS omny_percentage_increase
+FROM 
+    omny_percentage_by_station s2023
+JOIN 
+    omny_percentage_by_station s2024 
+    ON s2023.station_complex_id = s2024.station_complex_id
+    AND s2023.latitude = s2024.latitude
+    AND s2023.longitude = s2024.longitude
+    AND s2023.year = 2023
+    AND s2024.year = 2024
+WHERE 
+    s2024.omny_percentage > s2023.omny_percentage
+ORDER BY 
+    omny_percentage_increase DESC
+    );
+  
+  
+[0m10:10:21.683628 [debug] [Thread-8 (]: SQL status: OK in 0.047 seconds
+[0m10:10:21.685439 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m10:10:21.686338 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.labor_expenses_per_agency"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."labor_expenses_per_agency__dbt_tmp"
+  
+    as (
+      SELECT 
+    agency,
+    fiscal_year,
+    expense_type,
+    general_ledger,
+    SUM(amount) AS total_labor_expenses
+FROM 
+    "mtastats"."main"."mta_operations_statement"
+WHERE 
+    subtype = 'Labor Expenses' AND 
+    scenario = 'Actual'
+GROUP BY 
+    agency,
+    fiscal_year,
+    expense_type,
+    general_ledger
+ORDER BY 
+    agency, fiscal_year, expense_type, general_ledger
+    );
+  
+  
+[0m10:10:21.688431 [debug] [Thread-10 ]: SQL status: OK in 0.050 seconds
+[0m10:10:21.689093 [debug] [Thread-9 (]: SQL status: OK in 0.046 seconds
+[0m10:10:21.690425 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m10:10:21.689579 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m10:10:21.690883 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.largest_expense_differences_2023"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."largest_expense_differences_2023__dbt_tmp"
+  
+    as (
+      WITH expense_differences AS (
+    SELECT
+        agency,
+        general_ledger,
+        SUM(CASE WHEN scenario = 'Actual' THEN amount ELSE 0 END) AS actual_expenses,
+        SUM(CASE WHEN scenario = 'Adopted Budget' AND financial_plan_year = 2023 THEN amount ELSE 0 END) AS adopted_plan_expenses,
+        SUM(CASE WHEN scenario = 'Actual' THEN amount ELSE 0 END) - SUM(CASE WHEN scenario = 'Adopted Budget' AND financial_plan_year = 2023 THEN amount ELSE 0 END) AS difference
+    FROM
+        "mtastats"."main"."mta_operations_statement"
+    WHERE
+        fiscal_year = 2023
+        AND scenario IN ('Actual', 'Adopted Budget')
+        AND financial_plan_year = 2023  -- Ensure we use only the 2023 Adopted Budget
+        AND type = 'Total Expenses Before Non-Cash Liability Adjs.'
+        AND general_ledger != 'Reimbursable Overhead'  -- Exclude Reimbursable Overhead
+    GROUP BY
+        agency, general_ledger
+),
+ranked_expenses AS (
+    SELECT
+        agency,
+        general_ledger,
+        actual_expenses,
+        adopted_plan_expenses,
+        difference,
+        ROW_NUMBER() OVER (PARTITION BY agency ORDER BY difference DESC) AS rank
+    FROM
+        expense_differences
+    WHERE
+        difference > 0  -- Only include cases where actual expenses are larger than the adopted budget
+)
+SELECT
+    agency,
+    general_ledger,
+    actual_expenses,
+    adopted_plan_expenses,
+    difference
+FROM
+    ranked_expenses
+WHERE
+    rank <= 5  -- Select the top 5 items per agency
+ORDER BY
+    difference, rank
+    );
+  
+  
+[0m10:10:21.692267 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_by_station"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."omny_adoption_by_station__dbt_tmp"
+  
+    as (
+      WITH yearly_data AS (
+    SELECT 
+        station_complex,
+        YEAR(transit_timestamp) AS year,
+        SUM(CASE WHEN payment_method = 'omny' THEN ridership ELSE 0 END) * 1.0 / SUM(ridership) AS omny_percentage
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    WHERE 
+        YEAR(transit_timestamp) IN (2022, 2023, 2024)
+    GROUP BY 
+        station_complex, 
+        YEAR(transit_timestamp)
+),
+pivoted_data AS (
+    SELECT 
+        station_complex,
+        MAX(CASE WHEN year = 2022 THEN omny_percentage ELSE NULL END) AS omny_2022,
+        MAX(CASE WHEN year = 2023 THEN omny_percentage ELSE NULL END) AS omny_2023,
+        MAX(CASE WHEN year = 2024 THEN omny_percentage ELSE NULL END) AS omny_2024
+    FROM 
+        yearly_data
+    GROUP BY 
+        station_complex
+)
+SELECT 
+    station_complex,
+    omny_2022,
+    omny_2023,
+    omny_2024,
+    CASE 
+        WHEN omny_2022 IS NOT NULL AND omny_2023 IS NOT NULL THEN 
+            (omny_2023 - omny_2022) / omny_2022
+        ELSE NULL
+    END AS omny_2023_growth,
+    CASE 
+        WHEN omny_2023 IS NOT NULL AND omny_2024 IS NOT NULL THEN 
+            (omny_2024 - omny_2023) / omny_2023
+        ELSE NULL
+    END AS omny_2024_growth
+FROM 
+    pivoted_data
+ORDER BY 
+    station_complex
+    );
+  
+  
+[0m10:10:21.699482 [debug] [Thread-12 ]: SQL status: OK in 0.055 seconds
+[0m10:10:21.700020 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m10:10:21.700527 [debug] [Thread-12 ]: On model.mta.subway_station_stats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.subway_station_stats"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."subway_station_stats__dbt_tmp"
+  
+    as (
+      WITH ridership_by_day AS (
+    SELECT 
+        station_complex,
+        CAST(transit_timestamp AS DATE) AS day,
+        DAYOFWEEK(transit_timestamp) AS weekday,
+        SUM(ridership) AS daily_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    WHERE 
+        YEAR(transit_timestamp) = 2024
+    GROUP BY 
+        station_complex, 
+        CAST(transit_timestamp AS DATE), 
+        DAYOFWEEK(transit_timestamp)
+),
+weekday_weekend AS (
+    SELECT 
+        station_complex,
+        CASE 
+            WHEN weekday IN (2, 3, 4, 5, 6) THEN 'weekday'
+            ELSE 'weekend'
+        END AS day_type,
+        AVG(daily_ridership) AS avg_ridership
+    FROM 
+        ridership_by_day
+    GROUP BY 
+        station_complex, 
+        CASE 
+            WHEN weekday IN (2, 3, 4, 5, 6) THEN 'weekday'
+            ELSE 'weekend'
+        END
+),
+single_day_stats AS (
+    SELECT 
+        station_complex,
+        MAX(daily_ridership) AS highest_single_day_ridership,
+        MIN(daily_ridership) AS lowest_single_day_ridership
+    FROM 
+        ridership_by_day
+    GROUP BY 
+        station_complex
+),
+highest_single_day AS (
+    SELECT 
+        station_complex,
+        day AS highest_single_day_ridership_day
+    FROM 
+        ridership_by_day rbd
+    WHERE 
+        rbd.daily_ridership = (
+            SELECT 
+                MAX(daily_ridership)
+            FROM 
+                ridership_by_day
+            WHERE 
+                station_complex = rbd.station_complex
+        )
+),
+lowest_single_day AS (
+    SELECT 
+        station_complex,
+        day AS lowest_single_day_ridership_day
+    FROM 
+        ridership_by_day rbd
+    WHERE 
+        rbd.daily_ridership = (
+            SELECT 
+                MIN(daily_ridership)
+            FROM 
+                ridership_by_day
+            WHERE 
+                station_complex = rbd.station_complex
+        )
+)
+SELECT 
+    rbd.station_complex,
+    MAX(CASE WHEN wwd.day_type = 'weekday' THEN wwd.avg_ridership END) AS avg_weekday_ridership,
+    MAX(CASE WHEN wwd.day_type = 'weekend' THEN wwd.avg_ridership END) AS avg_weekend_ridership,
+    sds.highest_single_day_ridership,
+    hsd.highest_single_day_ridership_day,
+    sds.lowest_single_day_ridership,
+    lsd.lowest_single_day_ridership_day,
+    (MAX(CASE WHEN wwd.day_type = 'weekend' THEN wwd.avg_ridership END) - MAX(CASE WHEN wwd.day_type = 'weekday' THEN wwd.avg_ridership END)) * 1.0 / MAX(CASE WHEN wwd.day_type = 'weekday' THEN wwd.avg_ridership END) AS weekend_percentage_change
+FROM 
+    ridership_by_day rbd
+JOIN 
+    weekday_weekend wwd ON rbd.station_complex = wwd.station_complex
+JOIN 
+    single_day_stats sds ON rbd.station_complex = sds.station_complex
+JOIN 
+    highest_single_day hsd ON rbd.station_complex = hsd.station_complex
+JOIN 
+    lowest_single_day lsd ON rbd.station_complex = lsd.station_complex
+GROUP BY 
+    rbd.station_complex, 
+    sds.highest_single_day_ridership, 
+    sds.lowest_single_day_ridership, 
+    hsd.highest_single_day_ridership_day, 
+    lsd.lowest_single_day_ridership_day
+ORDER BY 
+    rbd.station_complex
+    );
+  
+  
+[0m10:10:21.736212 [debug] [Thread-13 ]: SQL status: OK in 0.090 seconds
+[0m10:10:21.737684 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m10:10:21.738790 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.total_riders_per_station"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."total_riders_per_station__dbt_tmp"
+  
+    as (
+      SELECT 
+    station_complex_id, 
+    station_complex, 
+    latitude, 
+    longitude, 
+    SUM(ridership) AS total_ridership
+FROM 
+    "mtastats"."main"."mta_hourly_subway_socrata"
+GROUP BY 
+    station_complex_id, station_complex, latitude, longitude
+ORDER BY 
+    total_ridership DESC
+    );
+  
+  
+[0m10:10:21.763393 [debug] [Thread-14 ]: SQL status: OK in 0.114 seconds
+[0m10:10:21.764340 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m10:10:21.764890 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.weekly_riders_per_station"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."weekly_riders_per_station__dbt_tmp"
+  
+    as (
+      with weekly_ridership AS (
+    SELECT 
+        station_complex, 
+        DATE_TRUNC('week', transit_timestamp) AS week_start,
+        SUM(ridership) AS total_weekly_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    GROUP BY 
+        station_complex, 
+        DATE_TRUNC('week', transit_timestamp)
+)
+SELECT 
+    station_complex, 
+    week_start, 
+    total_weekly_ridership
+FROM 
+    weekly_ridership
+ORDER BY 
+    station_complex, 
+    week_start
+    );
+  
+  
+[0m10:10:21.958971 [debug] [Thread-4 (]: SQL status: OK in 0.287 seconds
+[0m10:10:21.998706 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m10:10:22.000004 [debug] [Thread-4 (]: On model.mta.daily_ridership: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.daily_ridership"} */
+alter table "mtastats"."main"."daily_ridership__dbt_tmp" rename to "daily_ridership"
+[0m10:10:22.006564 [debug] [Thread-4 (]: SQL status: OK in 0.005 seconds
+[0m10:10:22.080327 [debug] [Thread-4 (]: On model.mta.daily_ridership: COMMIT
+[0m10:10:22.082019 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m10:10:22.082805 [debug] [Thread-4 (]: On model.mta.daily_ridership: COMMIT
+[0m10:10:22.113325 [debug] [Thread-4 (]: SQL status: OK in 0.029 seconds
+[0m10:10:22.125693 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m10:10:22.128091 [debug] [Thread-4 (]: On model.mta.daily_ridership: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.daily_ridership"} */
+drop table if exists "mtastats"."main"."daily_ridership__dbt_backup" cascade
+[0m10:10:22.131402 [debug] [Thread-4 (]: SQL status: OK in 0.002 seconds
+[0m10:10:22.135888 [debug] [Thread-4 (]: On model.mta.daily_ridership: Close
+[0m10:10:22.138277 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f04977f0>]}
+[0m10:10:22.139942 [info ] [Thread-4 (]: 4 of 14 OK created sql table model main.daily_ridership ........................ [[32mOK[0m in 0.81s]
+[0m10:10:22.141122 [debug] [Thread-4 (]: Finished running node model.mta.daily_ridership
+[0m10:10:22.437869 [debug] [Thread-7 (]: SQL status: OK in 0.762 seconds
+[0m10:10:22.443565 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m10:10:22.445047 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.forecast_accuracy_2023"} */
+alter table "mtastats"."main"."forecast_accuracy_2023__dbt_tmp" rename to "forecast_accuracy_2023"
+[0m10:10:22.446948 [debug] [Thread-7 (]: SQL status: OK in 0.001 seconds
+[0m10:10:22.449775 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: COMMIT
+[0m10:10:22.450619 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m10:10:22.451164 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: COMMIT
+[0m10:10:22.458056 [debug] [Thread-7 (]: SQL status: OK in 0.006 seconds
+[0m10:10:22.463841 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m10:10:22.464864 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.forecast_accuracy_2023"} */
+drop table if exists "mtastats"."main"."forecast_accuracy_2023__dbt_backup" cascade
+[0m10:10:22.466809 [debug] [Thread-7 (]: SQL status: OK in 0.001 seconds
+[0m10:10:22.471170 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: Close
+[0m10:10:22.472179 [debug] [Thread-7 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f0497d30>]}
+[0m10:10:22.473153 [info ] [Thread-7 (]: 7 of 14 OK created sql table model main.forecast_accuracy_2023 ................. [[32mOK[0m in 1.14s]
+[0m10:10:22.474124 [debug] [Thread-7 (]: Finished running node model.mta.forecast_accuracy_2023
+[0m10:10:22.509108 [debug] [Thread-5 (]: SQL status: OK in 0.831 seconds
+[0m10:10:22.534540 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m10:10:22.535745 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.expense_type_per_year"} */
+alter table "mtastats"."main"."expense_type_per_year__dbt_tmp" rename to "expense_type_per_year"
+[0m10:10:22.537941 [debug] [Thread-5 (]: SQL status: OK in 0.001 seconds
+[0m10:10:22.544616 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: COMMIT
+[0m10:10:22.545457 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m10:10:22.547388 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: COMMIT
+[0m10:10:22.565489 [debug] [Thread-5 (]: SQL status: OK in 0.017 seconds
+[0m10:10:22.582793 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m10:10:22.586970 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.expense_type_per_year"} */
+drop table if exists "mtastats"."main"."expense_type_per_year__dbt_backup" cascade
+[0m10:10:22.595533 [debug] [Thread-8 (]: SQL status: OK in 0.900 seconds
+[0m10:10:22.597999 [debug] [Thread-5 (]: SQL status: OK in 0.002 seconds
+[0m10:10:22.617921 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: Close
+[0m10:10:22.633302 [debug] [Thread-5 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f0497460>]}
+[0m10:10:22.638070 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m10:10:22.641879 [info ] [Thread-5 (]: 5 of 14 OK created sql table model main.expense_type_per_year .................. [[32mOK[0m in 1.30s]
+[0m10:10:22.643282 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.labor_expenses_per_agency"} */
+alter table "mtastats"."main"."labor_expenses_per_agency__dbt_tmp" rename to "labor_expenses_per_agency"
+[0m10:10:22.644631 [debug] [Thread-5 (]: Finished running node model.mta.expense_type_per_year
+[0m10:10:22.647696 [debug] [Thread-8 (]: SQL status: OK in 0.002 seconds
+[0m10:10:22.654797 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: COMMIT
+[0m10:10:22.655869 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m10:10:22.656842 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: COMMIT
+[0m10:10:22.665985 [debug] [Thread-8 (]: SQL status: OK in 0.008 seconds
+[0m10:10:22.704008 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m10:10:22.705098 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.labor_expenses_per_agency"} */
+drop table if exists "mtastats"."main"."labor_expenses_per_agency__dbt_backup" cascade
+[0m10:10:22.715622 [debug] [Thread-8 (]: SQL status: OK in 0.009 seconds
+[0m10:10:22.721790 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: Close
+[0m10:10:22.725603 [debug] [Thread-8 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62ef8c62f0>]}
+[0m10:10:22.727365 [info ] [Thread-8 (]: 8 of 14 OK created sql table model main.labor_expenses_per_agency .............. [[32mOK[0m in 1.39s]
+[0m10:10:22.729036 [debug] [Thread-8 (]: Finished running node model.mta.labor_expenses_per_agency
+[0m10:10:22.777340 [debug] [Thread-9 (]: SQL status: OK in 1.081 seconds
+[0m10:10:22.815084 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m10:10:22.816248 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.largest_expense_differences_2023"} */
+alter table "mtastats"."main"."largest_expense_differences_2023__dbt_tmp" rename to "largest_expense_differences_2023"
+[0m10:10:22.818574 [debug] [Thread-9 (]: SQL status: OK in 0.001 seconds
+[0m10:10:22.828908 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: COMMIT
+[0m10:10:22.830010 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m10:10:22.830877 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: COMMIT
+[0m10:10:22.877481 [debug] [Thread-9 (]: SQL status: OK in 0.045 seconds
+[0m10:10:22.891369 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m10:10:22.892483 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.largest_expense_differences_2023"} */
+drop table if exists "mtastats"."main"."largest_expense_differences_2023__dbt_backup" cascade
+[0m10:10:22.909011 [debug] [Thread-9 (]: SQL status: OK in 0.015 seconds
+[0m10:10:22.911713 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: Close
+[0m10:10:22.912855 [debug] [Thread-9 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62ec362170>]}
+[0m10:10:22.914011 [info ] [Thread-9 (]: 9 of 14 OK created sql table model main.largest_expense_differences_2023 ....... [[32mOK[0m in 1.58s]
+[0m10:10:22.915073 [debug] [Thread-9 (]: Finished running node model.mta.largest_expense_differences_2023
+[0m10:10:23.509910 [debug] [Thread-2 (]: SQL status: OK in 1.844 seconds
+[0m10:10:23.516008 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m10:10:23.517441 [debug] [Thread-2 (]: On model.mta.bond_payment_info: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.bond_payment_info"} */
+alter table "mtastats"."main"."bond_payment_info__dbt_tmp" rename to "bond_payment_info"
+[0m10:10:23.519207 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m10:10:23.522857 [debug] [Thread-2 (]: On model.mta.bond_payment_info: COMMIT
+[0m10:10:23.524122 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m10:10:23.524941 [debug] [Thread-2 (]: On model.mta.bond_payment_info: COMMIT
+[0m10:10:23.563531 [debug] [Thread-2 (]: SQL status: OK in 0.038 seconds
+[0m10:10:23.568763 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m10:10:23.570252 [debug] [Thread-2 (]: On model.mta.bond_payment_info: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.bond_payment_info"} */
+drop table if exists "mtastats"."main"."bond_payment_info__dbt_backup" cascade
+[0m10:10:23.572251 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m10:10:23.575215 [debug] [Thread-2 (]: On model.mta.bond_payment_info: Close
+[0m10:10:23.576465 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f07ec310>]}
+[0m10:10:23.577788 [info ] [Thread-2 (]: 2 of 14 OK created sql table model main.bond_payment_info ...................... [[32mOK[0m in 2.27s]
+[0m10:10:23.579444 [debug] [Thread-2 (]: Finished running node model.mta.bond_payment_info
+[0m10:10:24.575837 [debug] [Thread-3 (]: SQL status: OK in 2.906 seconds
+[0m10:10:24.583425 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m10:10:24.584507 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.busiest_specific_times"} */
+alter table "mtastats"."main"."busiest_specific_times__dbt_tmp" rename to "busiest_specific_times"
+[0m10:10:24.588580 [debug] [Thread-3 (]: SQL status: OK in 0.003 seconds
+[0m10:10:24.594607 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: COMMIT
+[0m10:10:24.595767 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m10:10:24.597048 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: COMMIT
+[0m10:10:24.608434 [debug] [Thread-3 (]: SQL status: OK in 0.010 seconds
+[0m10:10:24.613514 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m10:10:24.614787 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.busiest_specific_times"} */
+drop table if exists "mtastats"."main"."busiest_specific_times__dbt_backup" cascade
+[0m10:10:24.619378 [debug] [Thread-3 (]: SQL status: OK in 0.004 seconds
+[0m10:10:24.622551 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: Close
+[0m10:10:24.624075 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f0496230>]}
+[0m10:10:24.625655 [info ] [Thread-3 (]: 3 of 14 OK created sql table model main.busiest_specific_times ................. [[32mOK[0m in 3.30s]
+[0m10:10:24.627177 [debug] [Thread-3 (]: Finished running node model.mta.busiest_specific_times
+[0m10:10:28.808951 [debug] [Thread-6 (]: SQL status: OK in 7.136 seconds
+[0m10:10:28.821240 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m10:10:28.825700 [debug] [Thread-6 (]: On model.mta.fare_class_boro: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.fare_class_boro"} */
+alter table "mtastats"."main"."fare_class_boro__dbt_tmp" rename to "fare_class_boro"
+[0m10:10:28.827994 [debug] [Thread-6 (]: SQL status: OK in 0.001 seconds
+[0m10:10:28.837135 [debug] [Thread-6 (]: On model.mta.fare_class_boro: COMMIT
+[0m10:10:28.843016 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m10:10:28.844070 [debug] [Thread-6 (]: On model.mta.fare_class_boro: COMMIT
+[0m10:10:28.856294 [debug] [Thread-6 (]: SQL status: OK in 0.011 seconds
+[0m10:10:28.863149 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m10:10:28.870310 [debug] [Thread-6 (]: On model.mta.fare_class_boro: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.fare_class_boro"} */
+drop table if exists "mtastats"."main"."fare_class_boro__dbt_backup" cascade
+[0m10:10:28.871713 [debug] [Thread-6 (]: SQL status: OK in 0.000 seconds
+[0m10:10:28.874575 [debug] [Thread-6 (]: On model.mta.fare_class_boro: Close
+[0m10:10:28.875973 [debug] [Thread-6 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f0497430>]}
+[0m10:10:28.881604 [info ] [Thread-6 (]: 6 of 14 OK created sql table model main.fare_class_boro ........................ [[32mOK[0m in 7.54s]
+[0m10:10:28.883322 [debug] [Thread-6 (]: Finished running node model.mta.fare_class_boro
+[0m10:10:30.024489 [debug] [Thread-14 ]: SQL status: OK in 8.259 seconds
+[0m10:10:30.032136 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m10:10:30.033566 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.weekly_riders_per_station"} */
+alter table "mtastats"."main"."weekly_riders_per_station__dbt_tmp" rename to "weekly_riders_per_station"
+[0m10:10:30.035209 [debug] [Thread-14 ]: SQL status: OK in 0.001 seconds
+[0m10:10:30.038667 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: COMMIT
+[0m10:10:30.054639 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m10:10:30.055791 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: COMMIT
+[0m10:10:30.144820 [debug] [Thread-14 ]: SQL status: OK in 0.088 seconds
+[0m10:10:30.152753 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m10:10:30.153962 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.weekly_riders_per_station"} */
+drop table if exists "mtastats"."main"."weekly_riders_per_station__dbt_backup" cascade
+[0m10:10:30.155654 [debug] [Thread-14 ]: SQL status: OK in 0.001 seconds
+[0m10:10:30.159844 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: Close
+[0m10:10:30.165849 [debug] [Thread-14 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f624e1834c0>]}
+[0m10:10:30.167328 [info ] [Thread-14 ]: 14 of 14 OK created sql table model main.weekly_riders_per_station ............. [[32mOK[0m in 8.82s]
+[0m10:10:30.168755 [debug] [Thread-14 ]: Finished running node model.mta.weekly_riders_per_station
+[0m10:10:30.562844 [debug] [Thread-13 ]: SQL status: OK in 8.823 seconds
+[0m10:10:30.569468 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m10:10:30.573332 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.total_riders_per_station"} */
+alter table "mtastats"."main"."total_riders_per_station__dbt_tmp" rename to "total_riders_per_station"
+[0m10:10:30.575078 [debug] [Thread-13 ]: SQL status: OK in 0.001 seconds
+[0m10:10:30.578794 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: COMMIT
+[0m10:10:30.579708 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m10:10:30.580464 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: COMMIT
+[0m10:10:30.590926 [debug] [Thread-13 ]: SQL status: OK in 0.010 seconds
+[0m10:10:30.595921 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m10:10:30.614791 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.total_riders_per_station"} */
+drop table if exists "mtastats"."main"."total_riders_per_station__dbt_backup" cascade
+[0m10:10:30.616183 [debug] [Thread-13 ]: SQL status: OK in 0.000 seconds
+[0m10:10:30.618734 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: Close
+[0m10:10:30.619774 [debug] [Thread-13 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62ec3a82e0>]}
+[0m10:10:30.621113 [info ] [Thread-13 ]: 13 of 14 OK created sql table model main.total_riders_per_station .............. [[32mOK[0m in 9.28s]
+[0m10:10:30.622680 [debug] [Thread-13 ]: Finished running node model.mta.total_riders_per_station
+[0m10:10:32.827605 [debug] [Thread-1 (]: SQL status: OK in 11.167 seconds
+[0m10:10:32.833970 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m10:10:32.835975 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.avg_riders_per_day"} */
+alter table "mtastats"."main"."avg_riders_per_day__dbt_tmp" rename to "avg_riders_per_day"
+[0m10:10:32.845846 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m10:10:32.849546 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: COMMIT
+[0m10:10:32.851771 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m10:10:32.852847 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: COMMIT
+[0m10:10:32.881237 [debug] [Thread-1 (]: SQL status: OK in 0.027 seconds
+[0m10:10:32.886533 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m10:10:32.887604 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.avg_riders_per_day"} */
+drop table if exists "mtastats"."main"."avg_riders_per_day__dbt_backup" cascade
+[0m10:10:32.889040 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m10:10:32.892513 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: Close
+[0m10:10:32.893789 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fb97b4f0>]}
+[0m10:10:32.915247 [info ] [Thread-1 (]: 1 of 14 OK created sql table model main.avg_riders_per_day ..................... [[32mOK[0m in 11.61s]
+[0m10:10:32.916560 [debug] [Thread-1 (]: Finished running node model.mta.avg_riders_per_day
+[0m10:10:33.038182 [debug] [Thread-11 ]: SQL status: OK in 11.354 seconds
+[0m10:10:33.044683 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m10:10:33.045970 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_increase"} */
+alter table "mtastats"."main"."omny_adoption_increase__dbt_tmp" rename to "omny_adoption_increase"
+[0m10:10:33.048034 [debug] [Thread-11 ]: SQL status: OK in 0.001 seconds
+[0m10:10:33.051603 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: COMMIT
+[0m10:10:33.052854 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m10:10:33.053669 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: COMMIT
+[0m10:10:33.065173 [debug] [Thread-11 ]: SQL status: OK in 0.011 seconds
+[0m10:10:33.069997 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m10:10:33.070770 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_increase"} */
+drop table if exists "mtastats"."main"."omny_adoption_increase__dbt_backup" cascade
+[0m10:10:33.071921 [debug] [Thread-11 ]: SQL status: OK in 0.000 seconds
+[0m10:10:33.074217 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: Close
+[0m10:10:33.075202 [debug] [Thread-11 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62ef8c6920>]}
+[0m10:10:33.076309 [info ] [Thread-11 ]: 11 of 14 OK created sql table model main.omny_adoption_increase ................ [[32mOK[0m in 11.74s]
+[0m10:10:33.077297 [debug] [Thread-11 ]: Finished running node model.mta.omny_adoption_increase
+[0m10:10:35.613029 [debug] [Thread-10 ]: SQL status: OK in 13.917 seconds
+[0m10:10:35.622140 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m10:10:35.624399 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_by_station"} */
+alter table "mtastats"."main"."omny_adoption_by_station__dbt_tmp" rename to "omny_adoption_by_station"
+[0m10:10:35.627319 [debug] [Thread-10 ]: SQL status: OK in 0.001 seconds
+[0m10:10:35.631550 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: COMMIT
+[0m10:10:35.632224 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m10:10:35.632752 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: COMMIT
+[0m10:10:35.637489 [debug] [Thread-10 ]: SQL status: OK in 0.004 seconds
+[0m10:10:35.642498 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m10:10:35.643092 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_by_station"} */
+drop table if exists "mtastats"."main"."omny_adoption_by_station__dbt_backup" cascade
+[0m10:10:35.644551 [debug] [Thread-10 ]: SQL status: OK in 0.001 seconds
+[0m10:10:35.646439 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: Close
+[0m10:10:35.647404 [debug] [Thread-10 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f624e1f9cf0>]}
+[0m10:10:35.648386 [info ] [Thread-10 ]: 10 of 14 OK created sql table model main.omny_adoption_by_station .............. [[32mOK[0m in 14.31s]
+[0m10:10:35.649291 [debug] [Thread-10 ]: Finished running node model.mta.omny_adoption_by_station
+[0m10:10:35.741069 [debug] [Thread-12 ]: SQL status: OK in 14.040 seconds
+[0m10:10:35.745105 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m10:10:35.745648 [debug] [Thread-12 ]: On model.mta.subway_station_stats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.subway_station_stats"} */
+alter table "mtastats"."main"."subway_station_stats__dbt_tmp" rename to "subway_station_stats"
+[0m10:10:35.746671 [debug] [Thread-12 ]: SQL status: OK in 0.001 seconds
+[0m10:10:35.748525 [debug] [Thread-12 ]: On model.mta.subway_station_stats: COMMIT
+[0m10:10:35.749090 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m10:10:35.749603 [debug] [Thread-12 ]: On model.mta.subway_station_stats: COMMIT
+[0m10:10:35.754670 [debug] [Thread-12 ]: SQL status: OK in 0.005 seconds
+[0m10:10:35.757637 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m10:10:35.758163 [debug] [Thread-12 ]: On model.mta.subway_station_stats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.subway_station_stats"} */
+drop table if exists "mtastats"."main"."subway_station_stats__dbt_backup" cascade
+[0m10:10:35.759076 [debug] [Thread-12 ]: SQL status: OK in 0.000 seconds
+[0m10:10:35.760715 [debug] [Thread-12 ]: On model.mta.subway_station_stats: Close
+[0m10:10:35.879855 [debug] [Thread-12 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'fc6e0bef-e5fc-412f-921a-a8a8a5832331', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62ef8c6050>]}
+[0m10:10:35.880985 [info ] [Thread-12 ]: 12 of 14 OK created sql table model main.subway_station_stats .................. [[32mOK[0m in 14.54s]
+[0m10:10:35.881894 [debug] [Thread-12 ]: Finished running node model.mta.subway_station_stats
+[0m10:10:35.888838 [debug] [MainThread]: Using duckdb connection "master"
+[0m10:10:35.889527 [debug] [MainThread]: On master: BEGIN
+[0m10:10:35.889986 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m10:10:35.906200 [debug] [MainThread]: SQL status: OK in 0.016 seconds
+[0m10:10:35.906865 [debug] [MainThread]: On master: COMMIT
+[0m10:10:35.907486 [debug] [MainThread]: Using duckdb connection "master"
+[0m10:10:35.907892 [debug] [MainThread]: On master: COMMIT
+[0m10:10:35.908492 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m10:10:35.908930 [debug] [MainThread]: On master: Close
+[0m10:10:35.912236 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m10:10:35.912685 [debug] [MainThread]: Connection 'model.mta.expense_type_per_year' was properly closed.
+[0m10:10:35.913048 [debug] [MainThread]: Connection 'model.mta.avg_riders_per_day' was properly closed.
+[0m10:10:35.913392 [debug] [MainThread]: Connection 'model.mta.bond_payment_info' was properly closed.
+[0m10:10:35.913711 [debug] [MainThread]: Connection 'model.mta.busiest_specific_times' was properly closed.
+[0m10:10:35.914044 [debug] [MainThread]: Connection 'model.mta.daily_ridership' was properly closed.
+[0m10:10:35.914456 [debug] [MainThread]: Connection 'model.mta.fare_class_boro' was properly closed.
+[0m10:10:35.914878 [debug] [MainThread]: Connection 'model.mta.forecast_accuracy_2023' was properly closed.
+[0m10:10:35.915457 [debug] [MainThread]: Connection 'model.mta.labor_expenses_per_agency' was properly closed.
+[0m10:10:35.915755 [debug] [MainThread]: Connection 'model.mta.largest_expense_differences_2023' was properly closed.
+[0m10:10:35.916041 [debug] [MainThread]: Connection 'model.mta.omny_adoption_by_station' was properly closed.
+[0m10:10:35.916329 [debug] [MainThread]: Connection 'model.mta.omny_adoption_increase' was properly closed.
+[0m10:10:35.916611 [debug] [MainThread]: Connection 'model.mta.subway_station_stats' was properly closed.
+[0m10:10:35.916892 [debug] [MainThread]: Connection 'model.mta.total_riders_per_station' was properly closed.
+[0m10:10:35.917169 [debug] [MainThread]: Connection 'model.mta.weekly_riders_per_station' was properly closed.
+[0m10:10:35.917856 [info ] [MainThread]: 
+[0m10:10:35.918372 [info ] [MainThread]: Finished running 14 table models in 0 hours 0 minutes and 14.91 seconds (14.91s).
+[0m10:10:35.920637 [debug] [MainThread]: Command end result
+[0m10:10:35.956222 [info ] [MainThread]: 
+[0m10:10:35.956978 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m10:10:35.957452 [info ] [MainThread]: 
+[0m10:10:35.957913 [info ] [MainThread]: Done. PASS=14 WARN=0 ERROR=0 SKIP=0 TOTAL=14
+[0m10:10:35.959633 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 15.864572, "process_user_time": 176.44043, "process_kernel_time": 20.621336, "process_mem_max_rss": "664184", "process_in_blocks": "1120792", "process_out_blocks": "16704"}
+[0m10:10:35.960418 [debug] [MainThread]: Command `dbt run` succeeded at 10:10:35.960283 after 15.87 seconds
+[0m10:10:35.960949 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fd2c7460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62f06fa4d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f62fd38ce20>]}
+[0m10:10:35.961429 [debug] [MainThread]: Flushing usage events
+[0m11:04:11.179403 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24cde77460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24cc6d5e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24cc6d4c70>]}
+
+
+============================== 11:04:11.185503 | f5984e91-474d-47fa-89be-c525326924ee ==============================
+[0m11:04:11.185503 [info ] [MainThread]: Running with dbt=1.8.7
+[0m11:04:11.186603 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/christianocean/mta/mta/transformations/dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': '/home/christianocean/mta/mta/transformations/dbt/logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m11:04:11.603046 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24cdf34e20>]}
+[0m11:04:11.700765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c9286c20>]}
+[0m11:04:11.712058 [info ] [MainThread]: Registered adapter: duckdb=1.8.3
+[0m11:04:11.735431 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m11:04:11.933508 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m11:04:11.934159 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m11:04:11.979507 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c1020130>]}
+[0m11:04:12.125033 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c11db7f0>]}
+[0m11:04:12.125765 [info ] [MainThread]: Found 14 models, 9 sources, 416 macros
+[0m11:04:12.126286 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24ce253be0>]}
+[0m11:04:12.129151 [info ] [MainThread]: 
+[0m11:04:12.130044 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m11:04:12.137602 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_mtastats'
+[0m11:04:12.256002 [debug] [ThreadPool]: Using duckdb connection "list_mtastats"
+[0m11:04:12.256580 [debug] [ThreadPool]: On list_mtastats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "list_mtastats"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where catalog_name = '"mtastats"'
+    
+  
+  
+[0m11:04:12.256977 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m11:04:12.296923 [debug] [ThreadPool]: SQL status: OK in 0.040 seconds
+[0m11:04:12.298689 [debug] [ThreadPool]: On list_mtastats: Close
+[0m11:04:12.301705 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_mtastats, now create_mtastats_main)
+[0m11:04:12.302452 [debug] [ThreadPool]: Creating schema "database: "mtastats"
+schema: "main"
+"
+[0m11:04:12.310061 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m11:04:12.310538 [debug] [ThreadPool]: On create_mtastats_main: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "create_mtastats_main"} */
+
+    
+        select type from duckdb_databases()
+        where database_name='mtastats'
+        and type='sqlite'
+    
+  
+[0m11:04:12.310913 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m11:04:12.321546 [debug] [ThreadPool]: SQL status: OK in 0.011 seconds
+[0m11:04:12.323447 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m11:04:12.323980 [debug] [ThreadPool]: On create_mtastats_main: BEGIN
+[0m11:04:12.324707 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m11:04:12.325100 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m11:04:12.325444 [debug] [ThreadPool]: On create_mtastats_main: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "create_mtastats_main"} */
+
+    
+    
+        create schema if not exists "mtastats"."main"
+    
+[0m11:04:12.326250 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m11:04:12.327239 [debug] [ThreadPool]: On create_mtastats_main: COMMIT
+[0m11:04:12.327639 [debug] [ThreadPool]: Using duckdb connection "create_mtastats_main"
+[0m11:04:12.327989 [debug] [ThreadPool]: On create_mtastats_main: COMMIT
+[0m11:04:12.328562 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m11:04:12.329001 [debug] [ThreadPool]: On create_mtastats_main: Close
+[0m11:04:12.333726 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_mtastats_main, now list_mtastats_main)
+[0m11:04:12.340766 [debug] [ThreadPool]: Using duckdb connection "list_mtastats_main"
+[0m11:04:12.341390 [debug] [ThreadPool]: On list_mtastats_main: BEGIN
+[0m11:04:12.341792 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m11:04:12.352844 [debug] [ThreadPool]: SQL status: OK in 0.011 seconds
+[0m11:04:12.353365 [debug] [ThreadPool]: Using duckdb connection "list_mtastats_main"
+[0m11:04:12.353739 [debug] [ThreadPool]: On list_mtastats_main: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "connection_name": "list_mtastats_main"} */
+select
+      'mtastats' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'mtastats'
+  
+[0m11:04:12.400632 [debug] [ThreadPool]: SQL status: OK in 0.046 seconds
+[0m11:04:12.402646 [debug] [ThreadPool]: On list_mtastats_main: ROLLBACK
+[0m11:04:12.404534 [debug] [ThreadPool]: Failed to rollback 'list_mtastats_main'
+[0m11:04:12.404973 [debug] [ThreadPool]: On list_mtastats_main: Close
+[0m11:04:12.409249 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24cc518b20>]}
+[0m11:04:12.409844 [debug] [MainThread]: Using duckdb connection "master"
+[0m11:04:12.410223 [debug] [MainThread]: On master: BEGIN
+[0m11:04:12.410558 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m11:04:12.429754 [debug] [MainThread]: SQL status: OK in 0.019 seconds
+[0m11:04:12.430353 [debug] [MainThread]: On master: COMMIT
+[0m11:04:12.430775 [debug] [MainThread]: Using duckdb connection "master"
+[0m11:04:12.431139 [debug] [MainThread]: On master: COMMIT
+[0m11:04:12.431729 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m11:04:12.432145 [debug] [MainThread]: On master: Close
+[0m11:04:12.434499 [info ] [MainThread]: Concurrency: 16 threads (target='dev')
+[0m11:04:12.435049 [info ] [MainThread]: 
+[0m11:04:12.446447 [debug] [Thread-1 (]: Began running node model.mta.avg_riders_per_day
+[0m11:04:12.447204 [debug] [Thread-2 (]: Began running node model.mta.bond_payment_info
+[0m11:04:12.448517 [debug] [Thread-3 (]: Began running node model.mta.busiest_specific_times
+[0m11:04:12.449615 [debug] [Thread-4 (]: Began running node model.mta.daily_ridership
+[0m11:04:12.447956 [info ] [Thread-1 (]: 1 of 14 START sql table model main.avg_riders_per_day .......................... [RUN]
+[0m11:04:12.450688 [info ] [Thread-2 (]: 2 of 14 START sql table model main.bond_payment_info ........................... [RUN]
+[0m11:04:12.451349 [debug] [Thread-5 (]: Began running node model.mta.expense_type_per_year
+[0m11:04:12.451999 [debug] [Thread-6 (]: Began running node model.mta.fare_class_boro
+[0m11:04:12.452926 [debug] [Thread-7 (]: Began running node model.mta.forecast_accuracy_2023
+[0m11:04:12.453662 [debug] [Thread-8 (]: Began running node model.mta.labor_expenses_per_agency
+[0m11:04:12.454720 [info ] [Thread-3 (]: 3 of 14 START sql table model main.busiest_specific_times ...................... [RUN]
+[0m11:04:12.455916 [debug] [Thread-9 (]: Began running node model.mta.largest_expense_differences_2023
+[0m11:04:12.456759 [debug] [Thread-10 ]: Began running node model.mta.omny_adoption_by_station
+[0m11:04:12.457522 [debug] [Thread-11 ]: Began running node model.mta.omny_adoption_increase
+[0m11:04:12.458987 [debug] [Thread-12 ]: Began running node model.mta.subway_station_stats
+[0m11:04:12.460645 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.mta.avg_riders_per_day'
+[0m11:04:12.458477 [info ] [Thread-4 (]: 4 of 14 START sql table model main.daily_ridership ............................. [RUN]
+[0m11:04:12.461872 [debug] [Thread-13 ]: Began running node model.mta.total_riders_per_station
+[0m11:04:12.462993 [debug] [Thread-2 (]: Acquiring new duckdb connection 'model.mta.bond_payment_info'
+[0m11:04:12.463863 [debug] [Thread-14 ]: Began running node model.mta.weekly_riders_per_station
+[0m11:04:12.465236 [info ] [Thread-5 (]: 5 of 14 START sql table model main.expense_type_per_year ....................... [RUN]
+[0m11:04:12.466038 [info ] [Thread-6 (]: 6 of 14 START sql table model main.fare_class_boro ............................. [RUN]
+[0m11:04:12.466815 [info ] [Thread-7 (]: 7 of 14 START sql table model main.forecast_accuracy_2023 ...................... [RUN]
+[0m11:04:12.467554 [info ] [Thread-8 (]: 8 of 14 START sql table model main.labor_expenses_per_agency ................... [RUN]
+[0m11:04:12.468526 [debug] [Thread-3 (]: Acquiring new duckdb connection 'model.mta.busiest_specific_times'
+[0m11:04:12.469255 [info ] [Thread-9 (]: 9 of 14 START sql table model main.largest_expense_differences_2023 ............ [RUN]
+[0m11:04:12.470054 [info ] [Thread-10 ]: 10 of 14 START sql table model main.omny_adoption_by_station ................... [RUN]
+[0m11:04:12.470708 [info ] [Thread-11 ]: 11 of 14 START sql table model main.omny_adoption_increase ..................... [RUN]
+[0m11:04:12.472566 [debug] [Thread-1 (]: Began compiling node model.mta.avg_riders_per_day
+[0m11:04:12.471606 [info ] [Thread-12 ]: 12 of 14 START sql table model main.subway_station_stats ....................... [RUN]
+[0m11:04:12.473505 [debug] [Thread-4 (]: Acquiring new duckdb connection 'model.mta.daily_ridership'
+[0m11:04:12.474509 [info ] [Thread-13 ]: 13 of 14 START sql table model main.total_riders_per_station ................... [RUN]
+[0m11:04:12.475176 [debug] [Thread-2 (]: Began compiling node model.mta.bond_payment_info
+[0m11:04:12.475843 [info ] [Thread-14 ]: 14 of 14 START sql table model main.weekly_riders_per_station .................. [RUN]
+[0m11:04:12.476781 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly list_mtastats_main, now model.mta.expense_type_per_year)
+[0m11:04:12.477525 [debug] [Thread-6 (]: Acquiring new duckdb connection 'model.mta.fare_class_boro'
+[0m11:04:12.478387 [debug] [Thread-7 (]: Acquiring new duckdb connection 'model.mta.forecast_accuracy_2023'
+[0m11:04:12.482309 [debug] [Thread-8 (]: Acquiring new duckdb connection 'model.mta.labor_expenses_per_agency'
+[0m11:04:12.483260 [debug] [Thread-3 (]: Began compiling node model.mta.busiest_specific_times
+[0m11:04:12.484341 [debug] [Thread-9 (]: Acquiring new duckdb connection 'model.mta.largest_expense_differences_2023'
+[0m11:04:12.485163 [debug] [Thread-10 ]: Acquiring new duckdb connection 'model.mta.omny_adoption_by_station'
+[0m11:04:12.485958 [debug] [Thread-11 ]: Acquiring new duckdb connection 'model.mta.omny_adoption_increase'
+[0m11:04:12.496023 [debug] [Thread-1 (]: Writing injected SQL for node "model.mta.avg_riders_per_day"
+[0m11:04:12.499861 [debug] [Thread-12 ]: Acquiring new duckdb connection 'model.mta.subway_station_stats'
+[0m11:04:12.500950 [debug] [Thread-4 (]: Began compiling node model.mta.daily_ridership
+[0m11:04:12.501930 [debug] [Thread-13 ]: Acquiring new duckdb connection 'model.mta.total_riders_per_station'
+[0m11:04:12.506140 [debug] [Thread-2 (]: Writing injected SQL for node "model.mta.bond_payment_info"
+[0m11:04:12.506936 [debug] [Thread-14 ]: Acquiring new duckdb connection 'model.mta.weekly_riders_per_station'
+[0m11:04:12.507610 [debug] [Thread-5 (]: Began compiling node model.mta.expense_type_per_year
+[0m11:04:12.508487 [debug] [Thread-6 (]: Began compiling node model.mta.fare_class_boro
+[0m11:04:12.509562 [debug] [Thread-7 (]: Began compiling node model.mta.forecast_accuracy_2023
+[0m11:04:12.510441 [debug] [Thread-8 (]: Began compiling node model.mta.labor_expenses_per_agency
+[0m11:04:12.514105 [debug] [Thread-3 (]: Writing injected SQL for node "model.mta.busiest_specific_times"
+[0m11:04:12.514854 [debug] [Thread-9 (]: Began compiling node model.mta.largest_expense_differences_2023
+[0m11:04:12.515580 [debug] [Thread-10 ]: Began compiling node model.mta.omny_adoption_by_station
+[0m11:04:12.516166 [debug] [Thread-11 ]: Began compiling node model.mta.omny_adoption_increase
+[0m11:04:12.517026 [debug] [Thread-12 ]: Began compiling node model.mta.subway_station_stats
+[0m11:04:12.522121 [debug] [Thread-4 (]: Writing injected SQL for node "model.mta.daily_ridership"
+[0m11:04:12.522921 [debug] [Thread-13 ]: Began compiling node model.mta.total_riders_per_station
+[0m11:04:12.523847 [debug] [Thread-14 ]: Began compiling node model.mta.weekly_riders_per_station
+[0m11:04:12.524502 [debug] [Thread-1 (]: Began executing node model.mta.avg_riders_per_day
+[0m11:04:12.529338 [debug] [Thread-5 (]: Writing injected SQL for node "model.mta.expense_type_per_year"
+[0m11:04:12.586400 [debug] [Thread-6 (]: Writing injected SQL for node "model.mta.fare_class_boro"
+[0m11:04:12.587216 [debug] [Thread-2 (]: Began executing node model.mta.bond_payment_info
+[0m11:04:12.591016 [debug] [Thread-7 (]: Writing injected SQL for node "model.mta.forecast_accuracy_2023"
+[0m11:04:12.595184 [debug] [Thread-8 (]: Writing injected SQL for node "model.mta.labor_expenses_per_agency"
+[0m11:04:12.598544 [debug] [Thread-9 (]: Writing injected SQL for node "model.mta.largest_expense_differences_2023"
+[0m11:04:12.601748 [debug] [Thread-10 ]: Writing injected SQL for node "model.mta.omny_adoption_by_station"
+[0m11:04:12.606298 [debug] [Thread-11 ]: Writing injected SQL for node "model.mta.omny_adoption_increase"
+[0m11:04:12.606926 [debug] [Thread-3 (]: Began executing node model.mta.busiest_specific_times
+[0m11:04:12.611704 [debug] [Thread-12 ]: Writing injected SQL for node "model.mta.subway_station_stats"
+[0m11:04:12.616899 [debug] [Thread-13 ]: Writing injected SQL for node "model.mta.total_riders_per_station"
+[0m11:04:12.623499 [debug] [Thread-14 ]: Writing injected SQL for node "model.mta.weekly_riders_per_station"
+[0m11:04:12.658625 [debug] [Thread-4 (]: Began executing node model.mta.daily_ridership
+[0m11:04:12.670534 [debug] [Thread-5 (]: Began executing node model.mta.expense_type_per_year
+[0m11:04:12.680573 [debug] [Thread-1 (]: Writing runtime sql for node "model.mta.avg_riders_per_day"
+[0m11:04:12.686430 [debug] [Thread-2 (]: Writing runtime sql for node "model.mta.bond_payment_info"
+[0m11:04:12.694820 [debug] [Thread-6 (]: Began executing node model.mta.fare_class_boro
+[0m11:04:12.696507 [debug] [Thread-3 (]: Writing runtime sql for node "model.mta.busiest_specific_times"
+[0m11:04:12.697781 [debug] [Thread-8 (]: Began executing node model.mta.labor_expenses_per_agency
+[0m11:04:12.698922 [debug] [Thread-10 ]: Began executing node model.mta.omny_adoption_by_station
+[0m11:04:12.699706 [debug] [Thread-9 (]: Began executing node model.mta.largest_expense_differences_2023
+[0m11:04:12.701121 [debug] [Thread-11 ]: Began executing node model.mta.omny_adoption_increase
+[0m11:04:12.714389 [debug] [Thread-12 ]: Began executing node model.mta.subway_station_stats
+[0m11:04:12.716964 [debug] [Thread-5 (]: Writing runtime sql for node "model.mta.expense_type_per_year"
+[0m11:04:12.718614 [debug] [Thread-7 (]: Began executing node model.mta.forecast_accuracy_2023
+[0m11:04:12.708110 [debug] [Thread-4 (]: Writing runtime sql for node "model.mta.daily_ridership"
+[0m11:04:12.720428 [debug] [Thread-13 ]: Began executing node model.mta.total_riders_per_station
+[0m11:04:12.721844 [debug] [Thread-14 ]: Began executing node model.mta.weekly_riders_per_station
+[0m11:04:12.728390 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m11:04:12.730519 [debug] [Thread-6 (]: Writing runtime sql for node "model.mta.fare_class_boro"
+[0m11:04:12.731689 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m11:04:12.741179 [debug] [Thread-8 (]: Writing runtime sql for node "model.mta.labor_expenses_per_agency"
+[0m11:04:12.746632 [debug] [Thread-10 ]: Writing runtime sql for node "model.mta.omny_adoption_by_station"
+[0m11:04:12.753242 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m11:04:12.760061 [debug] [Thread-11 ]: Writing runtime sql for node "model.mta.omny_adoption_increase"
+[0m11:04:12.762155 [debug] [Thread-9 (]: Writing runtime sql for node "model.mta.largest_expense_differences_2023"
+[0m11:04:12.767279 [debug] [Thread-12 ]: Writing runtime sql for node "model.mta.subway_station_stats"
+[0m11:04:12.772018 [debug] [Thread-7 (]: Writing runtime sql for node "model.mta.forecast_accuracy_2023"
+[0m11:04:12.773386 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m11:04:12.779673 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m11:04:12.782101 [debug] [Thread-13 ]: Writing runtime sql for node "model.mta.total_riders_per_station"
+[0m11:04:12.790256 [debug] [Thread-14 ]: Writing runtime sql for node "model.mta.weekly_riders_per_station"
+[0m11:04:12.790979 [debug] [Thread-2 (]: On model.mta.bond_payment_info: BEGIN
+[0m11:04:12.791829 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: BEGIN
+[0m11:04:12.792787 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m11:04:12.794106 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: BEGIN
+[0m11:04:12.794838 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m11:04:12.796371 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m11:04:12.797458 [debug] [Thread-4 (]: On model.mta.daily_ridership: BEGIN
+[0m11:04:12.798080 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m11:04:12.798638 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m11:04:12.800194 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: BEGIN
+[0m11:04:12.803567 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m11:04:12.804874 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m11:04:12.805475 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m11:04:12.806248 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m11:04:12.806921 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m11:04:12.807660 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m11:04:12.808452 [debug] [Thread-6 (]: On model.mta.fare_class_boro: BEGIN
+[0m11:04:12.809272 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m11:04:12.810140 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: BEGIN
+[0m11:04:12.810996 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: BEGIN
+[0m11:04:12.811854 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m11:04:12.812743 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: BEGIN
+[0m11:04:12.813630 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: BEGIN
+[0m11:04:12.814551 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m11:04:12.892181 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: BEGIN
+[0m11:04:12.893055 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: BEGIN
+[0m11:04:12.893781 [debug] [Thread-12 ]: On model.mta.subway_station_stats: BEGIN
+[0m11:04:12.894655 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: BEGIN
+[0m11:04:12.895222 [debug] [Thread-6 (]: Opening a new connection, currently in state init
+[0m11:04:12.896001 [debug] [Thread-10 ]: Opening a new connection, currently in state init
+[0m11:04:12.896731 [debug] [Thread-8 (]: Opening a new connection, currently in state init
+[0m11:04:12.897590 [debug] [Thread-11 ]: Opening a new connection, currently in state init
+[0m11:04:12.898559 [debug] [Thread-7 (]: Opening a new connection, currently in state init
+[0m11:04:12.899702 [debug] [Thread-14 ]: Opening a new connection, currently in state init
+[0m11:04:12.900496 [debug] [Thread-9 (]: Opening a new connection, currently in state init
+[0m11:04:12.901050 [debug] [Thread-2 (]: SQL status: OK in 0.097 seconds
+[0m11:04:12.901644 [debug] [Thread-12 ]: Opening a new connection, currently in state init
+[0m11:04:12.902213 [debug] [Thread-13 ]: Opening a new connection, currently in state init
+[0m11:04:12.904308 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m11:04:12.905653 [debug] [Thread-2 (]: On model.mta.bond_payment_info: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.bond_payment_info"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."bond_payment_info__dbt_tmp"
+  
+    as (
+      WITH payment_stats AS (
+    SELECT
+        general_ledger,
+        MIN(timestamp) AS first_payment_date,
+        MAX(timestamp) AS last_payment_date,
+        AVG(amount) AS average_payment,
+        COUNT(DISTINCT timestamp) AS total_payments,
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY amount) AS median_payment
+    FROM
+        "mtastats"."main"."mta_operations_statement"
+    WHERE
+        scenario = 'Actual'
+        AND type = 'Debt Service Expenses'
+    GROUP BY
+        general_ledger
+),
+first_payment AS (
+    SELECT
+        general_ledger,
+        MIN(timestamp) AS first_payment_date,
+        (SELECT amount FROM mta_operations_statement WHERE general_ledger = fp.general_ledger AND timestamp = MIN(fp.timestamp)) AS first_payment_amount
+    FROM
+        mta_operations_statement fp
+    WHERE
+        scenario = 'Actual'
+        AND type = 'Debt Service Expenses'
+    GROUP BY
+        general_ledger
+),
+last_payment AS (
+    SELECT
+        general_ledger,
+        MAX(timestamp) AS last_payment_date,
+        (SELECT amount FROM mta_operations_statement WHERE general_ledger = lp.general_ledger AND timestamp = MAX(lp.timestamp)) AS last_payment_amount
+    FROM
+        mta_operations_statement lp
+    WHERE
+        scenario = 'Actual'
+        AND type = 'Debt Service Expenses'
+    GROUP BY
+        general_ledger
+)
+-- Wrapping everything inside another DISTINCT query
+SELECT DISTINCT
+    ps.general_ledger,
+    fp.first_payment_date,
+    fp.first_payment_amount,
+    ps.last_payment_date,
+    lp.last_payment_amount,
+    ps.average_payment,
+    ps.median_payment,
+    ps.total_payments
+FROM
+    payment_stats ps
+LEFT JOIN
+    first_payment fp ON ps.general_ledger = fp.general_ledger
+LEFT JOIN
+    last_payment lp ON ps.general_ledger = lp.general_ledger
+ORDER BY
+    ps.general_ledger
+    );
+  
+  
+[0m11:04:12.913390 [debug] [Thread-1 (]: SQL status: OK in 0.106 seconds
+[0m11:04:12.913939 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m11:04:12.914457 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.avg_riders_per_day"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."avg_riders_per_day__dbt_tmp"
+  
+    as (
+      SELECT 
+    station_complex_id, 
+    station_complex, 
+    latitude, 
+    longitude, 
+    EXTRACT(DAYOFWEEK FROM transit_timestamp) AS day_of_week, 
+    AVG(ridership) AS average_ridership
+FROM 
+    "mtastats"."main"."mta_hourly_subway_socrata"
+GROUP BY 
+    station_complex_id, 
+    station_complex, 
+    latitude, 
+    longitude, 
+    day_of_week
+ORDER BY 
+    average_ridership DESC
+    );
+  
+  
+[0m11:04:12.916057 [debug] [Thread-3 (]: SQL status: OK in 0.107 seconds
+[0m11:04:12.916539 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m11:04:12.916953 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.busiest_specific_times"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."busiest_specific_times__dbt_tmp"
+  
+    as (
+      SELECT 
+    EXTRACT(HOUR FROM transit_timestamp) AS transit_hour, 
+    AVG(ridership) AS average_ridership
+FROM 
+    "mtastats"."main"."mta_hourly_subway_socrata"
+GROUP BY 
+    transit_hour
+ORDER BY 
+    average_ridership DESC
+    );
+  
+  
+[0m11:04:12.921631 [debug] [Thread-4 (]: SQL status: OK in 0.110 seconds
+[0m11:04:12.922176 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m11:04:12.922715 [debug] [Thread-4 (]: On model.mta.daily_ridership: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.daily_ridership"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."daily_ridership__dbt_tmp"
+  
+    as (
+      SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(subways_total_ridership) AS ridership,
+    'subway' AS transport_type,
+    AVG(subways_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(buses_total_ridership) AS ridership,
+    'buses' AS transport_type,
+    AVG(buses_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(lirr_total_ridership) AS ridership,
+    'lirr' AS transport_type,
+    AVG(lirr_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(metro_north_total_ridership) AS ridership,
+    'metro_north' AS transport_type,
+    AVG(metro_north_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(access_a_ride_total_trips) AS ridership,
+    'access_a_ride' AS transport_type,
+    AVG(access_a_ride_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(bridges_tunnels_total_traffic) AS ridership,
+    'bridges_tunnels' AS transport_type,
+    AVG(bridges_tunnels_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+
+UNION ALL
+
+SELECT 
+    DATE_TRUNC('week', date) AS week_start,
+    SUM(staten_island_railway_total_ridership) AS ridership,
+    'staten_island_railway' AS transport_type,
+    AVG(staten_island_railway_pct_pre_pandemic) AS avg_pct_pre_pandemic
+FROM "mtastats"."main"."mta_daily_ridership"
+GROUP BY week_start, transport_type
+    );
+  
+  
+[0m11:04:12.940870 [debug] [Thread-5 (]: SQL status: OK in 0.123 seconds
+[0m11:04:12.941821 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m11:04:12.942540 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.expense_type_per_year"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."expense_type_per_year__dbt_tmp"
+  
+    as (
+      SELECT 
+    agency,
+    fiscal_year,
+    general_ledger,
+    SUM(amount) AS total_expenses
+FROM 
+    "mtastats"."main"."mta_operations_statement"
+WHERE 
+    scenario = 'Actual'
+    AND type = 'Total Expenses Before Non-Cash Liability Adjs.'
+GROUP BY 
+    agency,
+    fiscal_year,
+    general_ledger
+ORDER BY 
+    agency, fiscal_year, general_ledger
+    );
+  
+  
+[0m11:04:12.945937 [debug] [Thread-6 (]: SQL status: OK in 0.051 seconds
+[0m11:04:12.946488 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m11:04:12.947041 [debug] [Thread-6 (]: On model.mta.fare_class_boro: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.fare_class_boro"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."fare_class_boro__dbt_tmp"
+  
+    as (
+      WITH total_ridership_per_borough_daytype AS (
+    -- Calculate total ridership for each borough and day type (Weekday or Weekend)
+    SELECT 
+        borough, 
+        CASE 
+            WHEN EXTRACT(DAYOFWEEK FROM transit_timestamp) IN (1, 7) THEN 'Weekend'
+            ELSE 'Weekday'
+        END AS day_type,
+        SUM(ridership) AS total_ridership_borough_daytype
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    GROUP BY 
+        borough, day_type
+),
+ridership_by_fare_class AS (
+    -- Calculate total ridership by fare class category, borough, and day type (Weekday/Weekend)
+    SELECT 
+        borough, 
+        fare_class_category, 
+        CASE 
+            WHEN EXTRACT(DAYOFWEEK FROM transit_timestamp) IN (1, 7) THEN 'Weekend'
+            ELSE 'Weekday'
+        END AS day_type,
+        SUM(ridership) AS total_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    GROUP BY 
+        borough, fare_class_category, day_type
+)
+SELECT 
+    r.borough, 
+    r.fare_class_category, 
+    r.day_type,
+    r.total_ridership, 
+    ROUND(r.total_ridership / t.total_ridership_borough_daytype, 4) AS ridership_percentage
+FROM 
+    ridership_by_fare_class r
+JOIN 
+    total_ridership_per_borough_daytype t
+    ON r.borough = t.borough 
+    AND r.day_type = t.day_type
+ORDER BY 
+    total_ridership DESC
+    );
+  
+  
+[0m11:04:12.957928 [debug] [Thread-10 ]: SQL status: OK in 0.062 seconds
+[0m11:04:12.958515 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m11:04:12.958996 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_by_station"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."omny_adoption_by_station__dbt_tmp"
+  
+    as (
+      WITH yearly_data AS (
+    SELECT 
+        station_complex,
+        YEAR(transit_timestamp) AS year,
+        SUM(CASE WHEN payment_method = 'omny' THEN ridership ELSE 0 END) * 1.0 / SUM(ridership) AS omny_percentage
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    WHERE 
+        YEAR(transit_timestamp) IN (2022, 2023, 2024)
+    GROUP BY 
+        station_complex, 
+        YEAR(transit_timestamp)
+),
+pivoted_data AS (
+    SELECT 
+        station_complex,
+        MAX(CASE WHEN year = 2022 THEN omny_percentage ELSE NULL END) AS omny_2022,
+        MAX(CASE WHEN year = 2023 THEN omny_percentage ELSE NULL END) AS omny_2023,
+        MAX(CASE WHEN year = 2024 THEN omny_percentage ELSE NULL END) AS omny_2024
+    FROM 
+        yearly_data
+    GROUP BY 
+        station_complex
+)
+SELECT 
+    station_complex,
+    omny_2022,
+    omny_2023,
+    omny_2024,
+    CASE 
+        WHEN omny_2022 IS NOT NULL AND omny_2023 IS NOT NULL THEN 
+            (omny_2023 - omny_2022) / omny_2022
+        ELSE NULL
+    END AS omny_2023_growth,
+    CASE 
+        WHEN omny_2023 IS NOT NULL AND omny_2024 IS NOT NULL THEN 
+            (omny_2024 - omny_2023) / omny_2023
+        ELSE NULL
+    END AS omny_2024_growth
+FROM 
+    pivoted_data
+ORDER BY 
+    station_complex
+    );
+  
+  
+[0m11:04:12.973598 [debug] [Thread-8 (]: SQL status: OK in 0.077 seconds
+[0m11:04:12.974257 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m11:04:12.974744 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.labor_expenses_per_agency"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."labor_expenses_per_agency__dbt_tmp"
+  
+    as (
+      SELECT 
+    agency,
+    fiscal_year,
+    expense_type,
+    general_ledger,
+    SUM(amount) AS total_labor_expenses
+FROM 
+    "mtastats"."main"."mta_operations_statement"
+WHERE 
+    subtype = 'Labor Expenses' AND 
+    scenario = 'Actual'
+GROUP BY 
+    agency,
+    fiscal_year,
+    expense_type,
+    general_ledger
+ORDER BY 
+    agency, fiscal_year, expense_type, general_ledger
+    );
+  
+  
+[0m11:04:12.981731 [debug] [Thread-11 ]: SQL status: OK in 0.084 seconds
+[0m11:04:12.982345 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m11:04:12.982846 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_increase"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."omny_adoption_increase__dbt_tmp"
+  
+    as (
+      WITH omny_ridership_by_station_year AS (
+    -- Calculate the OMNY ridership and total ridership for each station in 2023 and 2024, including latitude and longitude
+    SELECT 
+        station_complex_id, 
+        station_complex, 
+        latitude, 
+        longitude, 
+        EXTRACT(YEAR FROM transit_timestamp) AS year, 
+        SUM(CASE WHEN payment_method = 'omny' THEN ridership ELSE 0 END) AS omny_ridership,
+        SUM(ridership) AS total_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    WHERE 
+        EXTRACT(YEAR FROM transit_timestamp) IN (2023, 2024)
+    GROUP BY 
+        station_complex_id, station_complex, latitude, longitude, year
+),
+omny_percentage_by_station AS (
+    -- Calculate the OMNY percentage for each station in 2023 and 2024, including latitude and longitude
+    SELECT 
+        station_complex_id, 
+        station_complex, 
+        latitude, 
+        longitude, 
+        year, 
+        (omny_ridership / total_ridership) AS omny_percentage
+    FROM 
+        omny_ridership_by_station_year
+)
+SELECT 
+    s2023.station_complex_id AS station_id, 
+    s2023.station_complex AS station_name,
+    s2023.latitude,
+    s2023.longitude,
+    s2023.omny_percentage AS omny_percentage_2023,
+    s2024.omny_percentage AS omny_percentage_2024,
+    (s2024.omny_percentage - s2023.omny_percentage) AS omny_percentage_increase
+FROM 
+    omny_percentage_by_station s2023
+JOIN 
+    omny_percentage_by_station s2024 
+    ON s2023.station_complex_id = s2024.station_complex_id
+    AND s2023.latitude = s2024.latitude
+    AND s2023.longitude = s2024.longitude
+    AND s2023.year = 2023
+    AND s2024.year = 2024
+WHERE 
+    s2024.omny_percentage > s2023.omny_percentage
+ORDER BY 
+    omny_percentage_increase DESC
+    );
+  
+  
+[0m11:04:13.004380 [debug] [Thread-7 (]: SQL status: OK in 0.106 seconds
+[0m11:04:13.005007 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m11:04:13.005654 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.forecast_accuracy_2023"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."forecast_accuracy_2023__dbt_tmp"
+  
+    as (
+      SELECT 
+    agency_full_name,
+    general_ledger,
+    expense_type,
+
+    -- Total amounts for Adopted Budget by Financial Plan Year
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2019 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2019,
+
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2020 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2020,
+
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2021 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2021,
+
+    SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2022 
+        THEN amount 
+        ELSE 0 
+    END) AS total_adopted_budget_2022,
+
+    -- Total amount for Actual 2023
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) AS total_actual_2023,
+
+    -- Differences between Actual and Adopted Budget for each year
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2019 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2019_vs_actual,
+
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2020 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2020_vs_actual,
+
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2021 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2021_vs_actual,
+
+    SUM(CASE 
+        WHEN scenario = 'Actual' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2023 
+        THEN amount 
+        ELSE 0 
+    END) - SUM(CASE 
+        WHEN scenario = 'Adopted Budget' 
+            AND fiscal_year = 2023 
+            AND financial_plan_year = 2022 
+        THEN amount 
+        ELSE 0 
+    END) AS difference_2022_vs_actual,
+
+    -- Percentage differences for each year
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2019 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2019 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2019 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2019_vs_actual,
+
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2020 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2020 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2020 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2020_vs_actual,
+
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2021 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2021 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2021 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2021_vs_actual,
+
+    CASE 
+        WHEN SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2022 
+            THEN amount 
+            ELSE 0 
+        END) <> 0 
+        THEN (SUM(CASE 
+            WHEN scenario = 'Actual' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2023 
+            THEN amount 
+            ELSE 0 
+        END) - SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2022 
+            THEN amount 
+            ELSE 0 
+        END)) / SUM(CASE 
+            WHEN scenario = 'Adopted Budget' 
+                AND fiscal_year = 2023 
+                AND financial_plan_year = 2022 
+            THEN amount 
+            ELSE 0 
+        END)
+        ELSE NULL 
+    END AS percentage_diff_2022_vs_actual
+
+FROM "mtastats"."main"."mta_operations_statement"
+WHERE type = 'Total Expenses Before Non-Cash Liability Adjs.'
+GROUP BY agency_full_name, general_ledger, expense_type
+    );
+  
+  
+[0m11:04:13.072979 [debug] [Thread-14 ]: SQL status: OK in 0.173 seconds
+[0m11:04:13.073626 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m11:04:13.074134 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.weekly_riders_per_station"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."weekly_riders_per_station__dbt_tmp"
+  
+    as (
+      with weekly_ridership AS (
+    SELECT 
+        station_complex, 
+        DATE_TRUNC('week', transit_timestamp) AS week_start,
+        SUM(ridership) AS total_weekly_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    GROUP BY 
+        station_complex, 
+        DATE_TRUNC('week', transit_timestamp)
+)
+SELECT 
+    station_complex, 
+    week_start, 
+    total_weekly_ridership
+FROM 
+    weekly_ridership
+ORDER BY 
+    station_complex, 
+    week_start
+    );
+  
+  
+[0m11:04:13.114101 [debug] [Thread-9 (]: SQL status: OK in 0.214 seconds
+[0m11:04:13.114858 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m11:04:13.115377 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.largest_expense_differences_2023"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."largest_expense_differences_2023__dbt_tmp"
+  
+    as (
+      WITH expense_differences AS (
+    SELECT
+        agency,
+        general_ledger,
+        SUM(CASE WHEN scenario = 'Actual' THEN amount ELSE 0 END) AS actual_expenses,
+        SUM(CASE WHEN scenario = 'Adopted Budget' AND financial_plan_year = 2023 THEN amount ELSE 0 END) AS adopted_plan_expenses,
+        SUM(CASE WHEN scenario = 'Actual' THEN amount ELSE 0 END) - SUM(CASE WHEN scenario = 'Adopted Budget' AND financial_plan_year = 2023 THEN amount ELSE 0 END) AS difference
+    FROM
+        "mtastats"."main"."mta_operations_statement"
+    WHERE
+        fiscal_year = 2023
+        AND scenario IN ('Actual', 'Adopted Budget')
+        AND financial_plan_year = 2023  -- Ensure we use only the 2023 Adopted Budget
+        AND type = 'Total Expenses Before Non-Cash Liability Adjs.'
+        AND general_ledger != 'Reimbursable Overhead'  -- Exclude Reimbursable Overhead
+    GROUP BY
+        agency, general_ledger
+),
+ranked_expenses AS (
+    SELECT
+        agency,
+        general_ledger,
+        actual_expenses,
+        adopted_plan_expenses,
+        difference,
+        ROW_NUMBER() OVER (PARTITION BY agency ORDER BY difference DESC) AS rank
+    FROM
+        expense_differences
+    WHERE
+        difference > 0  -- Only include cases where actual expenses are larger than the adopted budget
+)
+SELECT
+    agency,
+    general_ledger,
+    actual_expenses,
+    adopted_plan_expenses,
+    difference
+FROM
+    ranked_expenses
+WHERE
+    rank <= 5  -- Select the top 5 items per agency
+ORDER BY
+    difference, rank
+    );
+  
+  
+[0m11:04:13.133722 [debug] [Thread-12 ]: SQL status: OK in 0.232 seconds
+[0m11:04:13.135594 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m11:04:13.136180 [debug] [Thread-12 ]: On model.mta.subway_station_stats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.subway_station_stats"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."subway_station_stats__dbt_tmp"
+  
+    as (
+      WITH ridership_by_day AS (
+    SELECT 
+        station_complex,
+        CAST(transit_timestamp AS DATE) AS day,
+        DAYOFWEEK(transit_timestamp) AS weekday,
+        SUM(ridership) AS daily_ridership
+    FROM 
+        "mtastats"."main"."mta_hourly_subway_socrata"
+    WHERE 
+        YEAR(transit_timestamp) = 2024
+    GROUP BY 
+        station_complex, 
+        CAST(transit_timestamp AS DATE), 
+        DAYOFWEEK(transit_timestamp)
+),
+weekday_weekend AS (
+    SELECT 
+        station_complex,
+        CASE 
+            WHEN weekday IN (2, 3, 4, 5, 6) THEN 'weekday'
+            ELSE 'weekend'
+        END AS day_type,
+        AVG(daily_ridership) AS avg_ridership
+    FROM 
+        ridership_by_day
+    GROUP BY 
+        station_complex, 
+        CASE 
+            WHEN weekday IN (2, 3, 4, 5, 6) THEN 'weekday'
+            ELSE 'weekend'
+        END
+),
+single_day_stats AS (
+    SELECT 
+        station_complex,
+        MAX(daily_ridership) AS highest_single_day_ridership,
+        MIN(daily_ridership) AS lowest_single_day_ridership
+    FROM 
+        ridership_by_day
+    GROUP BY 
+        station_complex
+),
+highest_single_day AS (
+    SELECT 
+        station_complex,
+        day AS highest_single_day_ridership_day
+    FROM 
+        ridership_by_day rbd
+    WHERE 
+        rbd.daily_ridership = (
+            SELECT 
+                MAX(daily_ridership)
+            FROM 
+                ridership_by_day
+            WHERE 
+                station_complex = rbd.station_complex
+        )
+),
+lowest_single_day AS (
+    SELECT 
+        station_complex,
+        day AS lowest_single_day_ridership_day
+    FROM 
+        ridership_by_day rbd
+    WHERE 
+        rbd.daily_ridership = (
+            SELECT 
+                MIN(daily_ridership)
+            FROM 
+                ridership_by_day
+            WHERE 
+                station_complex = rbd.station_complex
+        )
+)
+SELECT 
+    rbd.station_complex,
+    MAX(CASE WHEN wwd.day_type = 'weekday' THEN wwd.avg_ridership END) AS avg_weekday_ridership,
+    MAX(CASE WHEN wwd.day_type = 'weekend' THEN wwd.avg_ridership END) AS avg_weekend_ridership,
+    sds.highest_single_day_ridership,
+    hsd.highest_single_day_ridership_day,
+    sds.lowest_single_day_ridership,
+    lsd.lowest_single_day_ridership_day,
+    (MAX(CASE WHEN wwd.day_type = 'weekend' THEN wwd.avg_ridership END) - MAX(CASE WHEN wwd.day_type = 'weekday' THEN wwd.avg_ridership END)) * 1.0 / MAX(CASE WHEN wwd.day_type = 'weekday' THEN wwd.avg_ridership END) AS weekend_percentage_change
+FROM 
+    ridership_by_day rbd
+JOIN 
+    weekday_weekend wwd ON rbd.station_complex = wwd.station_complex
+JOIN 
+    single_day_stats sds ON rbd.station_complex = sds.station_complex
+JOIN 
+    highest_single_day hsd ON rbd.station_complex = hsd.station_complex
+JOIN 
+    lowest_single_day lsd ON rbd.station_complex = lsd.station_complex
+GROUP BY 
+    rbd.station_complex, 
+    sds.highest_single_day_ridership, 
+    sds.lowest_single_day_ridership, 
+    hsd.highest_single_day_ridership_day, 
+    lsd.lowest_single_day_ridership_day
+ORDER BY 
+    rbd.station_complex
+    );
+  
+  
+[0m11:04:13.171411 [debug] [Thread-13 ]: SQL status: OK in 0.269 seconds
+[0m11:04:13.172386 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m11:04:13.173137 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.total_riders_per_station"} */
+
+  
+    
+    
+
+    create  table
+      "mtastats"."main"."total_riders_per_station__dbt_tmp"
+  
+    as (
+      SELECT 
+    station_complex_id, 
+    station_complex, 
+    latitude, 
+    longitude, 
+    SUM(ridership) AS total_ridership
+FROM 
+    "mtastats"."main"."mta_hourly_subway_socrata"
+GROUP BY 
+    station_complex_id, station_complex, latitude, longitude
+ORDER BY 
+    total_ridership DESC
+    );
+  
+  
+[0m11:04:13.768824 [debug] [Thread-4 (]: SQL status: OK in 0.845 seconds
+[0m11:04:13.894496 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m11:04:13.895219 [debug] [Thread-4 (]: On model.mta.daily_ridership: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.daily_ridership"} */
+alter table "mtastats"."main"."daily_ridership__dbt_tmp" rename to "daily_ridership"
+[0m11:04:13.903249 [debug] [Thread-4 (]: SQL status: OK in 0.007 seconds
+[0m11:04:14.039464 [debug] [Thread-4 (]: On model.mta.daily_ridership: COMMIT
+[0m11:04:14.040200 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m11:04:14.041925 [debug] [Thread-4 (]: On model.mta.daily_ridership: COMMIT
+[0m11:04:14.085440 [debug] [Thread-4 (]: SQL status: OK in 0.041 seconds
+[0m11:04:14.107330 [debug] [Thread-4 (]: Using duckdb connection "model.mta.daily_ridership"
+[0m11:04:14.108057 [debug] [Thread-4 (]: On model.mta.daily_ridership: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.daily_ridership"} */
+drop table if exists "mtastats"."main"."daily_ridership__dbt_backup" cascade
+[0m11:04:14.110095 [debug] [Thread-4 (]: SQL status: OK in 0.001 seconds
+[0m11:04:14.114450 [debug] [Thread-4 (]: On model.mta.daily_ridership: Close
+[0m11:04:14.116462 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c104ab60>]}
+[0m11:04:14.117322 [info ] [Thread-4 (]: 4 of 14 OK created sql table model main.daily_ridership ........................ [[32mOK[0m in 1.64s]
+[0m11:04:14.118183 [debug] [Thread-4 (]: Finished running node model.mta.daily_ridership
+[0m11:04:14.301995 [debug] [Thread-5 (]: SQL status: OK in 1.359 seconds
+[0m11:04:14.306459 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m11:04:14.307184 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.expense_type_per_year"} */
+alter table "mtastats"."main"."expense_type_per_year__dbt_tmp" rename to "expense_type_per_year"
+[0m11:04:14.310878 [debug] [Thread-5 (]: SQL status: OK in 0.002 seconds
+[0m11:04:14.315520 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: COMMIT
+[0m11:04:14.316975 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m11:04:14.318842 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: COMMIT
+[0m11:04:14.325549 [debug] [Thread-5 (]: SQL status: OK in 0.006 seconds
+[0m11:04:14.329338 [debug] [Thread-5 (]: Using duckdb connection "model.mta.expense_type_per_year"
+[0m11:04:14.343071 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.expense_type_per_year"} */
+drop table if exists "mtastats"."main"."expense_type_per_year__dbt_backup" cascade
+[0m11:04:14.348609 [debug] [Thread-5 (]: SQL status: OK in 0.004 seconds
+[0m11:04:14.359590 [debug] [Thread-5 (]: On model.mta.expense_type_per_year: Close
+[0m11:04:14.360598 [debug] [Thread-5 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c104a770>]}
+[0m11:04:14.361567 [info ] [Thread-5 (]: 5 of 14 OK created sql table model main.expense_type_per_year .................. [[32mOK[0m in 1.88s]
+[0m11:04:14.362424 [debug] [Thread-5 (]: Finished running node model.mta.expense_type_per_year
+[0m11:04:14.446517 [debug] [Thread-8 (]: SQL status: OK in 1.471 seconds
+[0m11:04:14.524749 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m11:04:14.525759 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.labor_expenses_per_agency"} */
+alter table "mtastats"."main"."labor_expenses_per_agency__dbt_tmp" rename to "labor_expenses_per_agency"
+[0m11:04:14.527093 [debug] [Thread-8 (]: SQL status: OK in 0.001 seconds
+[0m11:04:14.541080 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: COMMIT
+[0m11:04:14.541832 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m11:04:14.542306 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: COMMIT
+[0m11:04:14.562966 [debug] [Thread-8 (]: SQL status: OK in 0.020 seconds
+[0m11:04:14.608883 [debug] [Thread-8 (]: Using duckdb connection "model.mta.labor_expenses_per_agency"
+[0m11:04:14.610096 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.labor_expenses_per_agency"} */
+drop table if exists "mtastats"."main"."labor_expenses_per_agency__dbt_backup" cascade
+[0m11:04:14.612301 [debug] [Thread-8 (]: SQL status: OK in 0.002 seconds
+[0m11:04:14.616414 [debug] [Thread-8 (]: On model.mta.labor_expenses_per_agency: Close
+[0m11:04:14.617374 [debug] [Thread-8 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c049f040>]}
+[0m11:04:14.618479 [info ] [Thread-8 (]: 8 of 14 OK created sql table model main.labor_expenses_per_agency .............. [[32mOK[0m in 2.14s]
+[0m11:04:14.619653 [debug] [Thread-8 (]: Finished running node model.mta.labor_expenses_per_agency
+[0m11:04:15.033431 [debug] [Thread-9 (]: SQL status: OK in 1.917 seconds
+[0m11:04:15.138104 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m11:04:15.194878 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.largest_expense_differences_2023"} */
+alter table "mtastats"."main"."largest_expense_differences_2023__dbt_tmp" rename to "largest_expense_differences_2023"
+[0m11:04:15.255711 [debug] [Thread-9 (]: SQL status: OK in 0.060 seconds
+[0m11:04:15.259658 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: COMMIT
+[0m11:04:15.260762 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m11:04:15.261551 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: COMMIT
+[0m11:04:15.270338 [debug] [Thread-9 (]: SQL status: OK in 0.008 seconds
+[0m11:04:15.320236 [debug] [Thread-7 (]: SQL status: OK in 2.296 seconds
+[0m11:04:15.327225 [debug] [Thread-9 (]: Using duckdb connection "model.mta.largest_expense_differences_2023"
+[0m11:04:15.328292 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.largest_expense_differences_2023"} */
+drop table if exists "mtastats"."main"."largest_expense_differences_2023__dbt_backup" cascade
+[0m11:04:15.329870 [debug] [Thread-9 (]: SQL status: OK in 0.001 seconds
+[0m11:04:15.332676 [debug] [Thread-9 (]: On model.mta.largest_expense_differences_2023: Close
+[0m11:04:15.335137 [debug] [Thread-9 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c049d960>]}
+[0m11:04:15.336826 [info ] [Thread-9 (]: 9 of 14 OK created sql table model main.largest_expense_differences_2023 ....... [[32mOK[0m in 2.85s]
+[0m11:04:15.359180 [debug] [Thread-9 (]: Finished running node model.mta.largest_expense_differences_2023
+[0m11:04:15.386744 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m11:04:15.390727 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.forecast_accuracy_2023"} */
+alter table "mtastats"."main"."forecast_accuracy_2023__dbt_tmp" rename to "forecast_accuracy_2023"
+[0m11:04:15.392926 [debug] [Thread-7 (]: SQL status: OK in 0.001 seconds
+[0m11:04:15.407209 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: COMMIT
+[0m11:04:15.408610 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m11:04:15.411657 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: COMMIT
+[0m11:04:15.530329 [debug] [Thread-7 (]: SQL status: OK in 0.117 seconds
+[0m11:04:15.538027 [debug] [Thread-7 (]: Using duckdb connection "model.mta.forecast_accuracy_2023"
+[0m11:04:15.546953 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.forecast_accuracy_2023"} */
+drop table if exists "mtastats"."main"."forecast_accuracy_2023__dbt_backup" cascade
+[0m11:04:15.549048 [debug] [Thread-7 (]: SQL status: OK in 0.001 seconds
+[0m11:04:15.552154 [debug] [Thread-7 (]: On model.mta.forecast_accuracy_2023: Close
+[0m11:04:15.554928 [debug] [Thread-7 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f241fad9570>]}
+[0m11:04:15.565222 [info ] [Thread-7 (]: 7 of 14 OK created sql table model main.forecast_accuracy_2023 ................. [[32mOK[0m in 3.08s]
+[0m11:04:15.566725 [debug] [Thread-7 (]: Finished running node model.mta.forecast_accuracy_2023
+[0m11:04:16.501768 [debug] [Thread-3 (]: SQL status: OK in 3.584 seconds
+[0m11:04:16.509872 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m11:04:16.511019 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.busiest_specific_times"} */
+alter table "mtastats"."main"."busiest_specific_times__dbt_tmp" rename to "busiest_specific_times"
+[0m11:04:16.513848 [debug] [Thread-3 (]: SQL status: OK in 0.002 seconds
+[0m11:04:16.519291 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: COMMIT
+[0m11:04:16.520350 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m11:04:16.520837 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: COMMIT
+[0m11:04:16.528701 [debug] [Thread-3 (]: SQL status: OK in 0.007 seconds
+[0m11:04:16.532725 [debug] [Thread-3 (]: Using duckdb connection "model.mta.busiest_specific_times"
+[0m11:04:16.533838 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.busiest_specific_times"} */
+drop table if exists "mtastats"."main"."busiest_specific_times__dbt_backup" cascade
+[0m11:04:16.536444 [debug] [Thread-3 (]: SQL status: OK in 0.001 seconds
+[0m11:04:16.539059 [debug] [Thread-3 (]: On model.mta.busiest_specific_times: Close
+[0m11:04:16.540070 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c03e6950>]}
+[0m11:04:16.541067 [info ] [Thread-3 (]: 3 of 14 OK created sql table model main.busiest_specific_times ................. [[32mOK[0m in 4.07s]
+[0m11:04:16.542558 [debug] [Thread-3 (]: Finished running node model.mta.busiest_specific_times
+[0m11:04:16.619378 [debug] [Thread-2 (]: SQL status: OK in 3.713 seconds
+[0m11:04:16.627327 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m11:04:16.629432 [debug] [Thread-2 (]: On model.mta.bond_payment_info: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.bond_payment_info"} */
+alter table "mtastats"."main"."bond_payment_info__dbt_tmp" rename to "bond_payment_info"
+[0m11:04:16.631470 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m11:04:16.634546 [debug] [Thread-2 (]: On model.mta.bond_payment_info: COMMIT
+[0m11:04:16.635157 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m11:04:16.635612 [debug] [Thread-2 (]: On model.mta.bond_payment_info: COMMIT
+[0m11:04:16.642159 [debug] [Thread-2 (]: SQL status: OK in 0.006 seconds
+[0m11:04:16.646726 [debug] [Thread-2 (]: Using duckdb connection "model.mta.bond_payment_info"
+[0m11:04:16.647924 [debug] [Thread-2 (]: On model.mta.bond_payment_info: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.bond_payment_info"} */
+drop table if exists "mtastats"."main"."bond_payment_info__dbt_backup" cascade
+[0m11:04:16.649695 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m11:04:16.653499 [debug] [Thread-2 (]: On model.mta.bond_payment_info: Close
+[0m11:04:16.655099 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c104bf10>]}
+[0m11:04:16.656516 [info ] [Thread-2 (]: 2 of 14 OK created sql table model main.bond_payment_info ...................... [[32mOK[0m in 4.19s]
+[0m11:04:16.657447 [debug] [Thread-2 (]: Finished running node model.mta.bond_payment_info
+[0m11:04:23.079088 [debug] [Thread-14 ]: SQL status: OK in 10.004 seconds
+[0m11:04:23.106474 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m11:04:23.113384 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.weekly_riders_per_station"} */
+alter table "mtastats"."main"."weekly_riders_per_station__dbt_tmp" rename to "weekly_riders_per_station"
+[0m11:04:23.115438 [debug] [Thread-14 ]: SQL status: OK in 0.001 seconds
+[0m11:04:23.126164 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: COMMIT
+[0m11:04:23.127660 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m11:04:23.128613 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: COMMIT
+[0m11:04:23.144229 [debug] [Thread-13 ]: SQL status: OK in 9.970 seconds
+[0m11:04:23.154767 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m11:04:23.156094 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.total_riders_per_station"} */
+alter table "mtastats"."main"."total_riders_per_station__dbt_tmp" rename to "total_riders_per_station"
+[0m11:04:23.159960 [debug] [Thread-13 ]: SQL status: OK in 0.003 seconds
+[0m11:04:23.163472 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: COMMIT
+[0m11:04:23.164865 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m11:04:23.165654 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: COMMIT
+[0m11:04:23.188474 [debug] [Thread-14 ]: SQL status: OK in 0.059 seconds
+[0m11:04:23.200967 [debug] [Thread-14 ]: Using duckdb connection "model.mta.weekly_riders_per_station"
+[0m11:04:23.203659 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.weekly_riders_per_station"} */
+drop table if exists "mtastats"."main"."weekly_riders_per_station__dbt_backup" cascade
+[0m11:04:23.215502 [debug] [Thread-13 ]: SQL status: OK in 0.049 seconds
+[0m11:04:23.216508 [debug] [Thread-14 ]: SQL status: OK in 0.012 seconds
+[0m11:04:23.225978 [debug] [Thread-13 ]: Using duckdb connection "model.mta.total_riders_per_station"
+[0m11:04:23.231074 [debug] [Thread-14 ]: On model.mta.weekly_riders_per_station: Close
+[0m11:04:23.255025 [debug] [Thread-14 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c02c5150>]}
+[0m11:04:23.257277 [info ] [Thread-14 ]: 14 of 14 OK created sql table model main.weekly_riders_per_station ............. [[32mOK[0m in 10.75s]
+[0m11:04:23.259092 [debug] [Thread-14 ]: Finished running node model.mta.weekly_riders_per_station
+[0m11:04:23.260317 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.total_riders_per_station"} */
+drop table if exists "mtastats"."main"."total_riders_per_station__dbt_backup" cascade
+[0m11:04:23.261929 [debug] [Thread-13 ]: SQL status: OK in 0.000 seconds
+[0m11:04:23.265786 [debug] [Thread-13 ]: On model.mta.total_riders_per_station: Close
+[0m11:04:23.267222 [debug] [Thread-13 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c027c1c0>]}
+[0m11:04:23.268669 [info ] [Thread-13 ]: 13 of 14 OK created sql table model main.total_riders_per_station .............. [[32mOK[0m in 10.77s]
+[0m11:04:23.270117 [debug] [Thread-13 ]: Finished running node model.mta.total_riders_per_station
+[0m11:04:23.750350 [debug] [Thread-11 ]: SQL status: OK in 10.766 seconds
+[0m11:04:23.756481 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m11:04:23.758269 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_increase"} */
+alter table "mtastats"."main"."omny_adoption_increase__dbt_tmp" rename to "omny_adoption_increase"
+[0m11:04:23.760001 [debug] [Thread-11 ]: SQL status: OK in 0.001 seconds
+[0m11:04:23.779986 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: COMMIT
+[0m11:04:23.781175 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m11:04:23.782098 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: COMMIT
+[0m11:04:23.816743 [debug] [Thread-11 ]: SQL status: OK in 0.034 seconds
+[0m11:04:23.825679 [debug] [Thread-11 ]: Using duckdb connection "model.mta.omny_adoption_increase"
+[0m11:04:23.847227 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_increase"} */
+drop table if exists "mtastats"."main"."omny_adoption_increase__dbt_backup" cascade
+[0m11:04:23.850698 [debug] [Thread-11 ]: SQL status: OK in 0.002 seconds
+[0m11:04:23.856363 [debug] [Thread-11 ]: On model.mta.omny_adoption_increase: Close
+[0m11:04:23.858018 [debug] [Thread-11 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c0255f60>]}
+[0m11:04:23.860126 [info ] [Thread-11 ]: 11 of 14 OK created sql table model main.omny_adoption_increase ................ [[32mOK[0m in 11.37s]
+[0m11:04:23.861506 [debug] [Thread-11 ]: Finished running node model.mta.omny_adoption_increase
+[0m11:04:28.194117 [debug] [Thread-10 ]: SQL status: OK in 15.234 seconds
+[0m11:04:28.201267 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m11:04:28.202296 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_by_station"} */
+alter table "mtastats"."main"."omny_adoption_by_station__dbt_tmp" rename to "omny_adoption_by_station"
+[0m11:04:28.204026 [debug] [Thread-10 ]: SQL status: OK in 0.001 seconds
+[0m11:04:28.207914 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: COMMIT
+[0m11:04:28.208790 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m11:04:28.209512 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: COMMIT
+[0m11:04:28.243304 [debug] [Thread-10 ]: SQL status: OK in 0.033 seconds
+[0m11:04:28.248022 [debug] [Thread-10 ]: Using duckdb connection "model.mta.omny_adoption_by_station"
+[0m11:04:28.248938 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.omny_adoption_by_station"} */
+drop table if exists "mtastats"."main"."omny_adoption_by_station__dbt_backup" cascade
+[0m11:04:28.250202 [debug] [Thread-10 ]: SQL status: OK in 0.001 seconds
+[0m11:04:28.253031 [debug] [Thread-10 ]: On model.mta.omny_adoption_by_station: Close
+[0m11:04:28.254889 [debug] [Thread-10 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c049ddb0>]}
+[0m11:04:28.274430 [info ] [Thread-10 ]: 10 of 14 OK created sql table model main.omny_adoption_by_station .............. [[32mOK[0m in 15.77s]
+[0m11:04:28.277353 [debug] [Thread-10 ]: Finished running node model.mta.omny_adoption_by_station
+[0m11:04:28.464852 [debug] [Thread-6 (]: SQL status: OK in 15.515 seconds
+[0m11:04:28.479230 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m11:04:28.480862 [debug] [Thread-6 (]: On model.mta.fare_class_boro: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.fare_class_boro"} */
+alter table "mtastats"."main"."fare_class_boro__dbt_tmp" rename to "fare_class_boro"
+[0m11:04:28.483855 [debug] [Thread-6 (]: SQL status: OK in 0.002 seconds
+[0m11:04:28.492182 [debug] [Thread-6 (]: On model.mta.fare_class_boro: COMMIT
+[0m11:04:28.493855 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m11:04:28.495292 [debug] [Thread-6 (]: On model.mta.fare_class_boro: COMMIT
+[0m11:04:28.513246 [debug] [Thread-6 (]: SQL status: OK in 0.016 seconds
+[0m11:04:28.521256 [debug] [Thread-6 (]: Using duckdb connection "model.mta.fare_class_boro"
+[0m11:04:28.522634 [debug] [Thread-6 (]: On model.mta.fare_class_boro: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.fare_class_boro"} */
+drop table if exists "mtastats"."main"."fare_class_boro__dbt_backup" cascade
+[0m11:04:28.545418 [debug] [Thread-6 (]: SQL status: OK in 0.021 seconds
+[0m11:04:28.552279 [debug] [Thread-6 (]: On model.mta.fare_class_boro: Close
+[0m11:04:28.555488 [debug] [Thread-6 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c10495d0>]}
+[0m11:04:28.558216 [info ] [Thread-6 (]: 6 of 14 OK created sql table model main.fare_class_boro ........................ [[32mOK[0m in 16.08s]
+[0m11:04:28.560897 [debug] [Thread-6 (]: Finished running node model.mta.fare_class_boro
+[0m11:04:29.319145 [debug] [Thread-12 ]: SQL status: OK in 16.182 seconds
+[0m11:04:29.326673 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m11:04:29.327755 [debug] [Thread-12 ]: On model.mta.subway_station_stats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.subway_station_stats"} */
+alter table "mtastats"."main"."subway_station_stats__dbt_tmp" rename to "subway_station_stats"
+[0m11:04:29.330359 [debug] [Thread-12 ]: SQL status: OK in 0.001 seconds
+[0m11:04:29.334758 [debug] [Thread-12 ]: On model.mta.subway_station_stats: COMMIT
+[0m11:04:29.335663 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m11:04:29.336438 [debug] [Thread-12 ]: On model.mta.subway_station_stats: COMMIT
+[0m11:04:29.345707 [debug] [Thread-12 ]: SQL status: OK in 0.008 seconds
+[0m11:04:29.353240 [debug] [Thread-12 ]: Using duckdb connection "model.mta.subway_station_stats"
+[0m11:04:29.354292 [debug] [Thread-12 ]: On model.mta.subway_station_stats: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.subway_station_stats"} */
+drop table if exists "mtastats"."main"."subway_station_stats__dbt_backup" cascade
+[0m11:04:29.356162 [debug] [Thread-1 (]: SQL status: OK in 16.440 seconds
+[0m11:04:29.363200 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m11:04:29.364089 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.avg_riders_per_day"} */
+alter table "mtastats"."main"."avg_riders_per_day__dbt_tmp" rename to "avg_riders_per_day"
+[0m11:04:29.364944 [debug] [Thread-12 ]: SQL status: OK in 0.008 seconds
+[0m11:04:29.368070 [debug] [Thread-12 ]: On model.mta.subway_station_stats: Close
+[0m11:04:29.369771 [debug] [Thread-12 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f241fb108b0>]}
+[0m11:04:29.370766 [debug] [Thread-1 (]: SQL status: OK in 0.005 seconds
+[0m11:04:29.371947 [info ] [Thread-12 ]: 12 of 14 OK created sql table model main.subway_station_stats .................. [[32mOK[0m in 16.87s]
+[0m11:04:29.375991 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: COMMIT
+[0m11:04:29.377344 [debug] [Thread-12 ]: Finished running node model.mta.subway_station_stats
+[0m11:04:29.378167 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m11:04:29.379910 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: COMMIT
+[0m11:04:29.398860 [debug] [Thread-1 (]: SQL status: OK in 0.018 seconds
+[0m11:04:29.403357 [debug] [Thread-1 (]: Using duckdb connection "model.mta.avg_riders_per_day"
+[0m11:04:29.404125 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "default", "target_name": "dev", "node_id": "model.mta.avg_riders_per_day"} */
+drop table if exists "mtastats"."main"."avg_riders_per_day__dbt_backup" cascade
+[0m11:04:29.405449 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m11:04:29.408671 [debug] [Thread-1 (]: On model.mta.avg_riders_per_day: Close
+[0m11:04:29.611107 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f5984e91-474d-47fa-89be-c525326924ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c0366140>]}
+[0m11:04:29.612354 [info ] [Thread-1 (]: 1 of 14 OK created sql table model main.avg_riders_per_day ..................... [[32mOK[0m in 17.15s]
+[0m11:04:29.613378 [debug] [Thread-1 (]: Finished running node model.mta.avg_riders_per_day
+[0m11:04:29.651236 [debug] [MainThread]: Using duckdb connection "master"
+[0m11:04:29.652239 [debug] [MainThread]: On master: BEGIN
+[0m11:04:29.653738 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m11:04:29.718063 [debug] [MainThread]: SQL status: OK in 0.065 seconds
+[0m11:04:29.718924 [debug] [MainThread]: On master: COMMIT
+[0m11:04:29.719448 [debug] [MainThread]: Using duckdb connection "master"
+[0m11:04:29.719909 [debug] [MainThread]: On master: COMMIT
+[0m11:04:29.720672 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m11:04:29.721209 [debug] [MainThread]: On master: Close
+[0m11:04:29.727458 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m11:04:29.728152 [debug] [MainThread]: Connection 'model.mta.expense_type_per_year' was properly closed.
+[0m11:04:29.728652 [debug] [MainThread]: Connection 'model.mta.avg_riders_per_day' was properly closed.
+[0m11:04:29.729116 [debug] [MainThread]: Connection 'model.mta.bond_payment_info' was properly closed.
+[0m11:04:29.729545 [debug] [MainThread]: Connection 'model.mta.busiest_specific_times' was properly closed.
+[0m11:04:29.729953 [debug] [MainThread]: Connection 'model.mta.daily_ridership' was properly closed.
+[0m11:04:29.730373 [debug] [MainThread]: Connection 'model.mta.fare_class_boro' was properly closed.
+[0m11:04:29.730773 [debug] [MainThread]: Connection 'model.mta.forecast_accuracy_2023' was properly closed.
+[0m11:04:29.731168 [debug] [MainThread]: Connection 'model.mta.labor_expenses_per_agency' was properly closed.
+[0m11:04:29.731800 [debug] [MainThread]: Connection 'model.mta.largest_expense_differences_2023' was properly closed.
+[0m11:04:29.732204 [debug] [MainThread]: Connection 'model.mta.omny_adoption_by_station' was properly closed.
+[0m11:04:29.732593 [debug] [MainThread]: Connection 'model.mta.omny_adoption_increase' was properly closed.
+[0m11:04:29.732980 [debug] [MainThread]: Connection 'model.mta.subway_station_stats' was properly closed.
+[0m11:04:29.733376 [debug] [MainThread]: Connection 'model.mta.total_riders_per_station' was properly closed.
+[0m11:04:29.733762 [debug] [MainThread]: Connection 'model.mta.weekly_riders_per_station' was properly closed.
+[0m11:04:29.737967 [info ] [MainThread]: 
+[0m11:04:29.739639 [info ] [MainThread]: Finished running 14 table models in 0 hours 0 minutes and 17.61 seconds (17.61s).
+[0m11:04:29.745313 [debug] [MainThread]: Command end result
+[0m11:04:29.860100 [info ] [MainThread]: 
+[0m11:04:29.861171 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m11:04:29.861780 [info ] [MainThread]: 
+[0m11:04:29.862922 [info ] [MainThread]: Done. PASS=14 WARN=0 ERROR=0 SKIP=0 TOTAL=14
+[0m11:04:29.876183 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 18.794596, "process_user_time": 178.96394, "process_kernel_time": 44.26046, "process_mem_max_rss": "740168", "process_out_blocks": "16704", "process_in_blocks": "0"}
+[0m11:04:29.885389 [debug] [MainThread]: Command `dbt run` succeeded at 11:04:29.884926 after 18.81 seconds
+[0m11:04:29.887665 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24cde77460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c100a8c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24c92c5810>]}
+[0m11:04:29.888359 [debug] [MainThread]: Flushing usage events
+[0m11:04:39.938977 [debug] [MainThread]: Error sending anonymous usage statistics. Disabling tracking for this execution. If you wish to permanently disable tracking, see: https://docs.getdbt.com/reference/global-configs#send-anonymous-usage-stats.
