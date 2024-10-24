@@ -26,7 +26,8 @@ OTHER_MTA_ASSETS_NAMES = [
     "mta_hourly_subway_socrata"
 ]
 BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
-LOCAL_DOWNLOAD_PATH = "/home/christianocean/mta/data/opendata/nyc/mta/mta_hourly_subway_socrata"
+BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..","..", "data", "opendata", "nyc", "mta"))
+LOCAL_DOWNLOAD_PATH = os.path.join(BASE_PATH, "mta_hourly_subway_socrata")
 years = ["2022", "2023", "2024"]
 months = [f"{i:02d}" for i in range(1, 13)]  # Months from 01 to 12
 
