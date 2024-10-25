@@ -1,1 +1,0 @@
-select * from largest_expense_differences_2023

@@ -3,7 +3,7 @@
 
 ## 1. Install `uv`
 
-Before proceeding, you will need to install `uv`. Please follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
+Before proceeding, you will need to install `uv`. Pip install uv should word, or you can  follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
 
 Once `uv` is installed, proceed to clone the repository.
 
@@ -63,15 +63,18 @@ pip install -r requirements.txt
 
 2. Open the `.env` file and add your Socrata App Token next to the key `NYC_API_KEY`.
 
+You can obtain a Socrata API key by making a free account [here](https://docs.astral.sh/uv/getting-started/installation/#installation-methods) abd following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys).
+
+
 ## 6. Export LAKE_PATH for DBT
 
-Run the following
+You need to export the varabale LAKE_PATH to your local computer to pass the location of the DuckDB file to DBT 
 
 ```bash
 uv run scripts/exportpath.py
 ```
 
-This should export the path for your local computer in terminal, such as
+This should export the path for your local computer in terminal, and look something like this: 
 
 ```bash
 export LAKE_PATH="/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb"
@@ -94,7 +97,26 @@ Once the server is running, you will see a URL in your terminal. Click on the UR
 2. Then, in the top-right corner, click on **View Global Asset Lineage**.
 3. In the top-right corner, click **Materialize All** to start downloading and processing all of the data.
 
+This will execute the following pipeline
 
+1. Ingest mta data from the Socrata API, weather data from the Open Mateo API, and the 67M hourly subway dataset from R2 as parquet files in data/opendata/nyc/mta/nyc folder
+2. Create a DuckDB file with views on each raw datasets parquet files
+3. Execute a SQL transformation pipeline with DBT on the raw datasets
+
+The entire pipeline should take 2-5 minutes, with most of the time spent ingesting the large hourly dataset.
+
+## 8. Run the data app
+
+After materializing the assets, the data application can be run by opening a new terminal, and then running the following
+
+```bash
+node scripts/run.js
+```
+This will 
+1. Change the directory to `mta/mtastats`.
+2. Run `npm install` to ensure all dependencies are installed.
+3. Run `npm run sources` to build the data for the app.
+4. Run `npm run dev` to launch the app
 
 # Explaining the Scripts Folder
 
