@@ -1,6 +1,10 @@
 
  Project Setup Guide
 
+
+This project assumes you are using a code IDE, either locally such as with [VSCode](https://code.visualstudio.com/docs/setup/setup-overview) or with [Github Codespaces](
+https://docs.github.com/en/codespaces/getting-started/quickstart). Codespaces can be ran by first making a free Github account, and then clicking the green Code button at the top of this repo, and then clicking the + button.
+
 ## 1. Install `uv`
 
 Before proceeding, you will need to install `uv`. Pip install uv should word, or you can  follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
@@ -63,21 +67,21 @@ pip install -r requirements.txt
 
 2. Open the `.env` file and add your Socrata App Token next to the key `NYC_API_KEY`.
 
-You can obtain a Socrata API key by making a free account [here](https://docs.astral.sh/uv/getting-started/installation/#installation-methods) abd following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys).
+You can obtain a Socrata API key by making a free account [here](https://evergreen.data.socrata.com/signup) abd following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys).
 
 
 ## 6. Export LAKE_PATH for DBT
 
-You need to export the varabale LAKE_PATH to your local computer to pass the location of the DuckDB file to DBT 
+You need to export the varabale LAKE_PATH to your local computer to pass the location of the DuckDB file to DBT. I have created a script that dynamically creates the correct local path for your computer.
 
 ```bash
 uv run scripts/exportpath.py
 ```
 
-This should export the path for your local computer in terminal, and look something like this: 
+This should export the path for your local computer in terminal. Here is an example:
 
 ```bash
-export LAKE_PATH="/home/christianocean/mta/mta/mtastats/sources/mta/mtastats.duckdb"
+export LAKE_PATH="/your/computer/path/mta/mta/mtastats/sources/mta/mtastats.duckdb"
 ```
 You should then copy that entire line, and paste it in the command line. This will set the path for the duckdb file for use with DBT.
 
@@ -107,7 +111,25 @@ The entire pipeline should take 2-5 minutes, with most of the time spent ingesti
 
 ## 9. Run the data app
 
-After materializing the assets, the data application can be run by opening a new terminal, and then running the following
+After materializing the assets, the data application can be run by opening a new terminal.
+
+Before running the app, check if you have Node.js installed by running the following command:
+
+```bash
+node -v
+```
+
+If Node.js is installed, this will display the current version (e.g., `v16.0.0` or higher). If you see a version number, you're ready to proceed to the next step.
+
+### If Node.js is NOT installed:
+
+1. Go to the [Node.js download page](https://nodejs.org/).
+2. Download the appropriate installer for your operating system (Windows, macOS, or Linux).
+3. Follow the instructions to install Node.js.
+
+Once installed, verify the installation by running the `node -v` command again to ensure it displays the version number.
+
+After verifying the existiance of node, you can run the following command
 
 ```bash
 node scripts/run.js
