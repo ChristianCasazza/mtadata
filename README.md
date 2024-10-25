@@ -105,7 +105,7 @@ This will execute the following pipeline
 
 The entire pipeline should take 2-5 minutes, with most of the time spent ingesting the large hourly dataset.
 
-## 8. Run the data app
+## 9. Run the data app
 
 After materializing the assets, the data application can be run by opening a new terminal, and then running the following
 
