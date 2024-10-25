@@ -1,33 +1,12 @@
 ---
-title: MTA DOG
+title: MTA Data Analytics
 ---
 
-- View stats for Passing to different areas
+- Analyze the MTA's open data
 
 
-## Passer Stats
-
-```sql riders
-select 
-* 
-from mta.total_riders_per_station
-```
 
 
-<BubbleMap 
-    data={riders} 
-    lat=latitude 
-    long=longitude 
-    size=total_ridership 
-    sizeFmt='#,##0,,"M"'
-    value=total_ridership 
-    valueFmt='#,##0,,"M"'
-    pointName=station_complex 
-    height=600 
-    basemap={`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}`} 
-    tooltipType=hover
-    tooltip={[
-        {id: 'station_complex', showColumnName: false, valueClass: 'text-xl font-semibold'},
-        {id: 'total_ridership', fmt: '#,##0,,"M"', fieldClass: 'text-[grey]', valueClass: 'text-[green]'}
-    ]}
-/>
+MTA Hourly Subway [external sites](https://data.ny.gov/Transportation/MTA-Subway-Hourly-Ridership-Beginning-February-202/wujg-7c2s/about_data)
+MTA Daily Ridership [external sites](https://data.ny.gov/Transportation/MTA-Daily-Ridership-Data-Beginning-2020/vxuj-8kew/about_data)
+MTA Statement of Operations [external sites](https://data.ny.gov/Transportation/MTA-Statement-of-Operations-Beginning-2019/yg77-3tkj/about_data)

@@ -1,9 +1,12 @@
 ---
-title: Fair Class By Borough
+title: Borough Analysis
 ---
 
 
-## Day of the week Average Ridership
+Analyze Fare Class Usage across Boroughs
+
+
+## Fare Class Analysis
 
 ```unique_days
 SELECT DISTINCT day_type
@@ -35,3 +38,4 @@ where day_type = '${inputs.unique_days.value}'
     series=fare_class_category
     type=stacked100
 />
+
