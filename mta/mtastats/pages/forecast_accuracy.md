@@ -5,9 +5,9 @@ title: Agency Forecasting Analysis
 Analyze how well each agency correctly forecasted their 2023 expenses
 
 <Dropdown name=granularity>
-    <DropdownOption valueLabel="Agency" value="1" />
+    <DropdownOption valueLabel="General Ledger" value="1" />
     <DropdownOption valueLabel="Expense Type" value="2" />
-    <DropdownOption valueLabel="General Ledger" value="3" />
+    <DropdownOption valueLabel="Agency" value="3" />
 </Dropdown>
 
 {#if inputs.granularity.value == 1}
@@ -492,44 +492,10 @@ where agency_full_name = '${inputs.unique_agencies.value}'
 />
 
 <BigValue 
-  data={forecast_info} 
+  data={forecast_info_agency} 
   value=percentage_diff_2022_vs_actual
   fmt=pct0
   title='2022 % Difference' 
 />
-
-
-## Choose an Agency
-
-```unique_agencies_agg
-SELECT DISTINCT agency_full_name
-FROM mta.forecast_accuracy_2023
-```
-<Dropdown
-    name=unique_agencies_agg
-    data={unique_agencies_agg}
-    value=agency_full_name
-    title="Select an Agency" 
-    defaultValue="Long Island Rail Road"
-/>
-
-
-
-```agency_expenses
-select * 
-from mta.largest_expense_differences_2023
-where agency_full_name = '${inputs.unique_agencies_agg.value}' 
-```
-
-<BarChart 
-    data={agency_expenses}
-    x=general_ledger
-    y=difference
-    yFmt=usd
-    chartAreaHeight=400
-    showAllAxisLabels=true
-    labels=true
-/>
-
 
 {/if}
