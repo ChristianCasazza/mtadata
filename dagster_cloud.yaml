@@ -1,0 +1,4 @@
+locations:
+- code_source:
+    module_name: mta.definitions
+  location_name: mta
