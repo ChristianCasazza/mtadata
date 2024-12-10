@@ -17,7 +17,7 @@ weekly_weather AS (
         AVG(temperature_mean) AS avg_weekly_temperature,
         SUM(precipitation_sum) AS total_weekly_precipitation
     FROM 
-        daily_weather_asset
+        {{ source('main', 'daily_weather_asset') }}
     GROUP BY 
         DATE_TRUNC('week', date)
 )

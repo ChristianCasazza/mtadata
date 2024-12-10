@@ -1,5 +1,17 @@
+# What is this Repo?
 
- Project Setup Guide
+This repository serves as a local data platform for working with MTA data. It encompasses the following key functionalities:
+
+- **Data Ingestion**: Fetches data from the Socrata API.
+- **Data Cleaning**: Performs necessary cleaning and preprocessing of the ingested data.
+- **SQL Transformation Pipeline**: Executes a series of SQL transformations to prepare the data for analysis.
+- **Data Visualization**: Generates insights and visualizes them through a data application.
+
+This end-to-end workflow enables efficient data processing and insight generation from MTA datasets.
+
+What does this repo use
+ 
+# Project Setup Guide
 
 
 This project assumes you are using a code IDE, either locally such as with [VSCode](https://code.visualstudio.com/docs/setup/setup-overview) or with [Github Codespaces](
@@ -72,10 +84,10 @@ You can obtain a Socrata API key by making a free account [here](https://evergre
 
 ## 6. Export LAKE_PATH for DBT
 
-You need to export the varabale LAKE_PATH to your local computer to pass the location of the DuckDB file to DBT. I have created a script that dynamically creates the correct local path for your computer.
+You need to export the varabale LAKE_PATH to your local computer to pass the location of the DuckDB file to DBT. I have created a script that dynamically creates the correct local path for your computer. Make sure you have your venv activated.
 
 ```bash
-uv run scripts/exportpath.py
+python scripts/exportpath.py
 ```
 
 This should export the path for your local computer in terminal. Here is an example:
@@ -83,7 +95,7 @@ This should export the path for your local computer in terminal. Here is an exam
 ```bash
 export LAKE_PATH="/your/computer/path/mta/mta/mtastats/sources/mta/mtastats.duckdb"
 ```
-You should then copy that entire line, and paste it in the command line. This will set the path for the duckdb file for use with DBT.
+You should then copy that line LAKE_PATH="/your/computer/path/mta/mta/mtastats/sources/mta/mtastats.duckdb", and add it to your .env file. You can alternatively paste it in the command line along with the command in front of it. This will set the path for the duckdb file for use with DBT.
 
 ## 7. Start Dagster Development Server
 
