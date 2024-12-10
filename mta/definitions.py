@@ -23,6 +23,7 @@ resources = {
     "dbt": DbtCliResource(project_dir=dbt_project.project_dir),  # Updated DBT resource reference
     **polars_parquet_io_managers,  # Polars Parquet IO managers
     **hourly_filesystem_io_manager,  # Hourly Filesystem IO manager
+    **nyc_311_raw_filesystem_io_manager,  # Hourly Filesystem IO manager
 }
 
 

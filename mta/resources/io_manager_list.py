@@ -1,4 +1,4 @@
-from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, HOURLY_PATH
+from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, HOURLY_PATH, NYC_311_RAW_PATH
 from mta.resources.io_managers.polars_parquet_io_manager import PolarsParquetIOManager
 from dagster import FilesystemIOManager
 
@@ -25,4 +25,8 @@ polars_parquet_io_managers["hourly_weather_io_manager"] = create_polars_parquet_
 
 hourly_filesystem_io_manager = {
     "hourly_mta_io_manager": FilesystemIOManager(base_dir=HOURLY_PATH)
+}
+
+nyc_311_raw_filesystem_io_manager = {
+    "nyc_311_raw_mta_io_manager": FilesystemIOManager(base_dir=NYC_311_RAW_PATH)
 }

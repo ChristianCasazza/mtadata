@@ -7,15 +7,15 @@ def run_scripts():
         # Get the absolute path to the scripts folder
         scripts_dir = os.path.dirname(__file__)
 
-        # Run 'createlake.py'
-        print("Running createlake.py...")
-        subprocess.run(["python", os.path.join(scripts_dir, "createlake.py")], check=True)
+        # Always run 'createlake.py' first unless the 'app' option is passed
+        if len(sys.argv) <= 1 or sys.argv[1].lower() != "app":
+            print("Running createlake.py...")
+            subprocess.run(["python", os.path.join(scripts_dir, "createlake.py")], check=True)
 
-        # Run 'createmetadata.py'
+        # Always run 'createmetadata.py' and 'metadatadescriptions.py'
         print("Running createmetadata.py...")
         subprocess.run(["python", os.path.join(scripts_dir, "createmetadata.py")], check=True)
 
-        # Run 'metadatadescriptions.py'
         print("Running metadatadescriptions.py...")
         subprocess.run(["python", os.path.join(scripts_dir, "metadatadescriptions.py")], check=True)
 

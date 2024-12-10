@@ -900,6 +900,69 @@ wheels = [
 ]
 
 [[package]]
+name = "fastopendata"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "altair" },
+    { name = "boto3" },
+    { name = "dagster" },
+    { name = "dagster-dbt" },
+    { name = "dagster-duckdb" },
+    { name = "dagster-duckdb-polars" },
+    { name = "dagster-webserver" },
+    { name = "datasets" },
+    { name = "dbt-core" },
+    { name = "dbt-duckdb" },
+    { name = "dlt" },
+    { name = "duckdb" },
+    { name = "flash" },
+    { name = "httpx" },
+    { name = "huggingface-hub" },
+    { name = "ipykernel" },
+    { name = "ipywidgets" },
+    { name = "pandas" },
+    { name = "polars" },
+    { name = "pyarrow" },
+    { name = "python-dotenv" },
+    { name = "python-slugify" },
+    { name = "requests" },
+    { name = "ruff" },
+    { name = "s3fs" },
+    { name = "tenacity" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "altair", specifier = ">=5.4.1" },
+    { name = "boto3", specifier = ">=1.35.24" },
+    { name = "dagster", specifier = "==1.8.2" },
+    { name = "dagster-dbt", specifier = "==0.24.2" },
+    { name = "dagster-duckdb", specifier = ">=0.24.2" },
+    { name = "dagster-duckdb-polars", specifier = "==0.24.2" },
+    { name = "dagster-webserver", specifier = "==1.8.2" },
+    { name = "datasets", specifier = ">=3.0.0" },
+    { name = "dbt-core", specifier = ">=1.8.7" },
+    { name = "dbt-duckdb", specifier = ">=1.8.3" },
+    { name = "dlt", specifier = ">=1.0.0" },
+    { name = "duckdb", specifier = "==1.0.0" },
+    { name = "flash", specifier = ">=1.0.3" },
+    { name = "httpx", specifier = "<0.25.0" },
+    { name = "huggingface-hub", specifier = ">=0.25.1" },
+    { name = "ipykernel", specifier = ">=6.29.5" },
+    { name = "ipywidgets", specifier = ">=8.1.5" },
+    { name = "pandas", specifier = ">=2.2.3" },
+    { name = "polars", specifier = ">=1.8.0" },
+    { name = "pyarrow", specifier = ">=17.0.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
+    { name = "python-slugify", specifier = ">=8.0.4" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "ruff", specifier = ">=0.6.7" },
+    { name = "s3fs", specifier = ">=0.4.2" },
+    { name = "tenacity", specifier = ">=9.0.0" },
+]
+
+[[package]]
 name = "filelock"
 version = "3.16.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2489,69 +2552,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ee/1c/bf8cd66730a866b16db8483286078892b7f6536f8c389fb46e4beba0a970/pyzmq-26.2.0-pp310-pypy310_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:160c7e0a5eb178011e72892f99f918c04a131f36056d10d9c1afb223fc952c2d", size = 794312 },
     { url = "https://files.pythonhosted.org/packages/71/43/91fa4ff25bbfdc914ab6bafa0f03241d69370ef31a761d16bb859f346582/pyzmq-26.2.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2c4a71d5d6e7b28a47a394c0471b7e77a0661e2d651e7ae91e0cab0a587859ca", size = 752775 },
     { url = "https://files.pythonhosted.org/packages/ec/d2/3b2ab40f455a256cb6672186bea95cd97b459ce4594050132d71e76f0d6f/pyzmq-26.2.0-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:90412f2db8c02a3864cbfc67db0e3dcdbda336acf1c469526d3e869394fe001c", size = 550762 },
-]
-
-[[package]]
-name = "quiv"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "altair" },
-    { name = "boto3" },
-    { name = "dagster" },
-    { name = "dagster-dbt" },
-    { name = "dagster-duckdb" },
-    { name = "dagster-duckdb-polars" },
-    { name = "dagster-webserver" },
-    { name = "datasets" },
-    { name = "dbt-core" },
-    { name = "dbt-duckdb" },
-    { name = "dlt" },
-    { name = "duckdb" },
-    { name = "flash" },
-    { name = "httpx" },
-    { name = "huggingface-hub" },
-    { name = "ipykernel" },
-    { name = "ipywidgets" },
-    { name = "pandas" },
-    { name = "polars" },
-    { name = "pyarrow" },
-    { name = "python-dotenv" },
-    { name = "python-slugify" },
-    { name = "requests" },
-    { name = "ruff" },
-    { name = "s3fs" },
-    { name = "tenacity" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "altair", specifier = ">=5.4.1" },
-    { name = "boto3", specifier = ">=1.35.24" },
-    { name = "dagster", specifier = "==1.8.2" },
-    { name = "dagster-dbt", specifier = "==0.24.2" },
-    { name = "dagster-duckdb", specifier = ">=0.24.2" },
-    { name = "dagster-duckdb-polars", specifier = "==0.24.2" },
-    { name = "dagster-webserver", specifier = "==1.8.2" },
-    { name = "datasets", specifier = ">=3.0.0" },
-    { name = "dbt-core", specifier = ">=1.8.7" },
-    { name = "dbt-duckdb", specifier = ">=1.8.3" },
-    { name = "dlt", specifier = ">=1.0.0" },
-    { name = "duckdb", specifier = "==1.0.0" },
-    { name = "flash", specifier = ">=1.0.3" },
-    { name = "httpx", specifier = "<0.25.0" },
-    { name = "huggingface-hub", specifier = ">=0.25.1" },
-    { name = "ipykernel", specifier = ">=6.29.5" },
-    { name = "ipywidgets", specifier = ">=8.1.5" },
-    { name = "pandas", specifier = ">=2.2.3" },
-    { name = "polars", specifier = ">=1.8.0" },
-    { name = "pyarrow", specifier = ">=17.0.0" },
-    { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "python-slugify", specifier = ">=8.0.4" },
-    { name = "requests", specifier = ">=2.32.3" },
-    { name = "ruff", specifier = ">=0.6.7" },
-    { name = "s3fs", specifier = ">=0.4.2" },
-    { name = "tenacity", specifier = ">=9.0.0" },
 ]
 
 [[package]]

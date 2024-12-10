@@ -23,7 +23,8 @@ MTA_ASSETS_NAMES = [
 ]
 
 OTHER_MTA_ASSETS_NAMES = [
-    "mta_hourly_subway_socrata"
+    "mta_hourly_subway_socrata",
+    "nyc_311_raw"
 ]
 BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
 BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..","..", "data", "opendata", "nyc", "mta"))
@@ -63,6 +64,38 @@ def mta_hourly_subway_socrata(context):
             except Exception as e:
                 context.log.error(f"Error downloading file for {year}-{month}: {e}")
     return downloaded_files
+
+NYC_311_BASE_URL = "https://fastopendata.org/nyc/311_raw/"
+NYC_311_DOWNLOAD_PATH = os.path.join(BASE_PATH, "nyc_311_raw")
+
+# For simplicity, let's define the years and months we want similarly
+# The user mentioned data from 2023_01 through 2024_05 as examples.
+# We'll try a similar approach by looping through years and months
+nyc_311_years = ["2023", "2024"]
+nyc_311_months = [f"{i:02d}" for i in range(1, 13)]  # 01 to 12, some may fail if data isn't available yet
+
+def download_311_files_from_year_month(base_url, local_base_path, year, month):
+    file_name = f"{year}_{month}.parquet"
+    file_url = f"{base_url}{file_name}"  # Directly appended
+    local_file_path = os.path.join(local_base_path, file_name)
+    return download_file(file_url, local_file_path)
+
+@asset(
+    compute_kind="Python"
+)
+def nyc_311_raw(context):
+    downloaded_files = []
+    for year in nyc_311_years:
+        for month in nyc_311_months:
+            context.log.info(f"Downloading data for NYC 311 year: {year}, month: {month}")
+            try:
+                file_path = download_311_files_from_year_month(NYC_311_BASE_URL, NYC_311_DOWNLOAD_PATH, year, month)
+                context.log.info(f"Downloaded file to: {file_path}")
+                downloaded_files.append(file_path)
+            except Exception as e:
+                context.log.error(f"Error downloading file for {year}-{month}: {e}")
+    return downloaded_files
+
 
 class MTADailyRidershipConfig(SocrataAPIConfig):
     SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/vxuj-8kew.json"
