@@ -67,7 +67,7 @@ source .venv/bin/activate
 With the virtual environment activated, install the required packages:
 
 ```bash
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 ## 5. Configure Environment Variables
