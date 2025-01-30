@@ -1,22 +1,5 @@
 # Descriptions for mta_subway_origin_destination_2023 table
-descriptions_mta_subway_origin_destination_2023 = {
-    "year": "The year in which the subway trips occurred.",
-    "month": "The month in which the subway trips occurred.",
-    "day_of_week": "The day of the week on which the subway trips occurred (Monday, Tuesday, etc.).",
-    "hour_of_day": "The hour of the day in which the subway trips occurred. All trip times are rounded down to the nearest hour.",
-    "timestamp": "Representative datetime for the year, month, day of week, and hour of day in which the subway trips occurred.",
-    "origin_station_complex_id": "The unique identifier for the subway station complex where the trips originated.",
-    "origin_station_complex_name": "The name of the subway station complex where the trips originated.",
-    "origin_latitude": "The latitude of the subway station complex where the trips originated.",
-    "origin_longitude": "The longitude of the subway station complex where the trips originated.",
-    "destination_station_complex_id": "The unique identifier for the subway station complex where the trips are inferred to have ended.",
-    "destination_station_complex_name": "The name of the subway station complex where the trips are inferred to have ended.",
-    "destination_latitude": "The latitude of the subway station complex where the trips are inferred to have ended.",
-    "destination_longitude": "The longitude of the subway station complex where the trips are inferred to have ended.",
-    "estimated_average_ridership": "The estimated ridership for an origin-destination pair and hour of day, averaged by day of week over the calendar month.",
-    "origin_point": "Geocoding information for the origin station. Point-type location representing the centroid of the station complex.",
-    "destination_point": "Geocoding information for the destination station. Point-type location representing the centroid of the station complex."
-}
+
 
 # Descriptions for mta_daily_ridership table
 descriptions_mta_daily_ridership = {
@@ -67,49 +50,84 @@ descriptions_mta_operations_statement = {
     "amount": "The financial amount, can be a decimal or negative for transfers within the agency, in dollars."
 }
 
-descriptions_nyc_311_raw = {
-    "unique_key": "Unique identifier of a Service Request (SR) in the open data set.",
-    "created_date": "Date SR was created (YYYY-MM-DDTHH:MM:SS).",
-    "closed_date": "Date SR was closed by responding agency (YYYY-MM-DDTHH:MM:SS).",
-    "agency": "Acronym of responding City Government Agency.",
-    "agency_name": "Full Agency name of responding City Government Agency.",
-    "complaint_type": "Primary topic of the incident or condition.",
-    "descriptor": "Additional detail on the complaint type, if available.",
-    "location_type": "Type of location information provided.",
-    "incident_zip": "Incident location zip code.",
-    "incident_address": "House number of incident address.",
-    "street_name": "Street name of the incident location.",
-    "cross_street_1": "First cross street based on geo validated incident location.",
-    "cross_street_2": "Second cross street based on geo validated incident location.",
-    "intersection_street_1": "First intersecting street based on geo validated incident location.",
-    "intersection_street_2": "Second intersecting street based on geo validated incident location.",
-    "address_type": "Type of incident location information available.",
-    "city": "City of the incident location provided by geovalidation.",
-    "landmark": "Name of the landmark if identified as the incident location.",
-    "facility_type": "Type of city facility associated with the SR, if applicable.",
-    "status": "Current status of the SR.",
-    "due_date": "Date when the responding agency is expected to update the SR (YYYY-MM-DDTHH:MM:SS).",
-    "resolution_description": "Describes the last action taken on the SR by the responding agency.",
-    "resolution_action_updated_date": "Date when responding agency last updated the SR (YYYY-MM-DDTHH:MM:SS).",
-    "community_board": "Community Board provided by geovalidation.",
-    "bbl": "Borough, Block, and Lot number for the incident location.",
-    "borough": "Borough of the incident location.",
-    "x_coordinate_state_plane": "Geo validated X coordinate of the incident location.",
-    "y_coordinate_state_plane": "Geo validated Y coordinate of the incident location.",
-    "open_data_channel_type": "How the SR was submitted to 311 (e.g., By Phone, Online, Mobile, etc.).",
-    "park_facility_name": "Name of the park facility if the incident location is a Parks Dept facility.",
-    "park_borough": "Borough of the park facility if applicable.",
-    "vehicle_type": "Type of TLC vehicle if the incident involves a taxi.",
-    "taxi_company_borough": "Borough of the taxi company if applicable.",
-    "taxi_pick_up_location": "Taxi pick up location if the incident involves a taxi.",
-    "bridge_highway_name": "Name of the bridge/highway if the incident location is on one.",
-    "bridge_highway_direction": "Direction on the bridge/highway where the issue took place.",
-    "road_ramp": "Differentiates if the issue was on the road or ramp on a bridge/highway.",
-    "bridge_highway_segment": "Additional information on the section of the bridge/highway.",
-    "latitude": "Geo-based latitude of the incident location.",
-    "longitude": "Geo-based longitude of the incident location.",
-    "location": "Combination of lat & long of the incident location as a geolocation object."
+descriptions_sf_air_traffic_landings = {
+    "activity_period": "The year and month at which passenger, cargo or landings activity took place.",
+    "activity_period_start_date": "Start date of the year and month at which passenger, cargo or landings activity took place.",
+    "operating_airline": "Airline name for the operator of aircraft with landing activity.",
+    "operating_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Operating Airline.",
+    "published_airline": "Airline name that issues the ticket and books revenue for landings activity.",
+    "published_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Published Airline.",
+    "geo_summary": "Designates whether the passenger, cargo or landings activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops.",
+    "geo_region": "Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops.",
+    "landing_aircraft_type": "A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo-only aircraft (“freighters”) or combination aircraft (“combi”).",
+    "aircraft_body_type": "A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft.",
+    "aircraft_manufacturer": "Manufacturer name for the aircraft that landed at SFO.",
+    "aircraft_model": "Model designation of aircraft by the manufacturer.",
+    "aircraft_version": "Variations of the Aircraft Model, also known as the 'dash number', designated by the manufacturer to segregate unique versions of the same model.",
+    "landing_count": "The number of aircraft landings associated with General and Landings Statistics attribute fields.",
+    "total_landed_weight": "The aircraft landed weight (in pounds) associated with General and Landings Statistics attribute fields."
 }
+
+descriptions_sf_air_traffic_passenger_stats = {
+    "activity_period": "The year and month when this activity occurred.",
+    "activity_period_start_date": "Start date of the activity period.",
+    "operating_airline": "Airline name for the operator of aircraft with passenger activity.",
+    "operating_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Operating Airline.",
+    "published_airline": "Airline name that issues the ticket and books revenue for passenger activity.",
+    "published_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Published Airline.",
+    "geo_summary": "Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops.",
+    "geo_region": "Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops.",
+    "activity_type_code": "A description of the physical action a passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”).",
+    "price_category_code": "A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier.",
+    "terminal": "Name of a terminal of the airport.",
+    "boarding_area": "Letter that represents a boarding area.",
+    "passenger_count": "Total number of passengers this month.",
+    "data_as_of": "Datetime of data as of.",
+    "data_loaded_at": "Datetime of data loaded at."
+}
+
+descriptions_sf_air_traffic_cargo = {
+    "activity_period": "The year and month when this activity occurred.",
+    "activity_period_start_date": "Start date of the year and month when this activity occurred.",
+    "operating_airline": "Airline name for the operator of aircraft with cargo activity.",
+    "operating_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Operating Airline.",
+    "published_airline": "Airline name that issues the ticket and books revenue for cargo activity.",
+    "published_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Published Airline.",
+    "geo_summary": "An airport-defined high-level geographical categorization of the flight operations.",
+    "geo_region": "An airport-defined world region of the flight operations.",
+    "activity_type_code": "Short code that represents the type of activities such as enplaned, deplaned, and transit.",
+    "cargo_type_code": "Short code that represents a broad categorization of the type of cargo such as 'mail'.",
+    "cargo_aircraft_type": "Short code that represents the type of the cargo aircraft.",
+    "cargo_weight_lbs": "The weight (in pounds) of air cargo associated with General and Cargo Statistics attribute fields.",
+    "cargo_metric_tons": "The weight (in metric tons) of air cargo associated with General and Cargo Statistics attribute fields.",
+    "data_as_of": "Datetime of the data as of.",
+    "data_loaded_at": "Datetime the data is loaded."
+}
+
+descriptions_mta_bus_wait_time = {
+    "month": "Represents the time period in which the wait assessment is being calculated (yyyy-mm-dd).",
+    "borough": "Represents the five boroughs of New York City (Bronx, Brooklyn, Manhattan, Queens, Staten Island).",
+    "day_type": "Represents 1 as weekday and 2 as weekend.",
+    "trip_type": "The type of bus service provided: EXP (Express), LCL/LTD (Local/Limited), SBS (Select Bus Service).",
+    "route_id": "Identifies each individual bus route, as well as cumulative totals for all bus routes (identified as ALL).",
+    "period": "Represents both the peak and off-peak service periods.",
+    "number_of_trips_passing_wait": "The number of trips that are no more than three minutes over their scheduled intervals for each bus route, monthly, during peak and off-peak hours.",
+    "number_of_scheduled_trips": "The number of scheduled trips for each bus route, monthly, during peak and off-peak hours.",
+    "wait_assessment": "The percentage of trips that pass the wait assessment on each bus route, monthly, during peak and off-peak hours."
+}
+
+descriptions_mta_bus_speeds = {
+    "month": "Represents the time period in which the average speed is being calculated (yyyy-mm-dd).",
+    "borough": "Represents the five boroughs of New York City (Bronx, Brooklyn, Manhattan, Queens, Staten Island).",
+    "day_type": "Represents 1 as weekday and 2 as weekend.",
+    "trip_type": "The type of bus service provided: EXP (Express), LCL/LTD (Local/Limited), SBS (Select Bus Service).",
+    "route_id": "Identifies each individual bus route, as well as cumulative totals for all bus routes (identified as ALL).",
+    "period": "Represents both the peak and off-peak service periods.",
+    "total_mileage": "The total mileage for each bus route, monthly, during peak and off-peak hours.",
+    "total_operating_time": "The total operating time for each bus route, monthly, during peak and off-peak hours.",
+    "average_speed": "The average speed is based on the total operating time and total mileage, per bus route, per month."
+}
+
 
 # Automatically generate table_descriptions
 table_descriptions = {

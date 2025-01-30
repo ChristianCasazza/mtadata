@@ -6,7 +6,7 @@ from mta.assets.ingestion.weather_assets import WEATHER_ASSETS_NAMES
 from mta.assets.ingestion.mta_assets import OTHER_MTA_ASSETS_NAMES
 
 # Define the base path relative to the location of the current file
-BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "opendata", "nyc", "mta"))
+BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "opendata"))
 
 # Dynamically create paths for MTA assets
 MTA_ASSETS_PATHS = {
@@ -32,3 +32,5 @@ NYC_311_RAW_PATH = os.path.join(BASE_PATH, "nyc_311_raw")
 
 # LAKE_PATH for DuckDB
 LAKE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "mtastats", "sources", "mta", "mtastats.duckdb"))
+
+SQLITE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "metadata", "metadata.db"))

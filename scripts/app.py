@@ -1,12 +1,16 @@
 from flask import Flask, render_template, jsonify, request
 import sqlite3
 import os
-
+import sys
+import os
+# Add the parent directory to the module search path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from mta.constants import SQLITE_PATH
 # Correct path to the 'templates' folder relative to the 'scripts' directory
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), 'templates'))
 
 # Path to your SQLite file
-sqlite_file_path = '/home/christianocean/mta/metadata.db'
+sqlite_file_path = SQLITE_PATH
 
 # Function to get column names, data types, and descriptions from a specific table
 def get_table_metadata(table_name):

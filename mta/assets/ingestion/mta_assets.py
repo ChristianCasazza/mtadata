@@ -19,15 +19,17 @@ MTA_ASSETS_NAMES = [
     "mta_daily_ridership",
     "mta_bus_speeds",
     "mta_bus_wait_time",
-    "mta_operations_statement"
+    "mta_operations_statement",
+    "sf_air_traffic_cargo",
+    "sf_air_traffic_passenger_stats",  
+    "sf_air_traffic_landings",        
 ]
 
 OTHER_MTA_ASSETS_NAMES = [
-    "mta_hourly_subway_socrata",
-    "nyc_311_raw"
+    "mta_hourly_subway_socrata"
 ]
 BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
-BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..","..", "data", "opendata", "nyc", "mta"))
+BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..","..", "data", "opendata"))
 LOCAL_DOWNLOAD_PATH = os.path.join(BASE_PATH, "mta_hourly_subway_socrata")
 years = ["2022", "2023", "2024"]
 months = [f"{i:02d}" for i in range(1, 13)]  # Months from 01 to 12
@@ -59,37 +61,6 @@ def mta_hourly_subway_socrata(context):
             context.log.info(f"Downloading data for year: {year}, month: {month}")
             try:
                 file_path = download_files_from_year_month(BASE_URL, LOCAL_DOWNLOAD_PATH, year, month)
-                context.log.info(f"Downloaded file to: {file_path}")
-                downloaded_files.append(file_path)
-            except Exception as e:
-                context.log.error(f"Error downloading file for {year}-{month}: {e}")
-    return downloaded_files
-
-NYC_311_BASE_URL = "https://fastopendata.org/nyc/311_raw/"
-NYC_311_DOWNLOAD_PATH = os.path.join(BASE_PATH, "nyc_311_raw")
-
-# For simplicity, let's define the years and months we want similarly
-# The user mentioned data from 2023_01 through 2024_05 as examples.
-# We'll try a similar approach by looping through years and months
-nyc_311_years = ["2023", "2024"]
-nyc_311_months = [f"{i:02d}" for i in range(1, 13)]  # 01 to 12, some may fail if data isn't available yet
-
-def download_311_files_from_year_month(base_url, local_base_path, year, month):
-    file_name = f"{year}_{month}.parquet"
-    file_url = f"{base_url}{file_name}"  # Directly appended
-    local_file_path = os.path.join(local_base_path, file_name)
-    return download_file(file_url, local_file_path)
-
-@asset(
-    compute_kind="Python"
-)
-def nyc_311_raw(context):
-    downloaded_files = []
-    for year in nyc_311_years:
-        for month in nyc_311_months:
-            context.log.info(f"Downloading data for NYC 311 year: {year}, month: {month}")
-            try:
-                file_path = download_311_files_from_year_month(NYC_311_BASE_URL, NYC_311_DOWNLOAD_PATH, year, month)
                 context.log.info(f"Downloaded file to: {file_path}")
                 downloaded_files.append(file_path)
             except Exception as e:

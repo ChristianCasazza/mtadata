@@ -1,9 +1,8 @@
 import os
 from dagster import Definitions, FilesystemIOManager, load_assets_from_modules
 from mta.resources.io_manager_list import *
-from mta.assets.ingestion import mta_assets
+from mta.assets.ingestion import mta_assets, weather_assets, sf_assets
 from mta.assets.ingestion.mta_assets import *
-from mta.assets.ingestion import weather_assets
 from mta.assets.ingestion.weather_assets import *
 from mta.assets.transformations.duckdb_assets import duckdb_warehouse
 
@@ -14,6 +13,7 @@ from mta.resources.dbt_project import dbt_project
 # Load MTA and Weather assets
 mta_assets = load_assets_from_modules([mta_assets])
 weather_assets = load_assets_from_modules([weather_assets])
+sf_assets = load_assets_from_modules([sf_assets])
 
 # Other assets like DuckDB
 other_assets = [duckdb_warehouse]
@@ -29,6 +29,6 @@ resources = {
 
 # Dagster Definitions for assets, resources, and jobs
 defs = Definitions(
-    assets=mta_assets + weather_assets + other_assets + [dbt_project_assets],  # Include all MTA and DBT assets
+    assets=mta_assets + weather_assets +  sf_assets + other_assets + [dbt_project_assets],  # Include all MTA and DBT assets
     resources=resources
 )

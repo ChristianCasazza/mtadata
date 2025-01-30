@@ -1,13 +1,18 @@
 import sqlite3
 import duckdb
 import os
-from constants import LAKE_PATH, SQLITE_PATH
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from mta.constants import SQLITE_PATH, LAKE_PATH
 
 # Define the DuckDB and SQLite file paths
 duckdb_file_path = LAKE_PATH
 sqlite_file_path = SQLITE_PATH
 
 def delete_existing_sqlite_file():
+    # Ensure the parent directory exists
+    os.makedirs(os.path.dirname(sqlite_file_path), exist_ok=True)
+
     # Check if the SQLite file exists
     if os.path.exists(sqlite_file_path):
         os.remove(sqlite_file_path)

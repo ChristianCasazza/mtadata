@@ -1,11 +1,11 @@
 import sqlite3
 import os
 import sys
-from constants import SQLITE_PATH
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Add the assets directory to the system path to import assets_descriptions
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'mta', 'assets')))
-from assets_descriptions import table_descriptions
+# Now you can import constants
+from mta.constants import SQLITE_PATH
+from mta.assets.assets_descriptions import table_descriptions
 
 # Function to add descriptions for a specific table
 def update_descriptions_for_table(conn, table_name, descriptions):
