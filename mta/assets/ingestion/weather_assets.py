@@ -22,11 +22,6 @@ class OpenMateoHourlyWeatherConstants:
     TIMEZONE = "America/New_York"
     TEMPERATURE_UNIT = "fahrenheit"  
 
-WEATHER_ASSETS_NAMES = [
-    "daily_weather_asset",
-    "hourly_weather_asset"
-]
-
 
 
 @asset(io_manager_key="daily_weather_io_manager")

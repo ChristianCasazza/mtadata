@@ -15,19 +15,7 @@ def get_io_manager(context):
     return getattr(context.resources, io_manager_key)
 
 
-MTA_ASSETS_NAMES = [
-    "mta_daily_ridership",
-    "mta_bus_speeds",
-    "mta_bus_wait_time",
-    "mta_operations_statement",
-    "sf_air_traffic_cargo",
-    "sf_air_traffic_passenger_stats",  
-    "sf_air_traffic_landings",        
-]
 
-OTHER_MTA_ASSETS_NAMES = [
-    "mta_hourly_subway_socrata"
-]
 BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
 BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..","..", "data", "opendata"))
 LOCAL_DOWNLOAD_PATH = os.path.join(BASE_PATH, "mta_hourly_subway_socrata")
