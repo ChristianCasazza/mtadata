@@ -13,13 +13,18 @@ What does this repo use
  
 # Project Setup Guide
 
-
 This project assumes you are using a code IDE, either locally such as with [VSCode](https://code.visualstudio.com/docs/setup/setup-overview) or with [Github Codespaces](
-https://docs.github.com/en/codespaces/getting-started/quickstart). Codespaces can be ran by first making a free Github account, and then clicking the green Code button at the top of this repo, and then clicking the + button.
+https://docs.github.com/en/codespaces/getting-started/quickstart). Codespaces can be run by first making a free Github account, clicking the green **Code** button at the top of this repo, and then selecting **Codespaces**.
 
 ## 1. Install `uv`
 
-Before proceeding, you will need to install `uv`. Pip install uv should word, or you can  follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
+Before proceeding, you will need to install `uv`. You can install it via pip:
+
+```bash
+pip install uv
+```
+
+Alternatively, follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
 
 Once `uv` is installed, proceed to clone the repository.
 
@@ -30,6 +35,7 @@ To clone the repository, run the following command:
 ```bash
 git clone https://github.com/ChristianCasazza/mtadata 
 ```
+
 You can also make the repo have a custom name by adding it at the end:
 
 ```bash
@@ -42,86 +48,70 @@ Then, navigate into the repository directory:
 cd custom_name
 ```
 
-## 3. Create a Virtual Environment with `uv`
+## 3. Setup the Project
 
-With `uv` installed, you can now create the virtual environment. Run the following command:
+This repository includes two setup scripts:
+- **`setup.sh`**: For Linux/macOS
+- **`setup.bat`**: For Windows
 
+These scripts automate the following tasks:
+1. Create and activate a virtual environment using `uv`.
+2. Install project dependencies.
+3. Ask for your Socrata App Token (`NYC_API_KEY`). If no key is provided, the script will use the community key: `uHoP8dT0q1BTcacXLCcxrDp8z`.
+   - **Important**: The community key is shared and rate-limited. Please use your own key if possible. You can obtain one in two minutes by signing up [here](https://evergreen.data.socrata.com/signup) and following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys).
+4. Copy `.env.example` to `.env` and append `NYC_API_KEY` to the file.
+5. Dynamically generate the `LAKE_PATH` variable for your system and append it to `.env`.
+6. Start the Dagster development server.
+
+### Run the Setup Script
+
+#### On Linux/macOS:
 ```bash
-uv venv
+./setup.sh
 ```
 
-After running this command, `uv` will automatically create a virtual environment for you and display instructions on how to activate it.
-
-### Mac/Linux:
+If you encounter a `Permission denied` error, ensure the script is executable by running:
 ```bash
-source .venv/bin/activate
+chmod +x setup.sh
 ```
 
-### Windows:
-```bash
-.venv\Scripts\activate
+#### On Windows:
+```cmd
+setup.bat
 ```
 
-## 4. Install Dependencies
-
-With the virtual environment activated, install the required packages:
-
-```bash
-uv pip install -r requirements.txt
+If PowerShell does not recognize the script, ensure you're in the correct directory and use `.\` before the script name:
+```powershell
+.\setup.bat
 ```
 
-## 5. Configure Environment Variables
+The script will guide you through the setup interactively. Once complete, your `.env` file will be configured, and the Dagster server will be running.
 
-1. Copy the `.env.example` file and rename it to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
+## 4. Access Dagster
 
-2. Open the `.env` file and add your Socrata App Token next to the key `NYC_API_KEY`.
+After the setup script finishes, you can access the Dagster web UI. The script will display a URL in the terminal. Click on the URL or paste it into your browser to access the Dagster interface.
 
-You can obtain a Socrata API key by making a free account [here](https://evergreen.data.socrata.com/signup) abd following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys).
-
-
-## 6. Export LAKE_PATH for DBT
-
-You need to export the varabale LAKE_PATH to your local computer to pass the location of the DuckDB file to DBT. I have created a script that dynamically creates the correct local path for your computer. Make sure you have your venv activated.
-
-```bash
-python scripts/exportpath.py
-```
-
-This should export the path for your local computer in terminal. Here is an example:
-
-```bash
-export LAKE_PATH="/your/computer/path/mta/mta/mtastats/sources/mta/mtastats.duckdb"
-```
-You should then copy that line LAKE_PATH="/your/computer/path/mta/mta/mtastats/sources/mta/mtastats.duckdb", and add it to your .env file. You can alternatively paste it in the command line along with the command in front of it. This will set the path for the duckdb file for use with DBT.
-
-## 7. Start Dagster Development Server
-
-Make sure you have your .venv activated. Then, start the Dagster server by running the following command:
-
-```bash
-dagster dev
-```
-
-Once the server is running, you will see a URL in your terminal. Click on the URL or paste it into your browser to access the Dagster web UI, which will be running locally.
-
-## 8. Materialize Assets
+## 5. Materialize Assets
 
 1. In the Dagster web UI, click on the **Assets** tab in the top-left corner.
 2. Then, in the top-right corner, click on **View Global Asset Lineage**.
 3. In the top-right corner, click **Materialize All** to start downloading and processing all of the data.
 
-This will execute the following pipeline
+This will execute the following pipeline:
 
-1. Ingest mta data from the Socrata API, weather data from the Open Mateo API, and the 67M hourly subway dataset from R2 as parquet files in data/opendata/nyc/mta/nyc folder
-2. Create a DuckDB file with views on each raw datasets parquet files
-3. Execute a SQL transformation pipeline with DBT on the raw datasets
+1. Ingest MTA data from the Socrata API, weather data from the Open Mateo API, and the 67M hourly subway dataset from R2 as parquet files in `data/opendata/nyc/mta/nyc/`.
+2. Create a DuckDB file with views on each raw dataset's parquet files.
+3. Execute a SQL transformation pipeline with DBT on the raw datasets.
 
 The entire pipeline should take 2-5 minutes, with most of the time spent ingesting the large hourly dataset.
 
-## 9. Run the data app
+## Additional Notes
+
+- **NYC_API_KEY**: If you use the community key, you may encounter rate limits. It's strongly recommended to use your own key.
+- **LAKE_PATH**: This variable is dynamically generated by `exportpath.py` and added to your `.env` file during setup. It represents the location of the DuckDB file for DBT transformations.
+
+---
+## 6. Run the data app
 
 After materializing the assets, the data application can be run by opening a new terminal.
 
