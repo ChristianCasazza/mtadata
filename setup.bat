@@ -20,10 +20,10 @@ IF ERRORLEVEL 1 (
     exit /b 1
 )
 
-REM Step 4: Ask user for NYC_API_KEY
-set /p NYC_API_KEY=Please enter your NYC_API_KEY (press Enter to use the default community key): 
-IF "%NYC_API_KEY%"=="" (
-    set NYC_API_KEY=uHoP8dT0q1BTcacXLCcxrDp8z
+REM Step 4: Ask user for SOCRATA_API_TOKEN
+set /p SOCRATA_API_TOKEN=Please enter your SOCRATA_API_TOKEN (press Enter to use the default community key): 
+IF "%SOCRATA_API_TOKEN%"=="" (
+    set SOCRATA_API_TOKEN=uHoP8dT0q1BTcacXLCcxrDp8z
     echo Note: This is the default community key. Please use your own key if possible.
 )
 
@@ -41,8 +41,8 @@ IF "%LAKE_PATH%"=="" (
     exit /b 1
 )
 
-REM Step 7: Add NYC_API_KEY and LAKE_PATH to .env
-echo NYC_API_KEY=%NYC_API_KEY% >> .env
+REM Step 7: Add SOCRATA_API_TOKEN and LAKE_PATH to .env
+echo SOCRATA_API_TOKEN=%SOCRATA_API_TOKEN% >> .env
 echo LAKE_PATH=%LAKE_PATH% >> .env
 
 REM Step 8: Run Dagster development server
