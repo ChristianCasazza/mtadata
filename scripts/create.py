@@ -1,3 +1,14 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "flask",
+#     "requests",
+#     "duckdb",
+# ]
+# ///
+# create.py
+
+
 import subprocess
 import os
 import sys
