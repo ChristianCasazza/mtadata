@@ -14,14 +14,14 @@ fi
 # Step 3: Install dependencies
 uv sync || { echo "Failed to sync dependencies"; exit 1; }
 
-# Step 4: Ask user for NYC_API_KEY
-echo "Please enter your NYC_API_KEY (press Enter to use the default community key):"
-read -r NYC_API_KEY
-NYC_API_KEY=${NYC_API_KEY:-uHoP8dT0q1BTcacXLCcxrDp8z}
+# Step 4: Ask user for SOCRATA_API_TOKEN
+echo "Please enter your SOCRATA_API_TOKEN (press Enter to use the default community token):"
+read -r SOCRATA_API_TOKEN
+SOCRATA_API_TOKEN=${SOCRATA_API_TOKEN:-uHoP8dT0q1BTcacXLCcxrDp8z}
 
-echo "Using NYC_API_KEY: $NYC_API_KEY"
-if [ "$NYC_API_KEY" == "uHoP8dT0q1BTcacXLCcxrDp8z" ]; then
-    echo "Note: This is the default community key. Please use your own key if possible."
+echo "Using SOCRATA_API_TOKEN: $SOCRATA_API_TOKEN"
+if [ "$SOCRATA_API_TOKEN" == "uHoP8dT0q1BTcacXLCcxrDp8z" ]; then
+    echo "Note: This is the default community token. Please use your own token if possible."
 fi
 
 # Step 5: Copy .env.example to .env
@@ -34,8 +34,8 @@ if [ -z "$LAKE_PATH" ]; then
     exit 1
 fi
 
-# Step 7: Add NYC_API_KEY and LAKE_PATH to .env
-echo "NYC_API_KEY=$NYC_API_KEY" >> .env
+# Step 7: Add SOCRATA_API_TOKEN and LAKE_PATH to .env
+echo "SOCRATA_API_TOKEN=$SOCRATA_API_TOKEN" >> .env
 echo "LAKE_PATH=$LAKE_PATH" >> .env
 
 # Step 8: Run Dagster development server

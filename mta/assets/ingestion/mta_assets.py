@@ -1,12 +1,12 @@
 # mta/assets/ingestion/mta_subway/mta_assets.py
-
-from mta.utils.socrata_api import SocrataAPI, SocrataAPIConfig
-from dagster import asset
+import os
 import gc
+import requests
 import polars as pl
 from datetime import datetime
-import os
-import requests
+from dagster import asset
+from mta.constants import HOURLY_PATH 
+from mta.resources.socrata_resource import SocrataResource
 
 def get_io_manager(context):
     """Helper function to dynamically fetch the correct IO manager for the asset."""
@@ -15,10 +15,23 @@ def get_io_manager(context):
     return getattr(context.resources, io_manager_key)
 
 
+MTA_ASSETS_NAMES = [
+    "mta_daily_ridership",
+    "mta_bus_speeds",
+    "mta_bus_wait_time",
+    "mta_operations_statement",
+    "sf_air_traffic_cargo",
+    "sf_air_traffic_passenger_stats",  
+    "sf_air_traffic_landings",       
+]
+
+OTHER_MTA_ASSETS_NAMES = [
+    "mta_hourly_subway_socrata"
+]
+
 
 BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
-BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..","..", "data", "opendata"))
-LOCAL_DOWNLOAD_PATH = os.path.join(BASE_PATH, "mta_hourly_subway_socrata")
+LOCAL_DOWNLOAD_PATH = HOURLY_PATH
 years = ["2022", "2023", "2024"]
 months = [f"{i:02d}" for i in range(1, 13)]  # Months from 01 to 12
 
@@ -40,7 +53,8 @@ def download_files_from_year_month(base_url, local_base_path, year, month):
     return download_file(file_url, local_file_path)
 
 @asset(
-    compute_kind="Python"
+    compute_kind="Python",
+    io_manager_key="hourly_mta_io_manager",  # <--- override here
 )
 def mta_hourly_subway_socrata(context):
     downloaded_files = []
@@ -48,362 +62,327 @@ def mta_hourly_subway_socrata(context):
         for month in months:
             context.log.info(f"Downloading data for year: {year}, month: {month}")
             try:
-                file_path = download_files_from_year_month(BASE_URL, LOCAL_DOWNLOAD_PATH, year, month)
+                file_path = download_files_from_year_month(
+                    BASE_URL, LOCAL_DOWNLOAD_PATH, year, month
+                )
                 context.log.info(f"Downloaded file to: {file_path}")
                 downloaded_files.append(file_path)
             except Exception as e:
                 context.log.error(f"Error downloading file for {year}-{month}: {e}")
+    # Return the list of local file paths
     return downloaded_files
 
 
-class MTADailyRidershipConfig(SocrataAPIConfig):
-    SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/vxuj-8kew.json"
-    order: str = "Date ASC"
-    limit: int = 500000
-    where: str = f"Date >= '{datetime(2020, 3, 1).isoformat()}'"
-    offset: int = 0
+
+# ------------------------------------------------------------------
+# 2) MTA DAILY RIDERSHIP - Socrata-based Ingestion
+# ------------------------------------------------------------------
+# Original transformation logic is in process_mta_daily_df
 
 def process_mta_daily_df(df: pl.DataFrame) -> pl.DataFrame:
-    # Log the dataframe columns to verify the date column exists
-    print(f"Columns before processing: {df.columns}")
-    
-    # Ensure column names are lower-cased and spaces replaced with underscores
+    # Log columns
+    print(f"[mta_daily] Columns before processing: {df.columns}")
+
+    # rename columns to lower_case_with_underscores
     df = df.rename({col: col.lower().replace(" ", "_") for col in df.columns})
-    
-    # Log the dataframe after renaming to confirm changes
-    print(f"Columns after renaming: {df.columns}")
 
-    # Handle the date parsing with the correct format
-    df = df.with_columns([
-        pl.col("date").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("date")
-    ])
-    
-    # Log after date parsing to verify correctness
-    print(f"Processed date column: {df.select('date').head()}")
+    print(f"[mta_daily] Columns after renaming: {df.columns}")
 
-    # Cast columns to appropriate types and drop original string columns after casting
-    df = df.with_columns([
-        pl.col("subways_total_estimated_ridership").cast(pl.Float64).alias("subways_total_ridership"),
-        pl.col("subways_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("subways_pct_pre_pandemic"),
-        pl.col("buses_total_estimated_ridersip").cast(pl.Float64).alias("buses_total_ridership"),
-        pl.col("buses_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("buses_pct_pre_pandemic"),
-        pl.col("lirr_total_estimated_ridership").cast(pl.Float64).alias("lirr_total_ridership"),
-        pl.col("lirr_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("lirr_pct_pre_pandemic"),
-        pl.col("metro_north_total_estimated_ridership").cast(pl.Float64).alias("metro_north_total_ridership"),
-        pl.col("metro_north_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("metro_north_pct_pre_pandemic"),
-        pl.col("access_a_ride_total_scheduled_trips").cast(pl.Float64).alias("access_a_ride_total_trips"),
-        pl.col("access_a_ride_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("access_a_ride_pct_pre_pandemic"),
-        pl.col("bridges_and_tunnels_total_traffic").cast(pl.Float64).alias("bridges_tunnels_total_traffic"),
-        pl.col("bridges_and_tunnels_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("bridges_tunnels_pct_pre_pandemic"),
-        pl.col("staten_island_railway_total_estimated_ridership").cast(pl.Float64).alias("staten_island_railway_total_ridership"),
-        pl.col("staten_island_railway_of_comparable_pre_pandemic_day").cast(pl.Float64).alias("staten_island_railway_pct_pre_pandemic"),
-    ]).drop([
-        "subways_total_estimated_ridership",
-        "subways_of_comparable_pre_pandemic_day",
-        "buses_total_estimated_ridersip",
-        "buses_of_comparable_pre_pandemic_day",
-        "lirr_total_estimated_ridership",
-        "lirr_of_comparable_pre_pandemic_day",
-        "metro_north_total_estimated_ridership",
-        "metro_north_of_comparable_pre_pandemic_day",
-        "access_a_ride_total_scheduled_trips",
-        "access_a_ride_of_comparable_pre_pandemic_day",
-        "bridges_and_tunnels_total_traffic",
-        "bridges_and_tunnels_of_comparable_pre_pandemic_day",
-        "staten_island_railway_total_estimated_ridership",
-        "staten_island_railway_of_comparable_pre_pandemic_day"
-    ])
+    # parse 'date' column
+    if "date" in df.columns:
+        df = df.with_columns(
+            pl.col("date").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("date")
+        )
+    # log
+    if "date" in df.columns:
+        print(f"[mta_daily] Processed date column sample: {df.select('date').head()}")
+
+    # cast columns
+    old_new_cols = [
+        ("subways_total_estimated_ridership", "subways_total_ridership"),
+        ("subways_of_comparable_pre_pandemic_day", "subways_pct_pre_pandemic"),
+        ("buses_total_estimated_ridersip", "buses_total_ridership"),
+        ("buses_of_comparable_pre_pandemic_day", "buses_pct_pre_pandemic"),
+        ("lirr_total_estimated_ridership", "lirr_total_ridership"),
+        ("lirr_of_comparable_pre_pandemic_day", "lirr_pct_pre_pandemic"),
+        ("metro_north_total_estimated_ridership", "metro_north_total_ridership"),
+        ("metro_north_of_comparable_pre_pandemic_day", "metro_north_pct_pre_pandemic"),
+        ("access_a_ride_total_scheduled_trips", "access_a_ride_total_trips"),
+        ("access_a_ride_of_comparable_pre_pandemic_day", "access_a_ride_pct_pre_pandemic"),
+        ("bridges_and_tunnels_total_traffic", "bridges_tunnels_total_traffic"),
+        ("bridges_and_tunnels_of_comparable_pre_pandemic_day", "bridges_tunnels_pct_pre_pandemic"),
+        ("staten_island_railway_total_estimated_ridership", "staten_island_railway_total_ridership"),
+        ("staten_island_railway_of_comparable_pre_pandemic_day", "staten_island_railway_pct_pre_pandemic"),
+    ]
+
+    exprs = []
+    drop_these = []
+    for old_col, new_col in old_new_cols:
+        if old_col in df.columns:
+            exprs.append(pl.col(old_col).cast(pl.Float64).alias(new_col))
+            drop_these.append(old_col)
+
+    if exprs:
+        df = df.with_columns(exprs).drop(drop_these)
 
     return df
 
 @asset(
-    io_manager_key="mta_daily_ridership_polars_parquet_io_manager",
-    compute_kind="Polars"
+    name="mta_daily_ridership",
+    compute_kind="Polars",
 )
-def mta_daily_ridership(context):
-    config = MTADailyRidershipConfig()
-    api_client = SocrataAPI(config)
-    offset = config.offset
-    batch_number = 1
-
-    while True:
-        context.log.info(f"Fetching daily data with offset: {offset}")
-        updated_config = config.copy(update={"offset": offset})
-        api_client.config = updated_config
-        data = api_client.fetch_data()
-
-        if not data:
-            context.log.info(f"No more daily data to fetch at offset {offset}.")
-            return
-
-        raw_df = pl.DataFrame(data)
-        processed_df = process_mta_daily_df(raw_df)
-
-        if not processed_df.is_empty():
-            io_manager = get_io_manager(context)
-            io_manager.handle_output(context, processed_df, batch_number)
-
-        del raw_df, processed_df, data
-        gc.collect()
-
-        offset += config.limit
-        batch_number += 1
-
-
-class MTABusSpeedsConfig(SocrataAPIConfig):
-    SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/6ksi-7cxr.json"
-    order: str = "month ASC"
-    limit: int = 500000
-    where: str = f"month >= '{datetime(2020, 1, 1).isoformat()}'"
-    offset: int = 0
-
-def process_mta_bus_speeds_df(df: pl.DataFrame) -> pl.DataFrame:
-    # Log the dataframe columns to verify the month column exists
-    print(f"Columns before processing: {df.columns}")
-
-    # Ensure column names are lower-cased and spaces replaced with underscores
-    df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
-
-    # Log the dataframe after renaming to confirm changes
-    print(f"Columns after renaming: {df.columns}")
-
-    # Handle the month parsing with the full datetime format and convert it to Date
-    df = df.with_columns([
-        pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
-    ])
-
-    # Log after month parsing to verify correctness
-    print(f"Processed month column: {df.select('month').head()}")
-
-    # Cast the rest of the columns to their appropriate types
-    df = df.with_columns([
-        pl.col("borough").cast(pl.Utf8),
-        pl.col("day_type").cast(pl.Int64),
-        pl.col("trip_type").cast(pl.Utf8),
-        pl.col("route_id").cast(pl.Utf8),
-        pl.col("period").cast(pl.Utf8),
-        pl.col("total_mileage").cast(pl.Float64),
-        pl.col("total_operating_time").cast(pl.Float64),
-        pl.col("average_speed").cast(pl.Float64)
-    ])
-
-    return df
-
-@asset(
-    io_manager_key="mta_bus_speeds_polars_parquet_io_manager",
-    compute_kind="Polars"
-)
-def mta_bus_speeds(context):
-    config = MTABusSpeedsConfig()
-    api_client = SocrataAPI(config)
-    offset = config.offset
-    batch_number = 1
-
-    while True:
-        context.log.info(f"Fetching bus speeds data with offset: {offset}")
-        updated_config = config.copy(update={"offset": offset})
-        api_client.config = updated_config
-        data = api_client.fetch_data()
-
-        if not data:
-            context.log.info(f"No more bus speeds data to fetch at offset {offset}.")
-            context.log.info("All data has been fetched successfully.")
-            return
-
-        raw_df = pl.DataFrame(data)
-        processed_df = process_mta_bus_speeds_df(raw_df)
-
-        if not processed_df.is_empty():
-            io_manager = get_io_manager(context)
-            io_manager.handle_output(context, processed_df, batch_number)
-
-        del raw_df, processed_df, data
-        gc.collect()
-
-        offset += config.limit
-        batch_number += 1
-
-
-
-class MTAWaitTimeBusConfig(SocrataAPIConfig):
-    SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/swky-c3v4.json"
-    order: str = "month ASC"
-    limit: int = 500000
-    where: str = f"month >= '{datetime(2020, 1, 1).isoformat()}'"
-    offset: int = 0
-
-def process_mta_bus_wait_time_df(df: pl.DataFrame) -> pl.DataFrame:
-    # Log the dataframe columns to verify the month column exists
-    print(f"Columns before processing: {df.columns}")
-
-    # Ensure column names are lower-cased and spaces replaced with underscores
-    df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
-
-    # Log the dataframe after renaming to confirm changes
-    print(f"Columns after renaming: {df.columns}")
-
-    # Handle the month parsing with the full datetime format and convert it to Date
-    df = df.with_columns([
-        pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
-    ])
-
-    # Log after month parsing to verify correctness
-    print(f"Processed month column: {df.select('month').head()}")
-
-    # Cast the rest of the columns to their appropriate types
-    df = df.with_columns([
-        pl.col("borough").cast(pl.Utf8),
-        pl.col("day_type").cast(pl.Int64),
-        pl.col("trip_type").cast(pl.Utf8),
-        pl.col("route_id").cast(pl.Utf8),
-        pl.col("period").cast(pl.Utf8),
-        pl.col("number_of_trips_passing_wait").cast(pl.Float64),
-        pl.col("number_of_scheduled_trips").cast(pl.Float64),
-        pl.col("wait_assessment").cast(pl.Float64)
-    ])
-
-    return df
-
-@asset(
-    io_manager_key="mta_bus_wait_time_polars_parquet_io_manager",
-    compute_kind="Polars"
-)
-def mta_bus_wait_time(context):
-    config = MTAWaitTimeBusConfig()
-    api_client = SocrataAPI(config)
-    offset = config.offset
-    batch_number = 1
-
-    while True:
-        context.log.info(f"Fetching bus wait time data with offset: {offset}")
-        updated_config = config.copy(update={"offset": offset})
-        api_client.config = updated_config
-        data = api_client.fetch_data()
-
-        if not data:
-            context.log.info(f"No more bus wait time data to fetch at offset {offset}.")
-            context.log.info("All data has been fetched successfully.")
-            return
-
-        raw_df = pl.DataFrame(data)
-        processed_df = process_mta_bus_wait_time_df(raw_df)
-
-        if not processed_df.is_empty():
-            io_manager = get_io_manager(context)
-            io_manager.handle_output(context, processed_df, batch_number)
-
-        del raw_df, processed_df, data
-        gc.collect()
-
-        offset += config.limit
-        batch_number += 1
-
-
-class MTAOperationsStatementConfig(SocrataAPIConfig):
-    SOCRATA_ENDPOINT: str = "https://data.ny.gov/resource/yg77-3tkj.json"
-    order: str = "Month ASC"
-    limit: int = 500000
-    offset: int = 0
-
-import polars as pl
-
-def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
-    # Log the dataframe columns to verify the correct columns exist
-    print(f"Columns before processing: {df.columns}")
-
-    # Ensure column names are lower-cased, spaces/special characters replaced, and "month" renamed to "timestamp"
-    df = df.rename({
-        col: col.lower().replace(" ", "_").replace("-", "_")
-        for col in df.columns
-    }).rename({"month": "timestamp"})
-
-    # Log the dataframe after renaming to confirm changes
-    print(f"Columns after renaming: {df.columns}")
-
-    # Handle the timestamp parsing for the "timestamp" column
-    df = df.with_columns([
-        pl.col("timestamp").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("timestamp")
-    ])
-
-    # Log after parsing to verify correctness
-    print(f"Processed timestamp column: {df.select('timestamp').head()}")
-
-    # Define the SQL query to transform the "agency" column using CASE and alias it
-    query = """
-        SELECT *,
-            CASE 
-                WHEN agency = 'LIRR' THEN 'Long Island Rail Road'
-                WHEN agency = 'BT' THEN 'Bridges and Tunnels'
-                WHEN agency = 'FMTAC' THEN 'First Mutual Transportation Assurance Company'
-                WHEN agency = 'NYCT' THEN 'New York City Transit'
-                WHEN agency = 'SIR' THEN 'Staten Island Railway'
-                WHEN agency = 'MTABC' THEN 'MTA Bus Company'
-                WHEN agency = 'GCMCOC' THEN 'Grand Central Madison Concourse Operating Company'
-                WHEN agency = 'MNR' THEN 'Metro-North Railroad'
-                WHEN agency = 'MTAHQ' THEN 'Metropolitan Transportation Authority Headquarters'
-                WHEN agency = 'CD' THEN 'MTA Construction and Development'
-                WHEN agency = 'CRR' THEN 'Connecticut Railroads'
-                ELSE 'Unknown Agency'
-            END AS agency_full_name  -- Use an alias to avoid duplicate column names
-        FROM self
+def mta_daily_ridership(socrata: SocrataResource) -> pl.DataFrame:
     """
+    Fetch daily ridership from Socrata in multiple pages, apply process_mta_daily_df
+    transformations, return final Polars DataFrame.
+    """
+    endpoint = "https://data.ny.gov/resource/vxuj-8kew.json"
+    limit = 500000
+    offset = 0
 
-    # Execute the SQL query
+    frames = []
+    while True:
+        params = {
+            "$limit": limit,
+            "$offset": offset,
+            "$order": "Date ASC",
+            "$where": "Date >= '2020-03-01T00:00:00'",
+        }
+        data = socrata.fetch_data(endpoint, params)
+        if not data:
+            print("[mta_daily] No more data at offset", offset)
+            break
+
+        df = pl.DataFrame(data)
+        processed_df = process_mta_daily_df(df)
+        frames.append(processed_df)
+
+        offset += limit
+        del df, processed_df, data
+        gc.collect()
+
+    if frames:
+        return pl.concat(frames, how="vertical")
+    else:
+        return pl.DataFrame([])
+
+
+# ------------------------------------------------------------------
+# 3) MTA BUS SPEEDS
+# ------------------------------------------------------------------
+def process_mta_bus_speeds_df(df: pl.DataFrame) -> pl.DataFrame:
+    print(f"[mta_bus_speeds] Columns before: {df.columns}")
+    df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
+    print(f"[mta_bus_speeds] Columns after rename: {df.columns}")
+
+    # parse 'month' as a Date
+    if "month" in df.columns:
+        df = df.with_columns(
+            pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
+        )
+    # cast
+    casts = [
+        ("borough", pl.Utf8),
+        ("day_type", pl.Int64),
+        ("trip_type", pl.Utf8),
+        ("route_id", pl.Utf8),
+        ("period", pl.Utf8),
+        ("total_mileage", pl.Float64),
+        ("total_operating_time", pl.Float64),
+        ("average_speed", pl.Float64),
+    ]
+    exprs = []
+    for col_name, dtype in casts:
+        if col_name in df.columns:
+            exprs.append(pl.col(col_name).cast(dtype))
+    if exprs:
+        df = df.with_columns(exprs)
+
+    return df
+
+@asset(name="mta_bus_speeds", compute_kind="Polars")
+def mta_bus_speeds(socrata: SocrataResource) -> pl.DataFrame:
+    endpoint = "https://data.ny.gov/resource/6ksi-7cxr.json"
+    limit = 500000
+    offset = 0
+
+    combined = []
+    while True:
+        params = {
+            "$limit": limit,
+            "$offset": offset,
+            "$order": "month ASC",
+            "$where": "month >= '2020-01-01T00:00:00'",
+        }
+        data = socrata.fetch_data(endpoint, params)
+        if not data:
+            print("[mta_bus_speeds] no more data at offset", offset)
+            break
+
+        df = pl.DataFrame(data)
+        processed_df = process_mta_bus_speeds_df(df)
+        combined.append(processed_df)
+
+        offset += limit
+        del df, processed_df, data
+        gc.collect()
+
+    if combined:
+        return pl.concat(combined, how="vertical")
+    return pl.DataFrame([])
+
+
+# ------------------------------------------------------------------
+# 4) MTA BUS WAIT TIME
+# ------------------------------------------------------------------
+def process_mta_bus_wait_time_df(df: pl.DataFrame) -> pl.DataFrame:
+    print(f"[mta_bus_wait_time] columns before: {df.columns}")
+    df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
+    print(f"[mta_bus_wait_time] columns after rename: {df.columns}")
+
+    if "month" in df.columns:
+        df = df.with_columns(
+            pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
+        )
+
+    casts = [
+        ("borough", pl.Utf8),
+        ("day_type", pl.Int64),
+        ("trip_type", pl.Utf8),
+        ("route_id", pl.Utf8),
+        ("period", pl.Utf8),
+        ("number_of_trips_passing_wait", pl.Float64),
+        ("number_of_scheduled_trips", pl.Float64),
+        ("wait_assessment", pl.Float64),
+    ]
+    exprs = []
+    for col_name, dtype in casts:
+        if col_name in df.columns:
+            exprs.append(pl.col(col_name).cast(dtype))
+    if exprs:
+        df = df.with_columns(exprs)
+
+    return df
+
+@asset(name="mta_bus_wait_time", compute_kind="Polars")
+def mta_bus_wait_time(socrata: SocrataResource) -> pl.DataFrame:
+    endpoint = "https://data.ny.gov/resource/swky-c3v4.json"
+    limit = 500000
+    offset = 0
+
+    frames = []
+    while True:
+        params = {
+            "$limit": limit,
+            "$offset": offset,
+            "$order": "month ASC",
+            "$where": "month >= '2020-01-01T00:00:00'"
+        }
+        data = socrata.fetch_data(endpoint, params)
+        if not data:
+            print("[mta_bus_wait_time] no more data at offset", offset)
+            break
+
+        df = pl.DataFrame(data)
+        processed_df = process_mta_bus_wait_time_df(df)
+        frames.append(processed_df)
+
+        offset += limit
+        del df, processed_df, data
+        gc.collect()
+
+    if frames:
+        return pl.concat(frames, how="vertical")
+    return pl.DataFrame([])
+
+
+# ------------------------------------------------------------------
+# 5) MTA OPERATIONS STATEMENT
+# ------------------------------------------------------------------
+def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
+    print(f"[mta_ops_statement] columns before: {df.columns}")
+    df = df.rename(
+        {col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns}
+    ).rename({"month": "timestamp"})
+
+    print(f"[mta_ops_statement] columns after rename: {df.columns}")
+
+    if "timestamp" in df.columns:
+        df = df.with_columns([
+            pl.col("timestamp").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("timestamp")
+        ])
+
+    # Use df.sql(...) to transform 'agency'
+    query = """
+    SELECT *,
+        CASE 
+            WHEN agency = 'LIRR' THEN 'Long Island Rail Road'
+            WHEN agency = 'BT' THEN 'Bridges and Tunnels'
+            WHEN agency = 'FMTAC' THEN 'First Mutual Transportation Assurance Company'
+            WHEN agency = 'NYCT' THEN 'New York City Transit'
+            WHEN agency = 'SIR' THEN 'Staten Island Railway'
+            WHEN agency = 'MTABC' THEN 'MTA Bus Company'
+            WHEN agency = 'GCMCOC' THEN 'Grand Central Madison Concourse Operating Company'
+            WHEN agency = 'MNR' THEN 'Metro-North Railroad'
+            WHEN agency = 'MTAHQ' THEN 'Metropolitan Transportation Authority Headquarters'
+            WHEN agency = 'CD' THEN 'MTA Construction and Development'
+            WHEN agency = 'CRR' THEN 'Connecticut Railroads'
+            ELSE 'Unknown Agency'
+        END AS agency_full_name
+    FROM self
+    """
     df = df.sql(query)
 
-    # Log the dataframe after altering the agency column using SQL
-    print(f"Agency full name column added using SQL: {df.select('agency', 'agency_full_name').head()}")
+    casts = [
+        ("fiscal_year", pl.Int64),
+        ("financial_plan_year", pl.Int64),
+        ("amount", pl.Float64),
+        ("scenario", pl.Utf8),
+        ("expense_type", pl.Utf8),
+        ("agency", pl.Utf8),
+        ("agency_full_name", pl.Utf8),
+        ("type", pl.Utf8),
+        ("subtype", pl.Utf8),
+        ("general_ledger", pl.Utf8),
+    ]
+    exprs = []
+    for col_name, dtype in casts:
+        if col_name in df.columns:
+            exprs.append(pl.col(col_name).cast(dtype))
 
-    # Cast columns to appropriate types
-    df = df.with_columns([
-        pl.col("fiscal_year").cast(pl.Int64),
-        pl.col("financial_plan_year").cast(pl.Int64),
-        pl.col("amount").cast(pl.Float64),
-        pl.col("scenario").cast(pl.Utf8),
-        pl.col("expense_type").cast(pl.Utf8),
-        pl.col("agency").cast(pl.Utf8),  # Keep the original agency column
-        pl.col("agency_full_name").cast(pl.Utf8),  # The new full name column
-        pl.col("type").cast(pl.Utf8),
-        pl.col("subtype").cast(pl.Utf8),
-        pl.col("general_ledger").cast(pl.Utf8)
-    ])
+    if exprs:
+        df = df.with_columns(exprs)
 
     return df
 
+@asset(name="mta_operations_statement", compute_kind="Polars")
+def mta_operations_statement(socrata: SocrataResource) -> pl.DataFrame:
+    endpoint = "https://data.ny.gov/resource/yg77-3tkj.json"
+    limit = 500000
+    offset = 0
 
-
-@asset(
-    io_manager_key="mta_operations_statement_polars_parquet_io_manager",
-    compute_kind="Polars"
-)
-def mta_operations_statement(context):
-    config = MTAOperationsStatementConfig()
-    api_client = SocrataAPI(config)
-    offset = config.offset
-    batch_number = 1
-
+    frames = []
     while True:
-        context.log.info(f"Fetching operations statement data with offset: {offset}")
-        updated_config = config.copy(update={"offset": offset})
-        api_client.config = updated_config
-        data = api_client.fetch_data()
-
+        params = {
+            "$limit": limit,
+            "$offset": offset,
+            "$order": "Month ASC"
+        }
+        data = socrata.fetch_data(endpoint, params)
         if not data:
-            context.log.info(f"No more operations statement data to fetch at offset {offset}.")
-            context.log.info("All data has been fetched successfully.")
-            return
+            print("[mta_ops_statement] no more data at offset", offset)
+            break
 
-        raw_df = pl.DataFrame(data)
-        processed_df = process_mta_operations_statement_df(raw_df)
+        df = pl.DataFrame(data)
+        processed = process_mta_operations_statement_df(df)
+        frames.append(processed)
 
-        if not processed_df.is_empty():
-            io_manager = get_io_manager(context)
-            io_manager.handle_output(context, processed_df, batch_number)
-
-        del raw_df, processed_df, data
+        offset += limit
+        del df, processed, data
         gc.collect()
 
-        offset += config.limit
-        batch_number += 1
+    if frames:
+        return pl.concat(frames, how="vertical")
+    return pl.DataFrame([])
 
 
