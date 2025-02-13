@@ -28,11 +28,13 @@ fi
 cp .env.example .env || { echo "Failed to copy .env.example to .env"; exit 1; }
 
 # Step 6: Run exportpath.py to generate LAKE_PATH
-LAKE_PATH=$(uv run scripts/exportpath.py)
+# Step 6: Run exportpathlinux.py to generate LAKE_PATH
+LAKE_PATH=$(uv run scripts/exportpathlinux.py)
 if [ -z "$LAKE_PATH" ]; then
     echo "Error: Failed to generate LAKE_PATH"
     exit 1
 fi
+
 
 # Step 7: Add SOCRATA_API_TOKEN and LAKE_PATH to .env
 echo "SOCRATA_API_TOKEN=$SOCRATA_API_TOKEN" >> .env

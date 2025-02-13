@@ -34,8 +34,8 @@ IF ERRORLEVEL 1 (
     exit /b 1
 )
 
-REM Step 6: Run exportpath.py to generate LAKE_PATH
-FOR /F "delims=" %%i IN ('uv run scripts/exportpath.py') DO SET LAKE_PATH=%%i
+REM Step 6: Run exportpathwindows.py to generate LAKE_PATH
+FOR /F "delims=" %%i IN ('uv run scripts/exportpathwindows.py') DO SET LAKE_PATH=%%i
 IF "%LAKE_PATH%"=="" (
     echo Error: Failed to generate LAKE_PATH
     exit /b 1
