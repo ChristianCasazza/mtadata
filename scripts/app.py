@@ -1,3 +1,15 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "flask",
+#     "requests",
+#     "sqlite3",
+#     "duckdb",
+# ]
+# ///
+# app.py
+
+
 from flask import Flask, render_template, jsonify, request
 import sqlite3
 import os
