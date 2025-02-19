@@ -14,6 +14,7 @@ from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, OTHER_MTA_ASSE
         "hourly_weather_asset": AssetIn(),
     },
     compute_kind="DuckDB",
+    group_name="Transformation",
 )
 def duckdb_warehouse(
     context: AssetExecutionContext,

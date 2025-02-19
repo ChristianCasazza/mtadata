@@ -1,0 +1,1 @@
+select * from labor_expenses_per_agency

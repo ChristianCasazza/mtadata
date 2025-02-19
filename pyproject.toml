@@ -1,11 +1,10 @@
 [project]
-name = "FastOpenData"
+name = "TheOpenDataStack"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "altair>=5.4.1",
     "boto3>=1.35.24",
     "dagster-dbt==0.24.2",
     "dagster-duckdb>=0.24.2",
@@ -16,7 +15,6 @@ dependencies = [
     "dbt-duckdb>=1.8.3",
     "dlt>=1.0.0",
     "duckdb==1.0.0",
-    "huggingface-hub>=0.25.1",
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.5",
     "pandas>=2.2.3",
@@ -32,6 +30,7 @@ dependencies = [
     "httpx<0.25.0",
     "flash>=1.0.3",
     "flask>=3.1.0",
+    "great-tables>=0.16.1",
 ]
 
 

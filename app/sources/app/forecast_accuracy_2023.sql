@@ -1,0 +1,1 @@
+select * from forecast_accuracy_2023

@@ -1,0 +1,1 @@
+select * from weekly_riders_per_station

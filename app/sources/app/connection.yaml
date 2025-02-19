@@ -1,0 +1,5 @@
+# This file was automatically generated
+name: mta
+type: duckdb
+options:
+  filename: data.duckdb

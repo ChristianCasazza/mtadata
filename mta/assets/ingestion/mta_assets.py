@@ -1,101 +1,31 @@
 # mta/assets/ingestion/mta_subway/mta_assets.py
+
 import os
 import gc
 import requests
 import polars as pl
 from datetime import datetime
-from dagster import asset
-from mta.constants import HOURLY_PATH 
+
+# Replace MaterializeResult with Output
+from dagster import asset, Output
+
+from mta.constants import HOURLY_PATH
 from mta.resources.socrata_resource import SocrataResource
 
-def get_io_manager(context):
-    """Helper function to dynamically fetch the correct IO manager for the asset."""
-    asset_name = context.asset_key.path[-1]  # Get the last part of the asset key, which is the asset name
-    io_manager_key = f"{asset_name}_polars_parquet_io_manager"  # Construct the io_manager_key
-    return getattr(context.resources, io_manager_key)
 
-
-MTA_ASSETS_NAMES = [
-    "mta_daily_ridership",
-    "mta_bus_speeds",
-    "mta_bus_wait_time",
-    "mta_operations_statement",
-    "sf_air_traffic_cargo",
-    "sf_air_traffic_passenger_stats",  
-    "sf_air_traffic_landings",       
-]
-
-OTHER_MTA_ASSETS_NAMES = [
-    "mta_hourly_subway_socrata"
-]
-
-
-BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
-LOCAL_DOWNLOAD_PATH = HOURLY_PATH
-years = ["2022", "2023", "2024"]
-months = [f"{i:02d}" for i in range(1, 13)]  # Months from 01 to 12
-
-def download_file(file_url, local_path):
-    os.makedirs(os.path.dirname(local_path), exist_ok=True)
-    response = requests.get(file_url, stream=True)
-    if response.status_code == 200:
-        with open(local_path, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
-        return local_path
-    else:
-        raise Exception(f"Failed to download: {file_url} (Status code: {response.status_code})")
-
-def download_files_from_year_month(base_url, local_base_path, year, month):
-    file_name = f"{year}_{month}.parquet"
-    file_url = f"{base_url}year%3D{year}/month%3D{month}/{file_name}"
-    local_file_path = os.path.join(local_base_path, file_name)
-    return download_file(file_url, local_file_path)
-
-@asset(
-    compute_kind="Python",
-    io_manager_key="hourly_mta_io_manager",  # <--- override here
-)
-def mta_hourly_subway_socrata(context):
-    downloaded_files = []
-    for year in years:
-        for month in months:
-            context.log.info(f"Downloading data for year: {year}, month: {month}")
-            try:
-                file_path = download_files_from_year_month(
-                    BASE_URL, LOCAL_DOWNLOAD_PATH, year, month
-                )
-                context.log.info(f"Downloaded file to: {file_path}")
-                downloaded_files.append(file_path)
-            except Exception as e:
-                context.log.error(f"Error downloading file for {year}-{month}: {e}")
-    # Return the list of local file paths
-    return downloaded_files
-
-
-
-# ------------------------------------------------------------------
-# 2) MTA DAILY RIDERSHIP - Socrata-based Ingestion
-# ------------------------------------------------------------------
-# Original transformation logic is in process_mta_daily_df
-
-def process_mta_daily_df(df: pl.DataFrame) -> pl.DataFrame:
-    # Log columns
-    print(f"[mta_daily] Columns before processing: {df.columns}")
-
-    # rename columns to lower_case_with_underscores
+def process_mta_daily_df(df: pl.DataFrame) -> (pl.DataFrame, list, list, str):
+    orig_cols = df.columns
     df = df.rename({col: col.lower().replace(" ", "_") for col in df.columns})
-
-    print(f"[mta_daily] Columns after renaming: {df.columns}")
+    renamed_cols = df.columns
 
     # parse 'date' column
+    date_sample = "N/A"
     if "date" in df.columns:
         df = df.with_columns(
             pl.col("date").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("date")
         )
-    # log
-    if "date" in df.columns:
-        print(f"[mta_daily] Processed date column sample: {df.select('date').head()}")
+        date_sample_df = df.select("date").head(3).to_dicts()
+        date_sample = str(date_sample_df)
 
     # cast columns
     old_new_cols = [
@@ -125,22 +55,24 @@ def process_mta_daily_df(df: pl.DataFrame) -> pl.DataFrame:
     if exprs:
         df = df.with_columns(exprs).drop(drop_these)
 
-    return df
+    return df, orig_cols, renamed_cols, date_sample
 
 @asset(
     name="mta_daily_ridership",
     compute_kind="Polars",
+    group_name="MTA",
+    tags={"domain": "mta", "type": "ingestion", "source": "socrata"},
 )
-def mta_daily_ridership(socrata: SocrataResource) -> pl.DataFrame:
-    """
-    Fetch daily ridership from Socrata in multiple pages, apply process_mta_daily_df
-    transformations, return final Polars DataFrame.
-    """
+def mta_daily_ridership(context, socrata: SocrataResource):
     endpoint = "https://data.ny.gov/resource/vxuj-8kew.json"
     limit = 500000
     offset = 0
 
     frames = []
+    last_orig_cols = []
+    last_renamed_cols = []
+    date_sample = "N/A"
+
     while True:
         params = {
             "$limit": limit,
@@ -150,37 +82,42 @@ def mta_daily_ridership(socrata: SocrataResource) -> pl.DataFrame:
         }
         data = socrata.fetch_data(endpoint, params)
         if not data:
-            print("[mta_daily] No more data at offset", offset)
+            context.log.info(f"[mta_daily] No more data at offset {offset}")
             break
 
         df = pl.DataFrame(data)
-        processed_df = process_mta_daily_df(df)
+        processed_df, orig_cols, renamed_cols, date_sample = process_mta_daily_df(df)
         frames.append(processed_df)
+
+        last_orig_cols = orig_cols
+        last_renamed_cols = renamed_cols
 
         offset += limit
         del df, processed_df, data
         gc.collect()
 
-    if frames:
-        return pl.concat(frames, how="vertical")
-    else:
-        return pl.DataFrame([])
+    final_df = pl.concat(frames, how="vertical") if frames else pl.DataFrame([])
 
+    return Output(
+        value=final_df,
+        metadata={
+            "dagster/row_count": final_df.shape[0],
+            "original_columns": str(last_orig_cols),
+            "renamed_columns": str(last_renamed_cols),
+            "date_col_sample": date_sample,
+        },
+    )
 
-# ------------------------------------------------------------------
-# 3) MTA BUS SPEEDS
-# ------------------------------------------------------------------
-def process_mta_bus_speeds_df(df: pl.DataFrame) -> pl.DataFrame:
-    print(f"[mta_bus_speeds] Columns before: {df.columns}")
+def process_mta_bus_speeds_df(df: pl.DataFrame) -> (pl.DataFrame, list, list):
+    orig_cols = df.columns
     df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
-    print(f"[mta_bus_speeds] Columns after rename: {df.columns}")
+    renamed_cols = df.columns
 
-    # parse 'month' as a Date
     if "month" in df.columns:
         df = df.with_columns(
             pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
         )
-    # cast
+
     casts = [
         ("borough", pl.Utf8),
         ("day_type", pl.Int64),
@@ -198,15 +135,23 @@ def process_mta_bus_speeds_df(df: pl.DataFrame) -> pl.DataFrame:
     if exprs:
         df = df.with_columns(exprs)
 
-    return df
+    return df, orig_cols, renamed_cols
 
-@asset(name="mta_bus_speeds", compute_kind="Polars")
-def mta_bus_speeds(socrata: SocrataResource) -> pl.DataFrame:
+@asset(
+    name="mta_bus_speeds",
+    compute_kind="Polars",
+    group_name="MTA",
+    tags={"domain": "mta", "type": "ingestion", "source": "socrata"},
+)
+def mta_bus_speeds(context, socrata: SocrataResource):
     endpoint = "https://data.ny.gov/resource/6ksi-7cxr.json"
     limit = 500000
     offset = 0
 
     combined = []
+    last_orig_cols = []
+    last_renamed_cols = []
+
     while True:
         params = {
             "$limit": limit,
@@ -216,29 +161,34 @@ def mta_bus_speeds(socrata: SocrataResource) -> pl.DataFrame:
         }
         data = socrata.fetch_data(endpoint, params)
         if not data:
-            print("[mta_bus_speeds] no more data at offset", offset)
+            context.log.info(f"[mta_bus_speeds] no more data at offset {offset}")
             break
 
         df = pl.DataFrame(data)
-        processed_df = process_mta_bus_speeds_df(df)
+        processed_df, orig_cols, renamed_cols = process_mta_bus_speeds_df(df)
         combined.append(processed_df)
+
+        last_orig_cols = orig_cols
+        last_renamed_cols = renamed_cols
 
         offset += limit
         del df, processed_df, data
         gc.collect()
 
-    if combined:
-        return pl.concat(combined, how="vertical")
-    return pl.DataFrame([])
+    final_df = pl.concat(combined, how="vertical") if combined else pl.DataFrame([])
+    return Output(
+        value=final_df,
+        metadata={
+            "dagster/row_count": final_df.shape[0],
+            "original_columns": str(last_orig_cols),
+            "renamed_columns": str(last_renamed_cols),
+        },
+    )
 
-
-# ------------------------------------------------------------------
-# 4) MTA BUS WAIT TIME
-# ------------------------------------------------------------------
-def process_mta_bus_wait_time_df(df: pl.DataFrame) -> pl.DataFrame:
-    print(f"[mta_bus_wait_time] columns before: {df.columns}")
+def process_mta_bus_wait_time_df(df: pl.DataFrame) -> (pl.DataFrame, list, list):
+    orig_cols = df.columns
     df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
-    print(f"[mta_bus_wait_time] columns after rename: {df.columns}")
+    renamed_cols = df.columns
 
     if "month" in df.columns:
         df = df.with_columns(
@@ -262,15 +212,23 @@ def process_mta_bus_wait_time_df(df: pl.DataFrame) -> pl.DataFrame:
     if exprs:
         df = df.with_columns(exprs)
 
-    return df
+    return df, orig_cols, renamed_cols
 
-@asset(name="mta_bus_wait_time", compute_kind="Polars")
-def mta_bus_wait_time(socrata: SocrataResource) -> pl.DataFrame:
+@asset(
+    name="mta_bus_wait_time",
+    compute_kind="Polars",
+    group_name="MTA",
+    tags={"domain": "mta", "type": "ingestion", "source": "socrata"},
+)
+def mta_bus_wait_time(context, socrata: SocrataResource):
     endpoint = "https://data.ny.gov/resource/swky-c3v4.json"
     limit = 500000
     offset = 0
 
     frames = []
+    last_orig_cols = []
+    last_renamed_cols = []
+
     while True:
         params = {
             "$limit": limit,
@@ -280,39 +238,42 @@ def mta_bus_wait_time(socrata: SocrataResource) -> pl.DataFrame:
         }
         data = socrata.fetch_data(endpoint, params)
         if not data:
-            print("[mta_bus_wait_time] no more data at offset", offset)
+            context.log.info(f"[mta_bus_wait_time] no more data at offset {offset}")
             break
 
         df = pl.DataFrame(data)
-        processed_df = process_mta_bus_wait_time_df(df)
+        processed_df, orig_cols, renamed_cols = process_mta_bus_wait_time_df(df)
         frames.append(processed_df)
+
+        last_orig_cols = orig_cols
+        last_renamed_cols = renamed_cols
 
         offset += limit
         del df, processed_df, data
         gc.collect()
 
-    if frames:
-        return pl.concat(frames, how="vertical")
-    return pl.DataFrame([])
+    final_df = pl.concat(frames, how="vertical") if frames else pl.DataFrame([])
+    return Output(
+        value=final_df,
+        metadata={
+            "dagster/row_count": final_df.shape[0],
+            "original_columns": str(last_orig_cols),
+            "renamed_columns": str(last_renamed_cols),
+        },
+    )
 
-
-# ------------------------------------------------------------------
-# 5) MTA OPERATIONS STATEMENT
-# ------------------------------------------------------------------
-def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
-    print(f"[mta_ops_statement] columns before: {df.columns}")
+def process_mta_operations_statement_df(df: pl.DataFrame) -> (pl.DataFrame, list, list):
+    orig_cols = df.columns
     df = df.rename(
         {col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns}
     ).rename({"month": "timestamp"})
-
-    print(f"[mta_ops_statement] columns after rename: {df.columns}")
+    renamed_cols = df.columns
 
     if "timestamp" in df.columns:
         df = df.with_columns([
             pl.col("timestamp").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("timestamp")
         ])
 
-    # Use df.sql(...) to transform 'agency'
     query = """
     SELECT *,
         CASE 
@@ -353,15 +314,23 @@ def process_mta_operations_statement_df(df: pl.DataFrame) -> pl.DataFrame:
     if exprs:
         df = df.with_columns(exprs)
 
-    return df
+    return df, orig_cols, renamed_cols
 
-@asset(name="mta_operations_statement", compute_kind="Polars")
-def mta_operations_statement(socrata: SocrataResource) -> pl.DataFrame:
+@asset(
+    name="mta_operations_statement",
+    compute_kind="Polars",
+    group_name="MTA",
+    tags={"domain": "mta", "type": "ingestion", "source": "socrata"},
+)
+def mta_operations_statement(context, socrata: SocrataResource):
     endpoint = "https://data.ny.gov/resource/yg77-3tkj.json"
     limit = 500000
     offset = 0
 
     frames = []
+    last_orig_cols = []
+    last_renamed_cols = []
+
     while True:
         params = {
             "$limit": limit,
@@ -370,19 +339,78 @@ def mta_operations_statement(socrata: SocrataResource) -> pl.DataFrame:
         }
         data = socrata.fetch_data(endpoint, params)
         if not data:
-            print("[mta_ops_statement] no more data at offset", offset)
+            context.log.info(f"[mta_ops_statement] no more data at offset {offset}")
             break
 
         df = pl.DataFrame(data)
-        processed = process_mta_operations_statement_df(df)
-        frames.append(processed)
+        processed_df, orig_cols, renamed_cols = process_mta_operations_statement_df(df)
+        frames.append(processed_df)
+
+        last_orig_cols = orig_cols
+        last_renamed_cols = renamed_cols
 
         offset += limit
-        del df, processed, data
+        del df, processed_df, data
         gc.collect()
 
-    if frames:
-        return pl.concat(frames, how="vertical")
-    return pl.DataFrame([])
+    final_df = pl.concat(frames, how="vertical") if frames else pl.DataFrame([])
+    return Output(
+        value=final_df,
+        metadata={
+            "dagster/row_count": final_df.shape[0],
+            "original_columns": str(last_orig_cols),
+            "renamed_columns": str(last_renamed_cols),
+        },
+    )
 
 
+
+BASE_URL = "https://fastopendata.org/mta/raw/hourly_subway/"
+LOCAL_DOWNLOAD_PATH = HOURLY_PATH
+years = ["2022", "2023", "2024"]
+months = [f"{i:02d}" for i in range(1, 13)]  # 01..12
+
+def download_file(file_url, local_path):
+    os.makedirs(os.path.dirname(local_path), exist_ok=True)
+    response = requests.get(file_url, stream=True)
+    if response.status_code == 200:
+        with open(local_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        return local_path
+    else:
+        raise Exception(f"Failed to download: {file_url} (Status code: {response.status_code})")
+
+def download_files_from_year_month(base_url, local_base_path, year, month):
+    file_name = f"{year}_{month}.parquet"
+    file_url = f"{base_url}year%3D{year}/month%3D{month}/{file_name}"
+    local_file_path = os.path.join(local_base_path, file_name)
+    return download_file(file_url, local_file_path)
+
+@asset(
+    compute_kind="Python",
+    group_name="MTA",
+    io_manager_key="hourly_mta_io_manager",  # <--- Overrides the default io_manager for its own custom one here
+)
+def mta_hourly_subway_socrata(context):
+    downloaded_files = []
+    for year in years:
+        for month in months:
+            context.log.info(f"Downloading data for year: {year}, month: {month}")
+            try:
+                file_path = download_files_from_year_month(
+                    BASE_URL, LOCAL_DOWNLOAD_PATH, year, month
+                )
+                context.log.info(f"Downloaded file to: {file_path}")
+                downloaded_files.append(file_path)
+            except Exception as e:
+                context.log.error(f"Error downloading file for {year}-{month}: {e}")
+
+    # Return Output with metadata
+    return Output(
+        value=downloaded_files,
+        metadata={
+            "dagster/row_count": len(downloaded_files),
+            "downloaded_file_paths": str(downloaded_files),
+        },
+    )

@@ -1,6 +1,8 @@
-# File: mta/assets/ingestion/weather/weather_assets.py
+# mta/assets/ingestion/weather_assets.py
 
-from dagster import asset
+# Replace MaterializeResult with Output
+from dagster import asset, Output
+
 from mta.utils.open_mateo_free_api import (
     OpenMateoDailyWeatherConfig,
     OpenMateoHourlyWeatherConfig,
@@ -8,7 +10,6 @@ from mta.utils.open_mateo_free_api import (
     OpenMateoHourlyWeatherClient,
 )
 
-# Daily Weather Configuration
 class OpenMateoDailyWeatherConstants:
     START_DATE = "2020-09-29"
     END_DATE = "2024-10-05"
@@ -17,7 +18,6 @@ class OpenMateoDailyWeatherConstants:
     TIMEZONE = "America/New_York"
     TEMPERATURE_UNIT = "fahrenheit"
 
-# Hourly Weather Configuration
 class OpenMateoHourlyWeatherConstants:
     START_DATE = "2022-02-01"
     END_DATE = "2024-10-01"
@@ -26,7 +26,12 @@ class OpenMateoHourlyWeatherConstants:
     TIMEZONE = "America/New_York"
     TEMPERATURE_UNIT = "fahrenheit"
 
-@asset(name="daily_weather_asset", compute_kind="Polars")
+@asset(
+    name="daily_weather_asset",
+    compute_kind="Polars",
+    group_name="weather",
+    tags={"domain": "weather", "type": "ingestion", "source": "open-meteo"},
+)
 def daily_weather_asset(context):
     config = OpenMateoDailyWeatherConfig(
         start_date=OpenMateoDailyWeatherConstants.START_DATE,
@@ -40,11 +45,21 @@ def daily_weather_asset(context):
     client = OpenMateoDailyWeatherClient(config)
     daily_df = client.fetch_daily_data()
 
-    context.log.info(f"Fetched daily weather data:\n{daily_df.head()}")
-    return daily_df  # Returns a Polars DataFrame => written by SingleFilePolarsParquetIOManager
+    head_sample = daily_df.head(5).to_dicts() if daily_df.shape[0] else []
+    return Output(
+        value=daily_df,
+        metadata={
+            "dagster/row_count": daily_df.shape[0],
+            "sample_rows": str(head_sample),
+        },
+    )
 
-
-@asset(name="hourly_weather_asset", compute_kind="Polars")
+@asset(
+    name="hourly_weather_asset",
+    compute_kind="Polars",
+    group_name="weather",
+    tags={"domain": "weather", "type": "ingestion", "source": "open-meteo"},
+)
 def hourly_weather_asset(context):
     config = OpenMateoHourlyWeatherConfig(
         start_date=OpenMateoHourlyWeatherConstants.START_DATE,
@@ -58,5 +73,11 @@ def hourly_weather_asset(context):
     client = OpenMateoHourlyWeatherClient(config)
     hourly_df = client.fetch_hourly_data()
 
-    context.log.info(f"Fetched hourly weather data:\n{hourly_df.head()}")
-    return hourly_df
+    head_sample = hourly_df.head(5).to_dicts() if hourly_df.shape[0] else []
+    return Output(
+        value=hourly_df,
+        metadata={
+            "dagster/row_count": hourly_df.shape[0],
+            "sample_rows": str(head_sample),
+        },
+    )
