@@ -24,3 +24,4 @@ testing/
 metadata.db
 mta/mta/transformations/dbt/logs/
 node_modules
+logs
