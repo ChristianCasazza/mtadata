@@ -1,7 +1,0 @@
-[32m2025-02-19 15:09:11 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081904 - LOGS_CAPTURED - Started capturing logs in process (pid: 1081904).
-[32m2025-02-19 15:09:11 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081904 - daily_weather_asset - STEP_START - Started execution of step "daily_weather_asset".
-[32m2025-02-19 15:09:12 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081904 - daily_weather_asset - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
-[32m2025-02-19 15:09:12 -0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - daily_weather_asset - [SingleFilePolarsParquetIOManager] Wrote 1468 rows to /home/christiandata/mtadata/data/opendata/daily_weather_asset/daily_weather_asset.parquet
-[32m2025-02-19 15:09:12 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081904 - daily_weather_asset - ASSET_MATERIALIZATION - Materialized value daily_weather_asset.
-[32m2025-02-19 15:09:12 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081904 - daily_weather_asset - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
-[32m2025-02-19 15:09:12 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081904 - daily_weather_asset - STEP_SUCCESS - Finished execution of step "daily_weather_asset" in 911ms.

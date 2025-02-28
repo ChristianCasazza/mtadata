@@ -32,6 +32,7 @@ metadata.db
 dagster.yaml
 dagster_logs/
 mta/logs/
+logs/
 
 # DBT-related files
 mta/transformations/dbt/target/
