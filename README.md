@@ -174,15 +174,20 @@ In the top right corner of your notebook, select your .venv in python enviornmen
 Then, in the notebook, you just need to run the first two cells. The first cell will load the DuckDBWrapper Class. Then, you can initialize a `DuckDBWrapper` instance in the second cell with:
 
 #### Initialize an in-memory DuckDB instance
-con = DuckDBWrapper()
 
+```bash
+con = DuckDBWrapper()
+```
 #### Initialize a persistent DuckDB database
+
+```
+
+```bash
 con = DuckDBWrapper("my_database.duckdb")
 ```
 
 You can run the rest of the cells to learn how to utilize the class.
 
----
 
 # How to Run the Data App UI
 
