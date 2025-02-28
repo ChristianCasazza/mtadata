@@ -206,33 +206,25 @@ If Node.js is installed, this will display the current version (e.g., `v16.0.0` 
 
 Once installed, verify the installation by running the `node -v` command again to ensure it displays the version number.
 
-## Step 3: Navigate to the `mtastats` Directory
+## Step 3: Run the script
 
-Change to the `mtastats` directory where the app is located by running the following command:
-
-```bash
-cd mtastats
+```
+node scripts/run.js
 ```
 
-## Step 4: Install Dependencies
+This script will do the following
 
-With Node.js installed, run the following command to install the necessary dependencies:
+```bash
+cd app
+```
 
 ```bash
 npm install
 ```
 
-## Step 5: Start the Data Sources
-
-After installing the dependencies, start the data sources by running:
-
 ```bash
 npm run sources
 ```
-
-## Step 6: Run the Data App
-
-Now, run the following command to start the Data App UI locally:
 
 ```bash
 npm run dev

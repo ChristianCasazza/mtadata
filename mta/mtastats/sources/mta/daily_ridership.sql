@@ -1,1 +1,0 @@
-select * from daily_ridership

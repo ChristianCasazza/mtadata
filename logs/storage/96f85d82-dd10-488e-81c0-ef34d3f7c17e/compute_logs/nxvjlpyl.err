@@ -1,0 +1,10 @@
+[32m2025-02-19 15:09:11 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081907 - LOGS_CAPTURED - Started capturing logs in process (pid: 1081907).
+[32m2025-02-19 15:09:12 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081907 - mta_bus_wait_time - STEP_START - Started execution of step "mta_bus_wait_time".
+/home/christiandata/mtadata/mta/assets/ingestion/mta_assets.py:195: ChronoFormatWarning: Detected the pattern `.%f` in the chrono format string. This pattern should not be used to parse values after a decimal point. Use `%.f` instead. See the full specification: https://docs.rs/chrono/latest/chrono/format/strftime
+  pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
+[32m2025-02-19 15:09:14 -0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - mta_bus_wait_time - [mta_bus_wait_time] no more data at offset 500000
+[32m2025-02-19 15:09:14 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081907 - mta_bus_wait_time - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2025-02-19 15:09:14 -0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - mta_bus_wait_time - [SingleFilePolarsParquetIOManager] Wrote 69716 rows to /home/christiandata/mtadata/data/opendata/mta_bus_wait_time/mta_bus_wait_time.parquet
+[32m2025-02-19 15:09:14 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081907 - mta_bus_wait_time - ASSET_MATERIALIZATION - Materialized value mta_bus_wait_time.
+[32m2025-02-19 15:09:14 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081907 - mta_bus_wait_time - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2025-02-19 15:09:14 -0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 96f85d82-dd10-488e-81c0-ef34d3f7c17e - 1081907 - mta_bus_wait_time - STEP_SUCCESS - Finished execution of step "mta_bus_wait_time" in 2.34s.

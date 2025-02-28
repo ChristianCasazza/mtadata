@@ -1,26 +1,55 @@
-# ignore secrets, virtual environments and typical python compilation artifacts
+# Common Python and Development Exclusions
+# ---------------------------------------
+# Secrets and environment files
 secrets.toml
-# ignore basic python artifacts
 .env
+
+# Python compilation artifacts
 **/__pycache__/
 **/*.py[cod]
-**/*$py.class
-# ignore duckdb
+
+# Virtual environments
+.venv/
+
+# IDE-specific files
+.vscode/
+
+# Temporary files
+**/*tmp*/
+
+
+# Project-Specific Exclusions (MTA Data Pipeline)
+# ---------------------------------------------
+# DuckDB files
 *.wal
-# ignore directories for data, tools, logs, and temporary files
+data.duckdb
+
+# Data and database files
 data/
+metadata.db
+
+# Dagster-related files
 dagster.yaml
-tools/
+dagster_logs/
 mta/logs/
+
+# DBT-related files
 mta/transformations/dbt/target/
 mta/transformations/dbt/.user.yml
-EDA/
-dagster_logs/
-.venv/
-.vscode/
+mta/transformations/dbt/logs/
+
+# Frontend (Node.js/Evidence for Data App UI)
+app/node_modules/
+app/.evidence/
+app/package-lock.json
+
+
+
+# Other
+tools/
 codeprinter/
 datatest/
 testing/
-metadata.db
-mta/mta/transformations/dbt/logs/
-node_modules
+
+# Rare Python artifact (unlikely in CPython)
+**/*$py.class

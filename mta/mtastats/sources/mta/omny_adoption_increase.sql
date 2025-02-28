@@ -1,1 +1,0 @@
-select * from omny_adoption_increase

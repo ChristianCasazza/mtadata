@@ -1,6 +1,4 @@
 import dagster
-import warnings
-warnings.filterwarnings("ignore", category=dagster.ExperimentalWarning)
 import os
 from dagster import Definitions, FilesystemIOManager, load_assets_from_modules
 from mta.resources.io_manager_list import *

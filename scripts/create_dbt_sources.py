@@ -5,8 +5,8 @@ import sys
 # Add the root of the project to the system path to resolve imports from the mta module
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from mta.assets.ingestion.mta_assets import MTA_ASSETS_NAMES
-from mta.assets.ingestion.weather_assets import WEATHER_ASSETS_NAMES
+from mta.datasets import MTA_ASSETS_NAMES
+from mta.datasets import WEATHER_ASSETS_NAMES
 
 # Combine MTA and Weather asset names
 all_assets = MTA_ASSETS_NAMES + WEATHER_ASSETS_NAMES

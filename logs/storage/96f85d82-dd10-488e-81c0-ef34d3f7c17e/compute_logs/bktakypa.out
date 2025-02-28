@@ -1,0 +1,36 @@
+Running with dbt=1.8.8
+Registered adapter: duckdb=1.9.1
+Found 12 models, 9 sources, 417 macros
+
+Concurrency: 16 threads (target='dev')
+
+1 of 12 START sql table model main.avg_riders_per_day .......................... [RUN]
+2 of 12 START sql table model main.bond_payment_info ........................... [RUN]
+3 of 12 START sql table model main.daily_ridership ............................. [RUN]
+4 of 12 START sql table model main.expense_type_per_year ....................... [RUN]
+5 of 12 START sql table model main.fare_class_boro ............................. [RUN]
+6 of 12 START sql table model main.forecast_accuracy_2023 ...................... [RUN]
+7 of 12 START sql table model main.labor_expenses_per_agency ................... [RUN]
+8 of 12 START sql table model main.omny_adoption_by_station .................... [RUN]
+9 of 12 START sql table model main.omny_adoption_increase ...................... [RUN]
+10 of 12 START sql table model main.subway_station_stats ....................... [RUN]
+11 of 12 START sql table model main.total_riders_per_station ................... [RUN]
+12 of 12 START sql table model main.weekly_riders_per_station .................. [RUN]
+4 of 12 OK created sql table model main.expense_type_per_year .................. [[32mOK[0m in 0.50s]
+7 of 12 OK created sql table model main.labor_expenses_per_agency .............. [[32mOK[0m in 0.56s]
+6 of 12 OK created sql table model main.forecast_accuracy_2023 ................. [[32mOK[0m in 0.64s]
+3 of 12 OK created sql table model main.daily_ridership ........................ [[32mOK[0m in 1.00s]
+2 of 12 OK created sql table model main.bond_payment_info ...................... [[32mOK[0m in 1.06s]
+1 of 12 OK created sql table model main.avg_riders_per_day ..................... [[32mOK[0m in 3.14s]
+12 of 12 OK created sql table model main.weekly_riders_per_station ............. [[32mOK[0m in 14.95s]
+9 of 12 OK created sql table model main.omny_adoption_increase ................. [[32mOK[0m in 15.58s]
+10 of 12 OK created sql table model main.subway_station_stats .................. [[32mOK[0m in 15.92s]
+8 of 12 OK created sql table model main.omny_adoption_by_station ............... [[32mOK[0m in 17.33s]
+11 of 12 OK created sql table model main.total_riders_per_station .............. [[32mOK[0m in 17.77s]
+5 of 12 OK created sql table model main.fare_class_boro ........................ [[32mOK[0m in 17.96s]
+
+Finished running 12 table models in 0 hours 0 minutes and 18.22 seconds (18.22s).
+
+[32mCompleted successfully[0m
+
+Done. PASS=12 WARN=0 ERROR=0 SKIP=0 TOTAL=12
