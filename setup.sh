@@ -24,22 +24,31 @@ if [ "$SOCRATA_API_TOKEN" == "uHoP8dT0q1BTcacXLCcxrDp8z" ]; then
     echo "Note: This is the default community token. Please use your own token if possible."
 fi
 
-# Step 5: Copy .env.example to .env
-cp .env.example .env || { echo "Failed to copy .env.example to .env"; exit 1; }
+# Step 5: Remove any old .env, then create new .env
+rm -f .env
+touch .env
 
-# Step 6: Run exportpath.py to generate LAKE_PATH
-# Step 6: Run exportpathlinux.py to generate LAKE_PATH
-LAKE_PATH=$(uv run scripts/exportpathlinux.py)
-if [ -z "$LAKE_PATH" ]; then
-    echo "Error: Failed to generate LAKE_PATH"
+# Step 6: Run exportpathlinux.py to retrieve LAKE_PATH (line1) and DAGSTER_HOME (line2)
+readarray -t PATHS < <(uv run scripts/exportpathlinux.py)
+LAKE_PATH="${PATHS[0]}"
+DAGSTER_HOME="${PATHS[1]}"
+
+if [ -z "$LAKE_PATH" ] || [ -z "$DAGSTER_HOME" ]; then
+    echo "Error: Failed to retrieve LAKE_PATH or DAGSTER_HOME"
     exit 1
 fi
 
+# Step 7: Append env vars to .env
+{
+    echo "SOCRATA_API_TOKEN=$SOCRATA_API_TOKEN"
+    echo "LAKE_PATH=$LAKE_PATH"
+    echo "DAGSTER_HOME=$DAGSTER_HOME"
+} >> .env
 
-# Step 7: Add SOCRATA_API_TOKEN and LAKE_PATH to .env
-echo "SOCRATA_API_TOKEN=$SOCRATA_API_TOKEN" >> .env
-echo "LAKE_PATH=$LAKE_PATH" >> .env
+# Step 8: Generate dagster.yaml in DAGSTER_HOME
+mkdir -p "$DAGSTER_HOME"
+uv run scripts/generate_dagsteryaml.py "$DAGSTER_HOME" > "$DAGSTER_HOME/dagster.yaml"
 
-# Step 8: Run Dagster development server
+# Step 9: Launch Dagster
 echo "Starting Dagster development server..."
 dagster dev

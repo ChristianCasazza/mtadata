@@ -32,3 +32,4 @@ WEATHER_ASSETS_PATHS = {
 # Define the path for the hourly MTA data
 HOURLY_PATH = os.path.join(BASE_PATH, "mta_hourly_subway_socrata")
 
+DAGSTER_PATH=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs"))
