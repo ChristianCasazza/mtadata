@@ -1,33 +1,26 @@
-from dagster import asset, AssetExecutionContext, AssetIn
+from dagster import asset, AssetExecutionContext
 import duckdb
 import os
-from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, OTHER_MTA_ASSETS_PATHS, LAKE_PATH
+from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, OTHER_MTA_ASSETS_PATHS, WAREHOUSE_PATH
 
 @asset(
-    ins={
-        "mta_hourly_subway_socrata": AssetIn(),
-        "mta_daily_ridership": AssetIn(),
-        "mta_bus_speeds": AssetIn(),
-        "mta_bus_wait_time": AssetIn(),
-        "mta_operations_statement": AssetIn(),
-        "daily_weather_asset": AssetIn(),
-        "hourly_weather_asset": AssetIn(),
-    },
+    deps=[
+        "mta_hourly_subway_socrata",
+        "mta_daily_ridership",
+        "mta_bus_speeds",
+        "mta_bus_wait_time",
+        "mta_operations_statement",
+        "daily_weather_asset",
+        "hourly_weather_asset",
+    ],
     compute_kind="DuckDB",
     group_name="Transformation",
 )
 def duckdb_warehouse(
     context: AssetExecutionContext,
-    mta_hourly_subway_socrata,
-    mta_daily_ridership,
-    mta_bus_speeds,
-    mta_bus_wait_time,
-    mta_operations_statement,
-    daily_weather_asset,
-    hourly_weather_asset,
 ):
     # Define the DuckDB file path
-    duckdb_file_path = LAKE_PATH
+    duckdb_file_path = WAREHOUSE_PATH
     # Merge MTA and Weather asset paths
     parquet_base_paths = {**MTA_ASSETS_PATHS, **WEATHER_ASSETS_PATHS, **OTHER_MTA_ASSETS_PATHS}
     # Lists to track created and ignored views

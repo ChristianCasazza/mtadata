@@ -6,12 +6,12 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from mta.constants import MTA_ASSETS_PATHS, WEATHER_ASSETS_PATHS, OTHER_MTA_ASSETS_PATHS
-from constants import LAKE_PATH
+from mta.constants import WAREHOUSE_PATH
 
 
 def create_duckdb_and_views():
     # Define the DuckDB file path
-    duckdb_file_path = LAKE_PATH
+    duckdb_file_path = WAREHOUSE_PATH
 
     # Merge MTA and Weather asset paths
     parquet_base_paths = {**MTA_ASSETS_PATHS, **WEATHER_ASSETS_PATHS, **OTHER_MTA_ASSETS_PATHS}

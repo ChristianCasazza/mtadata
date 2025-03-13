@@ -30,18 +30,18 @@ touch .env
 
 # Step 6: Run exportpathlinux.py to retrieve LAKE_PATH (line1) and DAGSTER_HOME (line2)
 readarray -t PATHS < <(uv run scripts/exportpathlinux.py)
-LAKE_PATH="${PATHS[0]}"
+WAREHOUSE_PATH="${PATHS[0]}"
 DAGSTER_HOME="${PATHS[1]}"
 
-if [ -z "$LAKE_PATH" ] || [ -z "$DAGSTER_HOME" ]; then
-    echo "Error: Failed to retrieve LAKE_PATH or DAGSTER_HOME"
+if [ -z "$WAREHOUSE_PATH" ] || [ -z "$DAGSTER_HOME" ]; then
+    echo "Error: Failed to retrieve WAREHOUSE_PATH or DAGSTER_HOME"
     exit 1
 fi
 
 # Step 7: Append env vars to .env
 {
     echo "SOCRATA_API_TOKEN=$SOCRATA_API_TOKEN"
-    echo "LAKE_PATH=$LAKE_PATH"
+    echo "WAREHOUSE_PATH=$LAKE_PATH"
     echo "DAGSTER_HOME=$DAGSTER_HOME"
 } >> .env
 

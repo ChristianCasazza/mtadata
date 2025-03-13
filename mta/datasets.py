@@ -1,4 +1,5 @@
 
+#Groups of names to power the logic in mta/assets/transformations/duckdb_assets.py, combined with constants.py
 
 MTA_ASSETS_NAMES = [
     "mta_daily_ridership",

@@ -3,7 +3,7 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Now you can import constants
+# import constants and our asset descriptions
 from mta.constants import SQLITE_PATH
 from mta.assets.assets_descriptions import table_descriptions
 

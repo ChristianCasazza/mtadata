@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: "{{ env_var('LAKE_PATH') }}"
+      path: "{{ env_var('WAREHOUSE_PATH') }}"
       threads: 16
       settings:
         enable_object_cache: true
