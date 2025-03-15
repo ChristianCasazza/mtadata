@@ -31,20 +31,18 @@ metadata.db
 # Dagster-related files
 dagster.yaml
 dagster_logs/
-mta/logs/
+pipeline/logs/
 logs/
 
-# DBT-related files
-mta/transformations/dbt/target/
-mta/transformations/dbt/.user.yml
-mta/transformations/dbt/logs/
 
 # Frontend (Node.js/Evidence for Data App UI)
 app/node_modules/
 app/.evidence/
 app/package-lock.json
 
-
+transformations/dbt/target
+transformations/dbt/.user.yml
+transformations/dbt/logs/
 
 # Other
 tools/
