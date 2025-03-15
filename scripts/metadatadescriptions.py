@@ -4,8 +4,8 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # import constants and our asset descriptions
-from mta.constants import SQLITE_PATH
-from mta.assets.assets_descriptions import table_descriptions
+from pipeline.constants import SQLITE_PATH
+from pipeline.assets.assets_descriptions import table_descriptions
 
 # Function to add descriptions for a specific table
 def update_descriptions_for_table(conn, table_name, descriptions):

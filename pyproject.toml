@@ -28,5 +28,5 @@ dependencies = [
 ]
 
 [tool.dagster]
-module_name = "mta.definitions"
-code_location_name = "mta"
+module_name = "pipeline.definitions"
+code_location_name = "pipeline"

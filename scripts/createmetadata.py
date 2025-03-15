@@ -3,7 +3,7 @@ import duckdb
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from mta.constants import SQLITE_PATH, WAREHOUSE_PATH
+from pipeline.constants import SQLITE_PATH, WAREHOUSE_PATH
 
 # Define the DuckDB and SQLite file paths
 duckdb_file_path = WAREHOUSE_PATH

@@ -6,7 +6,7 @@ import sys
 import os
 # Add the parent directory to the module search path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from mta.constants import SQLITE_PATH
+from pipeline.constants import SQLITE_PATH
 # Correct path to the 'templates' folder relative to the 'scripts' directory
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), 'templates'))
 

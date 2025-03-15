@@ -5,7 +5,7 @@ import os
 # Add the parent directory of 'mta' to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from mta.constants import WAREHOUSE_PATH, DAGSTER_PATH
+from pipeline.constants import WAREHOUSE_PATH, DAGSTER_PATH
 
 # Convert any backslashes to forward slashes (just in case, on Linux it's typically forward slash)
 lake_path = WAREHOUSE_PATH.replace("\\", "/")
