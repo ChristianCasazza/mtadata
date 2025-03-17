@@ -41,7 +41,7 @@ fi
 # Step 7: Append env vars to .env
 {
     echo "SOCRATA_API_TOKEN=$SOCRATA_API_TOKEN"
-    echo "WAREHOUSE_PATH=$LAKE_PATH"
+    echo "WAREHOUSE_PATH=$WAREHOUSE_PATH"
     echo "DAGSTER_HOME=$DAGSTER_HOME"
 } >> .env
 
