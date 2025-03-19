@@ -26,19 +26,14 @@ HOURLY_PATH = os.path.join(LAKE_PATH, "mta_hourly_subway_socrata")
 
 #Logic for creating a DuckDB warehouse from our data lake
 # Dynamically create paths for MTA assets
-MTA_ASSETS_PATHS = {
+SINGLE_PATH_ASSETS_PATHS = {
     asset_name: f"{LAKE_PATH}/{asset_name}"
-    for asset_name in MTA_ASSETS_NAMES
+    for asset_name in SINGLE_PATH_ASSETS_NAMES
 }
 
-# Dynamically create paths for other MTA assets
-OTHER_MTA_ASSETS_PATHS = { 
-    asset_name: f"{LAKE_PATH}/{asset_name}"
-    for asset_name in OTHER_MTA_ASSETS_NAMES 
-}
 
 # Dynamically create paths for Weather assets
-WEATHER_ASSETS_PATHS = {
+PARTITIONED_ASSETS_PATHS = {
     asset_name: f"{LAKE_PATH}/{asset_name}"
-    for asset_name in WEATHER_ASSETS_NAMES
+    for asset_name in PARTITIONED_ASSETS_NAMES
 }

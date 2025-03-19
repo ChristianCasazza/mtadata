@@ -2,11 +2,11 @@ version: 2
 sources:
 - name: main
   tables:
-  - name: mta_hourly_subway_socrata
+  - name: mta_subway_hourly_ridership
     meta:
       dagster:
         asset_key:
-        - mta_hourly_subway_socrata
+        - mta_subway_hourly_ridership
   - name: mta_daily_ridership
     meta:
       dagster:

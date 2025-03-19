@@ -13,7 +13,7 @@ from pipeline.constants import LAKE_PATH  #The base path for our data lake of pa
 from pipeline.constants import HOURLY_PATH
 
 from pipeline.resources.io_managers.single_file_polars_parquet_io_manager import SingleFilePolarsParquetIOManager #Our IO Manager for storing dagster dataframes as parquet files
-from dagster import FilesystemIOManager
+from pipeline.resources.io_managers.fastopendata_partitioned_parquet_io_manager import FastOpenDataPartitionedParquetIOManager
 
 
 from pipeline.resources.socrata_resource import SocrataResource#Our Socrata resource for interacting with the Socrata API through a common format
@@ -35,16 +35,17 @@ SingleFilePolarsParquetIOManager = SingleFilePolarsParquetIOManager(base_dir=LAK
 # Create the Socrata resource
 socrata = SocrataResource()  # Using default env var for the token
 
-hourly_filesystem_io_manager = {
-    "hourly_mta_io_manager": FilesystemIOManager(base_dir=HOURLY_PATH)
-}
+# Create the existing partition-based IO manager
+fastopendata_partitioned_parquet_io_manager = FastOpenDataPartitionedParquetIOManager(
+    base_dir=LAKE_PATH  
+)
 
 
 # Then, bundle all of them into resources
 resources = {
     "dbt": DbtCliResource(project_dir=dbt_project.project_dir),  # Updated DBT resource reference
     "io_manager": SingleFilePolarsParquetIOManager, # The first io_manager matches the key assigned on all the assets in assets/ingestion. 
-    **hourly_filesystem_io_manager,  
+    "fastopendata_partitioned_parquet_io_manager": fastopendata_partitioned_parquet_io_manager,
     "socrata": socrata,
 }
 

@@ -8,7 +8,7 @@ WITH total_ridership_per_borough_daytype AS (
         END AS day_type,
         SUM(ridership) AS total_ridership_borough_daytype
     FROM 
-        {{ source('main', 'mta_hourly_subway_socrata') }}
+        {{ source('main', 'mta_subway_hourly_ridership') }}
     GROUP BY 
         borough, day_type
 ),
@@ -23,7 +23,7 @@ ridership_by_fare_class AS (
         END AS day_type,
         SUM(ridership) AS total_ridership
     FROM 
-        {{ source('main', 'mta_hourly_subway_socrata') }}
+        {{ source('main', 'mta_subway_hourly_ridership') }}
     GROUP BY 
         borough, fare_class_category, day_type
 )

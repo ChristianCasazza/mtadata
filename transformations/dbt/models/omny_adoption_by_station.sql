@@ -4,7 +4,7 @@ WITH yearly_data AS (
         YEAR(transit_timestamp) AS year,
         SUM(CASE WHEN payment_method = 'omny' THEN ridership ELSE 0 END) * 1.0 / SUM(ridership) AS omny_percentage
     FROM 
-        {{ source('main', 'mta_hourly_subway_socrata') }}
+        {{ source('main', 'mta_subway_hourly_ridership') }}
     WHERE 
         YEAR(transit_timestamp) IN (2022, 2023, 2024)
     GROUP BY 

@@ -91,6 +91,6 @@ LEFT JOIN
 ON 
     rd.week_start = wd.week_start
 WHERE 
-    rd.week_start < '2024-10-15'
+    rd.week_start < '2025-03-15'
 ORDER BY 
     rd.week_start, rd.transport_type

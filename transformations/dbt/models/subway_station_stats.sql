@@ -9,7 +9,7 @@ WITH ridership_by_day AS (
         MIN(latitude) AS latitude,   -- Add latitude
         MIN(longitude) AS longitude  -- Add longitude
     FROM 
-        {{ source('main', 'mta_hourly_subway_socrata') }}
+        {{ source('main', 'mta_subway_hourly_ridership') }}
     WHERE 
         YEAR(transit_timestamp) = 2024
     GROUP BY 
@@ -26,7 +26,7 @@ total_riders_ytd AS (
         MIN(latitude) AS latitude,   -- Add latitude
         MIN(longitude) AS longitude  -- Add longitude
     FROM 
-        {{ source('main', 'mta_hourly_subway_socrata') }}
+        {{ source('main', 'mta_subway_hourly_ridership') }}
     WHERE 
         YEAR(transit_timestamp) IN (2023, 2024)
     GROUP BY 

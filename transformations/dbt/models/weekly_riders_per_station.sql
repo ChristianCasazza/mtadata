@@ -6,7 +6,7 @@ WITH weekly_ridership AS (
         MIN(latitude) AS latitude,  -- Assuming latitude is the same for each station complex, use MIN() or MAX()
         MIN(longitude) AS longitude  -- Assuming longitude is the same for each station complex, use MIN() or MAX()
     FROM 
-        {{ source('main', 'mta_hourly_subway_socrata') }}
+        {{ source('main', 'mta_subway_hourly_ridership') }}
     GROUP BY 
         station_complex, 
         DATE_TRUNC('week', transit_timestamp)
@@ -36,7 +36,7 @@ LEFT JOIN
 ON 
     wr.week_start = ww.week_start
 WHERE 
-    wr.week_start < '2024-09-17'
+    wr.week_start < '2024-12-26'
 ORDER BY 
     wr.station_complex, 
     wr.week_start

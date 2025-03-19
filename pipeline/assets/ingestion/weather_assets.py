@@ -11,8 +11,8 @@ from pipeline.utils.open_mateo_free_api import (
 )
 
 class OpenMateoDailyWeatherConstants:
-    START_DATE = "2020-09-29"
-    END_DATE = "2024-10-05"
+    START_DATE = "2020-02-24"
+    END_DATE = "2025-03-15"
     LATITUDE = 40.7143
     LONGITUDE = -74.006
     TIMEZONE = "America/New_York"
@@ -20,7 +20,7 @@ class OpenMateoDailyWeatherConstants:
 
 class OpenMateoHourlyWeatherConstants:
     START_DATE = "2022-02-01"
-    END_DATE = "2024-10-01"
+    END_DATE = "2025-01-01"
     LATITUDE = 40.7143
     LONGITUDE = -74.006
     TIMEZONE = "America/New_York"

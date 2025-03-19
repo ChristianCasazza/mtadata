@@ -132,16 +132,16 @@ uv run scripts/create.py app
 
 Harlequin is a terminal based local SQL editor.
 
-To start it, open a new terminal, then, run the following command to install the Harlequin SQL editor:
+To start it, open a new terminal, then, run the following command to use the Harlequin SQL editor with uv:
 
 
 ```bash
-pip install harlequin
+uvx harlequin
 ```
 Then use it to connect to the duckdb file we created with scripts/create.py
 
 ```bash
-harlequin mta/mtastats/sources/mta/mtastats.duckdb
+harlequin app/sources/app/data.duckdb
 ```
 
 ### Step 2: Query the Data
@@ -153,7 +153,7 @@ SELECT
     COUNT(*) AS total_rows,
     MIN(transit_timestamp) AS min_transit_timestamp,
     MAX(transit_timestamp) AS max_transit_timestamp
-FROM mta_hourly_subway_socrata
+FROM mta_hourly_subway_ridership
 ```
 
 This query will return the total number of rows, the earliest timestamp, and the latest timestamp in the dataset.
