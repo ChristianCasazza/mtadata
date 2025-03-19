@@ -16,17 +16,54 @@ What does this repo use
 This project assumes you are using a code IDE, either locally such as with [VSCode](https://code.visualstudio.com/docs/setup/setup-overview) or with [Github Codespaces](
 https://docs.github.com/en/codespaces/getting-started/quickstart). Codespaces can be run by first making a free Github account, clicking the green **Code** button at the top of this repo, and then selecting **Codespaces**.
 
-## 1. Install `uv`
+If coding locally, [this guide](https://github.com/theopendatastackofficial/get-started-coding-locally) will help you get setup with VSCode(free code interface), WSL(for windows users), uv(for python) bun(for js/ts) and git/Github(for saving and sharing)
 
-Before proceeding, you will need to install `uv`. You can install it via pip:
+## 1. Install uv for python code
 
-```bash
-pip install uv
+**uv** is an extremely fast Python package manager that simplifies creating and managing Python projects. We’ll install it first to ensure our Python environment is ready to go. uv makes working with python both faster and simpler.
+
+### Install uv
+
+In VSCode, at the top of the screen, you will see an option that says **Terminal**. Then, you should click the button, and then select **New Terminal**. Then, copy and paste the following commands to install uv. You can double check they are the correct scripts by going to the official uv site, maintained by the company astral.
+
+[Install uv](https://docs.astral.sh/uv/getting-started/installation/#standalone-installer)
+
+```macOS, WSL, and Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Alternatively, follow the instructions here: [Install UV](https://docs.astral.sh/uv/getting-started/installation/#installation-methods).
+If you are using Windows and also not using WSL.
 
-Once `uv` is installed, proceed to clone the repository.
+Windows Powershell:
+```sh
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+### Test your install by running in the terminal:
+```sh
+uv
+```
+
+#### Expected output:
+If uv was installed correctly, you should see a help message that starts with:
+
+```sh
+An extremely fast Python package manager.
+
+Usage: uv [OPTIONS] <COMMAND>
+
+Commands:
+  run      Run a command or script
+  init     Create a new project
+  ...
+  help     Display documentation for a command
+```
+
+#### If you get an error:
+- Copy and paste the exact error message into ChatGPT and explain you’re having problems using uv.
+- ChatGPT can help troubleshoot your specific error message.
+
+If uv displays its usage information without an error, congratulations! You’re all set to work with Python in your local environment.
 
 ## 2. Clone the Repository
 
@@ -42,13 +79,12 @@ You can also make the repo have a custom name by adding it at the end:
 git clone https://github.com/ChristianCasazza/mtadata custom_name
 ```
 
-Then, navigate into the repository directory:
 
-```bash
-cd custom_name
-```
+In VSCode, on the left side of the screen, there will be a vertical bar, and the icon with two pieces of paper will be called **Explorer**. By clicking on this, you can open click **open folder** and then it will be called mtadata or your custom name. 
 
 ## 3. Setup the Project
+
+You will need a Socrata API key. Please use your own key if possible. You can obtain one in two minutes by signing up [here](https://evergreen.data.socrata.com/signup) and following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys). You want to obtain your Socrata App token, at the bottom. Keep this handy to copy and paste in the rest of this step.
 
 This repository includes two setup scripts:
 - **`setup.sh`**: For Linux/macOS
@@ -58,12 +94,14 @@ These scripts automate the following tasks:
 1. Create and activate a virtual environment using `uv`.
 2. Install project dependencies.
 3. Ask for your Socrata App Token (`SOCRATA_API_TOKEN`). If no key is provided, the script will use the community key: `uHoP8dT0q1BTcacXLCcxrDp8z`.
-   - **Important**: The community key is shared and rate-limited. Please use your own key if possible. You can obtain one in two minutes by signing up [here](https://evergreen.data.socrata.com/signup) and following [these instructions](https://support.socrata.com/hc/en-us/articles/210138558-Generating-App-Tokens-and-API-Keys).
-4. Copy `.env.example` to `.env` and append `SOCRATA_API_TOKEN` to the file.
-5. Dynamically generate the `LAKE_PATH` variable for your system and append it to `.env`.
-6. Start the Dagster development server.
+   - **Important**: The community key is shared and rate-limited, please get your own token.
+4. Creates a `.env` and appends `SOCRATA_API_TOKEN`, `WAREHOUSE_PATH`(to tell DBT where your DuckDB file is) and `DAGSTER_HOME`(for your logs) to the .env file.
+- **Note**: Your personal .env file won't appear in Github because of its presence in the .gitignore file
+65 Start the Dagster development server.
 
 ### Run the Setup Script
+
+In your VSCode window, click **Terminal** at the top, and then **New Terminal**. Then, copy and paste the following command: 
 
 #### On Linux/macOS:
 ```bash
@@ -99,18 +137,12 @@ After the setup script finishes, you can access the Dagster web UI. The script w
 
 This will execute the following pipeline:
 
-1. Ingest MTA data from the Socrata API, weather data from the Open Mateo API, and the 67M hourly subway dataset from R2 as parquet files in `data/opendata/nyc/mta/nyc/`.
+1. Ingest MTA data from the Socrata API, weather data from the Open Mateo API, and the 70M rows mta_subway_hourly_ridsership  dataset from R2 as partitioned parquet files.
 2. Create a DuckDB file with views on each raw dataset's parquet files.
 3. Execute a SQL transformation pipeline with DBT on the raw datasets.
 
-The entire pipeline should take 2-5 minutes, with most of the time spent ingesting the large hourly dataset.
+The entire pipeline should take 1-10 minutes, depending on your machine's strenth and internet download speed. Most of the time spent is ingesting the large hourly dataset.
 
-## Additional Notes
-
-- **SOCRATA_API_TOKEN**: If you use the community key, you may encounter rate limits. It's strongly recommended to use your own key.
-- **LAKE_PATH**: This variable is dynamically generated by `exportpath.py` and added to your `.env` file during setup. It represents the location of the DuckDB file for DBT transformations.
-
----
 
 # Running the Data Dictionary UI
 
@@ -138,7 +170,7 @@ To start it, open a new terminal, then, run the following command to use the Har
 ```bash
 uvx harlequin
 ```
-Then use it to connect to the duckdb file we created with scripts/create.py
+Then use it to connect to the duckdb file we created during our pipeline.
 
 ```bash
 harlequin app/sources/app/data.duckdb
@@ -193,28 +225,63 @@ You can run the rest of the cells to learn how to utilize the class.
 
 ## Step 1: Open a New Terminal
 
-## Step 2: Check if Node.js is Installed
+## Step 2: Ensure Bun is installed
 
-Before running the app, check if you have Node.js installed by running the following command:
+[Bun](https://bun.sh/docs) is an extremely fast runtime and package manager that simplifies creating and managing JavaScript (JS) or TypeScript (TS) projects. We’ll install it first to ensure our Js/TS environment is ready to go. Bun makes working with JS and TS code both faster and simpler.
 
-```bash
-node -v
+[Install Bun](https://bun.sh/docs/installation)
+
+```macOS, WSL, and Linux
+curl -fsSL https://bun.sh/install | bash 
 ```
 
-If Node.js is installed, this will display the current version (e.g., `v16.0.0` or higher). If you see a version number, you're ready to proceed to the next step.
+If you are using Windows and also not using WSL.
 
-### If Node.js is NOT installed:
+Windows Powershell:
+```sh
+powershell -c "irm bun.sh/install.ps1|iex"
+```
 
-1. Go to the [Node.js download page](https://nodejs.org/).
-2. Download the appropriate installer for your operating system (Windows, macOS, or Linux).
-3. Follow the instructions to install Node.js.
 
-Once installed, verify the installation by running the `node -v` command again to ensure it displays the version number.
+### Test Your Bun Installation
+
+#### Open the Terminal in VSCode
+- In VSCode, look at the top menu and select **Terminal > New Terminal**
+
+#### Run the command:
+```sh
+bun
+```
+
+#### Expected output:
+If Bun was installed correctly, you should see a help message that starts with something like this:
+
+```sh
+Bun is a fast JavaScript runtime, package manager, bundler, and test runner. (1.2.4+fd9a5ea66)
+
+Usage: bun <command> [...flags] [...args]
+
+Commands:
+  run       ./my-script.ts       Execute a file with Bun
+            lint                 Run a package.json script
+  test                           Run unit tests with Bun
+  x         prettier             Execute a package binary (CLI), installing if needed (bunx)
+  repl                           Start a REPL session with Bun
+  exec                           Run a shell script directly with Bun
+
+  install                        Install dependencies for a package.json (bun i)
+```
+
+#### Again, if you get an error:
+- Copy and paste the exact error message into ChatGPT and explain you’re having problems installing and using bun.
+- ChatGPT can help troubleshoot your specific error message.
+
+---
 
 ## Step 3: Run the script
 
 ```
-node scripts/run.js
+bun scripts/run.js
 ```
 
 This script will do the following
@@ -224,15 +291,15 @@ cd app
 ```
 
 ```bash
-npm install
+bun install
 ```
 
 ```bash
-npm run sources
+bun run sources
 ```
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 This will open up the Data App UI, and it will be running on your local machine. You should be able to access it by visiting the address shown in your terminal, typically `http://localhost:3000`.

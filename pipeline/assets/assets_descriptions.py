@@ -48,29 +48,6 @@ descriptions_mta_operations_statement = {
 }
 
 
-descriptions_mta_bus_wait_time = {
-    "month": "Represents the time period in which the wait assessment is being calculated (yyyy-mm-dd).",
-    "borough": "Represents the five boroughs of New York City (Bronx, Brooklyn, Manhattan, Queens, Staten Island).",
-    "day_type": "Represents 1 as weekday and 2 as weekend.",
-    "trip_type": "The type of bus service provided: EXP (Express), LCL/LTD (Local/Limited), SBS (Select Bus Service).",
-    "route_id": "Identifies each individual bus route, as well as cumulative totals for all bus routes (identified as ALL).",
-    "period": "Represents both the peak and off-peak service periods.",
-    "number_of_trips_passing_wait": "The number of trips that are no more than three minutes over their scheduled intervals for each bus route, monthly, during peak and off-peak hours.",
-    "number_of_scheduled_trips": "The number of scheduled trips for each bus route, monthly, during peak and off-peak hours.",
-    "wait_assessment": "The percentage of trips that pass the wait assessment on each bus route, monthly, during peak and off-peak hours."
-}
-
-descriptions_mta_bus_speeds = {
-    "month": "Represents the time period in which the average speed is being calculated (yyyy-mm-dd).",
-    "borough": "Represents the five boroughs of New York City (Bronx, Brooklyn, Manhattan, Queens, Staten Island).",
-    "day_type": "Represents 1 as weekday and 2 as weekend.",
-    "trip_type": "The type of bus service provided: EXP (Express), LCL/LTD (Local/Limited), SBS (Select Bus Service).",
-    "route_id": "Identifies each individual bus route, as well as cumulative totals for all bus routes (identified as ALL).",
-    "period": "Represents both the peak and off-peak service periods.",
-    "total_mileage": "The total mileage for each bus route, monthly, during peak and off-peak hours.",
-    "total_operating_time": "The total operating time for each bus route, monthly, during peak and off-peak hours.",
-    "average_speed": "The average speed is based on the total operating time and total mileage, per bus route, per month."
-}
 
 
 # Automatically generate table_descriptions

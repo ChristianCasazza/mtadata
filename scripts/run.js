@@ -26,16 +26,16 @@ async function runScripts() {
         process.chdir(path.join(__dirname, '..', 'app'));
 
         // Run 'npm install' to install dependencies
-        console.log('Running npm install...');
-        await runCommand('npm', ['install']);
+        console.log('Running bun install...');
+        await runCommand('bun', ['install']);
 
         // Run 'npm run sources'
-        console.log('Running npm run sources...');
-        await runCommand('npm', ['run', 'sources']);
+        console.log('Running bun run sources...');
+        await runCommand('bun', ['run', 'sources']);
 
         // Run 'npm run dev'
-        console.log('Running npm run dev...');
-        await runCommand('npm', ['run', 'dev']);
+        console.log('Running bun run dev...');
+        await runCommand('bun', ['run', 'dev']);
 
         console.log('All commands executed successfully.');
     } catch (error) {
