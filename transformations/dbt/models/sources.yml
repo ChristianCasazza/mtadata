@@ -12,16 +12,6 @@ sources:
       dagster:
         asset_key:
         - mta_daily_ridership
-  - name: mta_bus_speeds
-    meta:
-      dagster:
-        asset_key:
-        - mta_bus_speeds
-  - name: mta_bus_wait_time
-    meta:
-      dagster:
-        asset_key:
-        - mta_bus_wait_time
   - name: mta_operations_statement
     meta:
       dagster:

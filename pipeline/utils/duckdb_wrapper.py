@@ -184,13 +184,11 @@ class DuckDBWrapper:
         path_str = str(Path(base_path) / wildcard)
         query = f"""
         CREATE OR REPLACE VIEW {table_name} AS 
-        SELECT * FROM read_parquet('{path_str}', hive_partitioning=true)
+        SELECT * FROM read_parquet('{path_str}', hive_partitioning=true, union_by_name=true)
         """
         self.con.execute(query)
         self.registered_tables.append(table_name)
         print(f"Partitioned view '{table_name}' created for files at '{path_str}'.")
-
-    # --- NEW METHODS (added without modifying existing functionality) ---
 
     def register_local_data_skip_errors(self, base_path, table_name, wildcard="*.parquet"):
         """

@@ -27,6 +27,7 @@ data.duckdb
 # Data and database files
 data/
 metadata.db
+.duckdb
 
 # Dagster-related files
 dagster.yaml

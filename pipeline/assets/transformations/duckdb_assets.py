@@ -12,8 +12,6 @@ from pipeline.utils.duckdb_wrapper import DuckDBWrapper
     deps=[
         "mta_subway_hourly_ridership",
         "mta_daily_ridership",
-        "mta_bus_speeds",
-        "mta_bus_wait_time",
         "mta_operations_statement",
         "daily_weather_asset",
         "hourly_weather_asset",

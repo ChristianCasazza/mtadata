@@ -46,63 +46,6 @@ def process_mta_daily_df(df: pl.DataFrame) -> (pl.DataFrame, list, list, str):
 
     return df, orig_cols, renamed_cols, date_sample
 
-def process_mta_bus_speeds_df(df: pl.DataFrame) -> (pl.DataFrame, list, list):
-    orig_cols = df.columns
-    df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
-    renamed_cols = df.columns
-
-    if "month" in df.columns:
-        df = df.with_columns(
-            pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
-        )
-
-    casts = [
-        ("borough", pl.Utf8),
-        ("day_type", pl.Int64),
-        ("trip_type", pl.Utf8),
-        ("route_id", pl.Utf8),
-        ("period", pl.Utf8),
-        ("total_mileage", pl.Float64),
-        ("total_operating_time", pl.Float64),
-        ("average_speed", pl.Float64),
-    ]
-    exprs = []
-    for col_name, dtype in casts:
-        if col_name in df.columns:
-            exprs.append(pl.col(col_name).cast(dtype))
-    if exprs:
-        df = df.with_columns(exprs)
-
-    return df, orig_cols, renamed_cols
-
-def process_mta_bus_wait_time_df(df: pl.DataFrame) -> (pl.DataFrame, list, list):
-    orig_cols = df.columns
-    df = df.rename({col: col.lower().replace(" ", "_").replace("-", "_") for col in df.columns})
-    renamed_cols = df.columns
-
-    if "month" in df.columns:
-        df = df.with_columns(
-            pl.col("month").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("month")
-        )
-
-    casts = [
-        ("borough", pl.Utf8),
-        ("day_type", pl.Int64),
-        ("trip_type", pl.Utf8),
-        ("route_id", pl.Utf8),
-        ("period", pl.Utf8),
-        ("number_of_trips_passing_wait", pl.Float64),
-        ("number_of_scheduled_trips", pl.Float64),
-        ("wait_assessment", pl.Float64),
-    ]
-    exprs = []
-    for col_name, dtype in casts:
-        if col_name in df.columns:
-            exprs.append(pl.col(col_name).cast(dtype))
-    if exprs:
-        df = df.with_columns(exprs)
-
-    return df, orig_cols, renamed_cols
 
 def process_mta_operations_statement_df(df: pl.DataFrame) -> (pl.DataFrame, list, list):
     orig_cols = df.columns
