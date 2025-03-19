@@ -1,6 +1,3 @@
-# Descriptions for mta_subway_origin_destination_2023 table
-
-
 # Descriptions for mta_daily_ridership table
 descriptions_mta_daily_ridership = {
     "date": "The date of travel (MM/DD/YYYY).",
@@ -20,8 +17,8 @@ descriptions_mta_daily_ridership = {
     "staten_island_railway_pct_pre_pandemic": "The daily ridership estimate as a percentage of SIR ridership on an equivalent day prior to the COVID-19 pandemic."
 }
 
-# Descriptions for mta_hourly_subway_socrata table
-descriptions_mta_hourly_subway_socrata = {
+# Descriptions for mta_subway_hourly_ridership table
+descriptions_mta_subway_hourly_ridership = {
     "transit_timestamp": "Timestamp payment took place in local time. All transactions are rounded down to the nearest hour (e.g., 1:37pm → 1pm).",
     "transit_mode": "Distinguishes between subway, Staten Island Railway, and Roosevelt Island Tram.",
     "station_complex_id": "A unique identifier for station complexes.",
@@ -50,59 +47,6 @@ descriptions_mta_operations_statement = {
     "amount": "The financial amount, can be a decimal or negative for transfers within the agency, in dollars."
 }
 
-descriptions_sf_air_traffic_landings = {
-    "activity_period": "The year and month at which passenger, cargo or landings activity took place.",
-    "activity_period_start_date": "Start date of the year and month at which passenger, cargo or landings activity took place.",
-    "operating_airline": "Airline name for the operator of aircraft with landing activity.",
-    "operating_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Operating Airline.",
-    "published_airline": "Airline name that issues the ticket and books revenue for landings activity.",
-    "published_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Published Airline.",
-    "geo_summary": "Designates whether the passenger, cargo or landings activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops.",
-    "geo_region": "Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops.",
-    "landing_aircraft_type": "A designation for three types of aircraft that landed at SFO, which includes passenger aircraft, cargo-only aircraft (“freighters”) or combination aircraft (“combi”).",
-    "aircraft_body_type": "A designation that is independent from Landing Aircraft Type, which determines whether commercial aircraft landed at SFO is a wide body jet, narrow body jet, regional jet or a propeller operated aircraft.",
-    "aircraft_manufacturer": "Manufacturer name for the aircraft that landed at SFO.",
-    "aircraft_model": "Model designation of aircraft by the manufacturer.",
-    "aircraft_version": "Variations of the Aircraft Model, also known as the 'dash number', designated by the manufacturer to segregate unique versions of the same model.",
-    "landing_count": "The number of aircraft landings associated with General and Landings Statistics attribute fields.",
-    "total_landed_weight": "The aircraft landed weight (in pounds) associated with General and Landings Statistics attribute fields."
-}
-
-descriptions_sf_air_traffic_passenger_stats = {
-    "activity_period": "The year and month when this activity occurred.",
-    "activity_period_start_date": "Start date of the activity period.",
-    "operating_airline": "Airline name for the operator of aircraft with passenger activity.",
-    "operating_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Operating Airline.",
-    "published_airline": "Airline name that issues the ticket and books revenue for passenger activity.",
-    "published_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Published Airline.",
-    "geo_summary": "Designates whether the passenger activity in relation to SFO arrived from or departed to a location within the United States (“domestic”), or outside the United States (“international”) without stops.",
-    "geo_region": "Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to without stops.",
-    "activity_type_code": "A description of the physical action a passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”).",
-    "price_category_code": "A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier.",
-    "terminal": "Name of a terminal of the airport.",
-    "boarding_area": "Letter that represents a boarding area.",
-    "passenger_count": "Total number of passengers this month.",
-    "data_as_of": "Datetime of data as of.",
-    "data_loaded_at": "Datetime of data loaded at."
-}
-
-descriptions_sf_air_traffic_cargo = {
-    "activity_period": "The year and month when this activity occurred.",
-    "activity_period_start_date": "Start date of the year and month when this activity occurred.",
-    "operating_airline": "Airline name for the operator of aircraft with cargo activity.",
-    "operating_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Operating Airline.",
-    "published_airline": "Airline name that issues the ticket and books revenue for cargo activity.",
-    "published_airline_iata_code": "The International Air Transport Association (IATA) two-letter designation for the Published Airline.",
-    "geo_summary": "An airport-defined high-level geographical categorization of the flight operations.",
-    "geo_region": "An airport-defined world region of the flight operations.",
-    "activity_type_code": "Short code that represents the type of activities such as enplaned, deplaned, and transit.",
-    "cargo_type_code": "Short code that represents a broad categorization of the type of cargo such as 'mail'.",
-    "cargo_aircraft_type": "Short code that represents the type of the cargo aircraft.",
-    "cargo_weight_lbs": "The weight (in pounds) of air cargo associated with General and Cargo Statistics attribute fields.",
-    "cargo_metric_tons": "The weight (in metric tons) of air cargo associated with General and Cargo Statistics attribute fields.",
-    "data_as_of": "Datetime of the data as of.",
-    "data_loaded_at": "Datetime the data is loaded."
-}
 
 descriptions_mta_bus_wait_time = {
     "month": "Represents the time period in which the wait assessment is being calculated (yyyy-mm-dd).",
