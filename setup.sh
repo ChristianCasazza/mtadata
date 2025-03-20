@@ -28,8 +28,20 @@ fi
 rm -f .env
 touch .env
 
-# Step 6: Run exportpathlinux.py to retrieve LAKE_PATH (line1) and DAGSTER_HOME (line2)
-readarray -t PATHS < <(uv run scripts/exportpathlinux.py)
+# Step 6: Run exportpathlinux.py to retrieve WAREHOUSE_PATH and DAGSTER_HOME
+BASH_VERSION_MAJOR=$(echo "$BASH_VERSION" | cut -d. -f1)
+
+if [ "$BASH_VERSION_MAJOR" -ge 4 ]; then
+    # Use readarray (Bash 4+)
+    readarray -t PATHS < <(uv run scripts/exportpathlinux.py)
+else
+    # Fallback for older Bash versions
+    PATHS=()
+    while IFS= read -r line; do
+        PATHS+=("$line")
+    done < <(uv run scripts/exportpathlinux.py)
+fi
+
 WAREHOUSE_PATH="${PATHS[0]}"
 DAGSTER_HOME="${PATHS[1]}"
 
