@@ -7,17 +7,20 @@ import polars as pl
 from datetime import datetime
 
 # Replace MaterializeResult with Output
-from dagster import asset, Output
+from dagster import asset, Output, MetadataValue
 
-from pipeline.constants import HOURLY_PATH
 from pipeline.resources.socrata_resource import SocrataResource
 from .processing.mta_processing import *
 
 @asset(
     name="mta_daily_ridership",
     compute_kind="Polars",
+    io_manager_key="single_file_polars_parquet_io_manager",
     group_name="MTA",
     tags={"domain": "mta", "type": "ingestion", "source": "socrata"},
+    metadata={
+        "data_url": MetadataValue.url("https://data.ny.gov/Transportation/MTA-Daily-Ridership-Data-2020-2025/vxuj-8kew/about_data")
+    }
 )
 def mta_daily_ridership(context, socrata: SocrataResource):
     endpoint = "https://data.ny.gov/resource/vxuj-8kew.json"
@@ -67,8 +70,12 @@ def mta_daily_ridership(context, socrata: SocrataResource):
 @asset(
     name="mta_operations_statement",
     compute_kind="Polars",
+    io_manager_key="single_file_polars_parquet_io_manager",
     group_name="MTA",
     tags={"domain": "mta", "type": "ingestion", "source": "socrata"},
+    metadata={
+        "data_url": MetadataValue.url("https://data.ny.gov/Transportation/MTA-Statement-of-Operations-Beginning-2019/yg77-3tkj/about_data")
+    }
 )
 def mta_operations_statement(context, socrata: SocrataResource):
     endpoint = "https://data.ny.gov/resource/yg77-3tkj.json"
@@ -115,7 +122,10 @@ def mta_operations_statement(context, socrata: SocrataResource):
     name="mta_subway_hourly_ridership",
     io_manager_key="fastopendata_partitioned_parquet_io_manager",
     group_name="MTA",
-    tags={"domain": "mta", "type": "ingestion", "source": "fastopendata"}
+    tags={"domain": "mta", "type": "ingestion", "source": "fastopendata"},
+    metadata={
+        "data_url": MetadataValue.url("https://data.ny.gov/Transportation/MTA-Statement-of-Operations-Beginning-2019/yg77-3tkj/about_data")
+    }
 )
 def mta_subway_hourly_ridership():
     """
