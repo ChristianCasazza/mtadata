@@ -29,6 +29,7 @@ class OpenMateoHourlyWeatherConstants:
 @asset(
     name="daily_weather_asset",
     compute_kind="Polars",
+    io_manager_key="single_file_polars_parquet_io_manager",
     group_name="weather",
     tags={"domain": "weather", "type": "ingestion", "source": "open-meteo"},
 )
@@ -57,6 +58,7 @@ def daily_weather_asset(context):
 @asset(
     name="hourly_weather_asset",
     compute_kind="Polars",
+    io_manager_key="single_file_polars_parquet_io_manager",
     group_name="weather",
     tags={"domain": "weather", "type": "ingestion", "source": "open-meteo"},
 )

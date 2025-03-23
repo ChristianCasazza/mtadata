@@ -69,7 +69,7 @@ def mta_daily_ridership(context, socrata: SocrataResource):
 
 @asset(
     name="mta_operations_statement",
-    compute_kind="Polars",
+    compute_kind="Python",
     io_manager_key="single_file_polars_parquet_io_manager",
     group_name="MTA",
     tags={"domain": "mta", "type": "ingestion", "source": "socrata"},

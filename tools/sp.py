@@ -6,6 +6,8 @@
 # ]
 # ///
 
+
+###Simple helper 
 import sys
 import polars as pl
 from rich.console import Console

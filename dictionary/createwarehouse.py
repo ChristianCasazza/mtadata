@@ -1,49 +1,34 @@
-
 import os
-from dagster import asset, AssetExecutionContext
-from pipeline.constants import WAREHOUSE_PATH
+import sys
 from pathlib import Path
 
-from pipeline.constants import (
-    SINGLE_PATH_ASSETS_PATHS,
-    PARTITIONED_ASSETS_PATHS,
-    WAREHOUSE_PATH,
-)
+# Add the root of the project to the system path to resolve imports from the pipeline module
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from pipeline.constants import SINGLE_PATH_ASSETS_PATHS, PARTITIONED_ASSETS_PATHS, WAREHOUSE_PATH
 from pipeline.utils.duckdb_wrapper import DuckDBWrapper
 
-@asset(
-    deps=[
-        "mta_subway_hourly_ridership",
-        "mta_daily_ridership",
-        "mta_operations_statement",
-        "daily_weather_asset",
-        "hourly_weather_asset",
-    ],
-    compute_kind="DuckDB",
-    group_name="Transformation",
-)
-def duckdb_warehouse(context: AssetExecutionContext):
+def create_duckdb_and_views():
     """
     Creates a persistent DuckDB file at WAREHOUSE_PATH and registers each
-    asset as a DuckDB view. Partitioned assets use a different method.
+    asset as a DuckDB view. Handles both single-path and partitioned assets.
     Creates the directory and database if they don't exist, and replaces
     any existing DuckDB file with a new one.
     """
-
     # Ensure WAREHOUSE_PATH directory exists
     warehouse_dir = Path(WAREHOUSE_PATH).parent
     warehouse_dir.mkdir(parents=True, exist_ok=True)
 
     # If a DuckDB file exists at WAREHOUSE_PATH, delete it
     if os.path.exists(WAREHOUSE_PATH):
+        print(f"Existing DuckDB file at {WAREHOUSE_PATH} deleted.")
         os.remove(WAREHOUSE_PATH)
-        context.log.info(f"Existing DuckDB file at {WAREHOUSE_PATH} deleted.")
 
-    # Create new DuckDB connection (this will create a new file)
+    # Create new DuckDB connection using DuckDBWrapper
     duckdb_wrapper = DuckDBWrapper(WAREHOUSE_PATH)
-    context.log.info(f"New DuckDB file created at {WAREHOUSE_PATH}")
+    print(f"New DuckDB file created at {WAREHOUSE_PATH}")
 
-    # Register non-partitioned assets (MTA, OTHER_MTA, WEATHER)
+    # Register non-partitioned assets
     non_partitioned = {**SINGLE_PATH_ASSETS_PATHS}
     if non_partitioned:
         table_names = list(non_partitioned.keys())
@@ -70,9 +55,13 @@ def duckdb_warehouse(context: AssetExecutionContext):
             table_names=table_names,
             wildcard="year=*/month=*/*.parquet",
             as_table=False,  # Register as views
-            show_tables=False  # Optional: show tables for verification
+            show_tables=False
         )
 
+    # Close the connection
     duckdb_wrapper.con.close()
-    context.log.info("Connection to DuckDB closed.")
-    return None
+    print("Connection to DuckDB closed.")
+
+if __name__ == "__main__":
+    # Call the function to create the DuckDB file and views
+    create_duckdb_and_views()

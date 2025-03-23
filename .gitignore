@@ -46,7 +46,6 @@ transformations/dbt/.user.yml
 transformations/dbt/logs/
 
 # Other
-tools/
 codeprinter/
 datatest/
 testing/

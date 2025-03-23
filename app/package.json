@@ -2,13 +2,14 @@
   "name": "my-evidence-project",
   "version": "0.0.1",
   "scripts": {
-    "build": "evidence build",
-    "build:strict": "evidence build:strict",
+    "build": "evidence build && bun run fix-wasm",
+    "build:strict": "evidence build:strict && bun run fix-wasm",
     "dev": "evidence dev --open /",
     "test": "evidence build",
     "sources": "evidence sources",
     "sources:strict": "evidence sources --strict",
-    "preview": "evidence preview"
+    "preview": "evidence preview",
+    "fix-wasm": "sed -i 's|/_app/immutable/assets/|https://pub-b79c1f2c52f54f57b4c0f3d96426ab7b.r2.dev/duckdb-wasm/mtadata/|g' build/_app/immutable/chunks/*.js && rm build/_app/immutable/assets/duckdb-*.wasm"
   },
   "engines": {
     "npm": ">=7.0.0",

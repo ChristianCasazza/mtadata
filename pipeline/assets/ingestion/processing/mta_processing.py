@@ -11,7 +11,7 @@ def process_mta_daily_df(df: pl.DataFrame) -> (pl.DataFrame, list, list, str):
     date_sample = "N/A"
     if "date" in df.columns:
         df = df.with_columns(
-            pl.col("date").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("date")
+            pl.col("date").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S%.f", strict=False).alias("date")
         )
         date_sample_df = df.select("date").head(3).to_dicts()
         date_sample = str(date_sample_df)
@@ -56,7 +56,7 @@ def process_mta_operations_statement_df(df: pl.DataFrame) -> (pl.DataFrame, list
 
     if "timestamp" in df.columns:
         df = df.with_columns([
-            pl.col("timestamp").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S.%f", strict=False).alias("timestamp")
+            pl.col("timestamp").str.strptime(pl.Date, format="%Y-%m-%dT%H:%M:%S%.f", strict=False).alias("timestamp")
         ])
 
     query = """

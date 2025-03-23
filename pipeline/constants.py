@@ -11,11 +11,7 @@ from pipeline.datasets import *
 LAKE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "opendata"))
 
 # Base path to store our DuckDB. We store this DuckDB file in its own spot in data
-WAREHOUSE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "warehouse", "data.duckdb"))
-
-# Base path to store exported application data as Parquet files
-APPLICATION_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "app", "sources", "app"))
-
+WAREHOUSE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "app", "sources", "app", "data.duckdb"))
 
 
 # Path to where we will store our Dagster logs
